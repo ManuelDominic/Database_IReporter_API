@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edit-form</title>
+	<link rel="stylesheet" type="text/css" href="../../css/style.css">
+	<link rel="stylesheet" type="text/css" href="../../css/grid.css">
+	<script src="../../js/script.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<h1><span style="color:rgb(124,252,0)">&#8465;&#8477;&#8455;</span>PORT<span style="color:rgb(124,252,0)">&#8455;&#8477;</span></h1>
+		</div>
+		<div class="nav-bar">
+			<h1 style="color: lightblue">Report Review</h1>
+		</div>
+		<div class="sidebar">
+			<h2>REDFLAG REPORT</h2>
+		</div>
+		<div class="main">
+			<form class="view_form" id="editRedflag" action="action.py">
+            <h2><span style="color:darkgreen">form-number</span> 266</h2>
+            <div class="flex-container">
+                <div style="flex-grow: 1"><label>Status</label></div>
+                  <div style="flex-grow: 8">
+                  	<select id="status">
+                        	<option>Update-Status</option>
+                        	<option>Rejected</option>
+                        	<option>Resolved</option>
+                        	<option>Under Investigation</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="flex-container">
+                    <div style="flex-grow: 1"><label>Title</label></div>
+                    <div style="flex-grow: 8"><a type="" class="text" name="" style="color:black">Rape</a></div>
+                </div>
+                <br>
+                 <div class="flex-container">
+                      <div style="flex-grow: 1"><label for="adr">Location</label></div>
+                      <div style="flex-grow: 3.5"><a type="" class="text" name="" style="color:black">0.3998</a></div>
+                      <div style="flex-grow: 3.5"><a type="" class="text" name="" style="color:black">0.7898</a></div>
+                 </div>
+               <br>
+               <div class="flex-container">
+                    <div style="flex-grow: 1"><label for="adr">Date</label></div>
+                    <div style="flex-grow: 8"><a type="" class="text" name="">16th/06/2018</a></div>
+               </div>
+               <br>
+               <div class="flex-container">
+                  <div style="flex-grow: 1"><label>Comment</label></div>
+                  <div style="flex-grow: 8"><a name="subject">Thomas was found harrasing alady at around mid morning at Robbinson's Apartments, photo by phone camera</a></div>
+              </div>
+              <br>
+              <div class="flex-container">
+                  <div style="flex-grow: 1"><label>Evidence Photo</label></div>
+                  <div style="flex-grow: 8"><img src="../../img/3.jpeg"></div>
+              </div>
+              <br>
+            <a href="home.html" type="submit" name="submit" class="btn" onclick="update()">Update</a>
+          </form>
+		</div>
+		<div class="footer">
+			<p>copyright @ManuelDominic <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+document.getElementById('editRedflag').addEventListener('submit', editRedflag);
+
+function userLogin(e) {
+  e.preventDefault();
+
+  let status = document.getElementById('status').value;
+  // body...
+  fetch('http://127.0.0.1:5000/api/v1/red-flag/<int:id>/status', {
+    method: 'POST',
+    headers:{
+      'Accept':'application/json, text/plain, */*',
+      'content-type':'application/json'
+    },
+    body:JSON.stringify({status:status})   
+  })
+  .then((response) => response.json())
+  .then((data) => console.log(data))
+}
+</script>
+</html>
