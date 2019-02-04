@@ -1,0 +1,133 @@
+from flask import Blueprint, jsonify, request
+from api.helpers.auth import token_required, admin_required, non_admin_required,get_current_user
+from api.controllers.incident_controller import mailme,get_incidents_by_status_and_user,get_incidents_by_type_id_and_user,get_incidents_by_type_given_user,get_incidents_by_type,get_incidents_by_type_id,create_incident,update_incident_by_user,update_incident_status,delete_incident
+from api.helpers.validators import verify_create_incident_data,verify_upadte_data
+from api.models.database_model import DatabaseConnection
+
+
+db= DatabaseConnection
+
+intervention_bp = Blueprint('intervention_bp', __name__, url_prefix='/api/v1')
+
+
+@intervention_bp.route("/")
+def index():
+    return jsonify({"IReporter": "This enables any/every citizen to bring"
+                " any form of corruption to the notice of appropriate"
+                " authorities and the general public."}),200
+
+
+@intervention_bp.route('/admin/intervention', methods=['GET'])
+@token_required
+def get_intervention_by_admin():
+    intervention=get_incidents_by_type('intervention')
+    if intervention:
+        return jsonify({"status": 200, "data": intervention}), 200
+    return bad_request()
+
+
+@intervention_bp.route('/admin/intervention/<int:intervention_Id>', methods=['GET'])
+@token_required
+def get_specific_intervention_by_admin(intervention_Id):
+    intervention=get_incidents_by_type_id('intervention',int(intervention_Id))
+    if intervention:
+        return jsonify({"status": 200, "data": intervention}), 200
+    return not_found()
+
+
+
+@intervention_bp.route('/user/intervention', methods=['GET'])
+@token_required
+def get_intervention_by_user():
+    intervention=get_incidents_by_type_given_user('intervention')
+    if intervention:
+        return jsonify({"status": 200, "data": intervention}), 200
+    return bad_request()
+
+
+@intervention_bp.route('/user/intervention/<int:intervention_Id>', methods=['GET'])
+@token_required
+def get_specific_intervention_by_user(intervention_Id):
+    intervention=get_incidents_by_type_id_and_user('intervention',int(intervention_Id))
+    if intervention:
+        return jsonify({"status": 200, "data": intervention}), 200
+    return not_found()
+
+
+
+@intervention_bp.route('/intervention', methods=['POST'])
+@token_required
+@verify_create_incident_data
+def create_intervention():
+    incident=create_incident('intervention')
+    if incident:
+        return  jsonify({"status":201,"data":[incident,
+        {"message": "Intervention Successfully created"}]}), 201
+    return bad_request()
+
+
+@intervention_bp.route('/intervention/<int:intervention_Id>/record', methods=['PATCH'])
+@token_required
+@verify_upadte_data
+def update_intervention_record(intervention_Id):
+    can_not_edit=get_incidents_by_status_and_user('intervention',int(intervention_Id))
+    incident=update_incident_by_user('intervention',int(intervention_Id))
+    if can_not_edit:
+        return can_not_edit
+    elif incident:
+        return jsonify({"status":200,"data":[incident,
+            {"message": "Intervention location successfully Updated"}]}), 200
+    return bad_request()  
+
+
+@intervention_bp.route('/intervention/<int:intervention_Id>', methods=['DELETE'])
+@token_required
+def delete_intervention(intervention_Id):
+    incident=get_incidents_by_type_id_and_user('intervention',int(intervention_Id))
+    delete=delete_incident('intervention',int(intervention_Id))
+    if not incident:
+        return not_found()
+    elif delete:
+        return jsonify({"status":200,"data":[delete,
+            {"message": "Intervention successfully Deleted"}]}), 200 
+    return bad_request()
+
+
+@intervention_bp.route('/intervention/<int:intervention_Id>/status', methods=['PATCH'])
+@token_required
+def update_intervention_status(intervention_Id):
+    incident=get_incidents_by_type_id('intervention',int(intervention_Id))
+    incident_status=update_incident_status('intervention',int(intervention_Id))
+    if not incident:
+        return not_found()
+    elif incident_status:
+        mail=mailme("intervention",int(incident_status["incident_id"]))
+        return jsonify({"status":200,"data":[incident_status,
+            {"message": "Intervention status successfully Updated"},{"Email":mail}]}), 200   
+    return bad_request()
+
+
+@intervention_bp.route('/intervention/image/<int:incident_Id>', methods=['POST'])
+@token_required
+def intervertion_upload_image(incident_Id):
+    file = upload_image(incident_Id)
+    return "Image successfully uploaded"
+
+
+@intervention_bp.route('/intervention/video/<int:incident_Id>', methods=['POST'])
+@token_required
+def intervertion_upload_video(incident_Id):
+    file = upload_video(incident_Id)
+    return "Video successfully uploaded"
+
+
+def bad_request():
+    return jsonify({"status":400, "error": "Sorry, Bad request"}),400
+
+def not_found():
+    return jsonify({"status":404, "error": "Sorry, Incident Not Found"}),404
+
+def not_data():
+    return jsonify({"status":406, "error": "Sorry, no input data found"}),406
+
+

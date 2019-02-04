@@ -1,0 +1,366 @@
+import os
+import sys
+import unittest
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/..")
+from api.app import app
+from api.helpers.auth import encode_token
+from api.models.database_model import DatabaseConnection
+
+
+class TestBase(unittest.TestCase):
+    def setUp(self):
+        app.config['TESTING'] = True
+        app.config['DEBUG'] = True
+        self.app = app.test_client()
+        self.db = DatabaseConnection()
+        self.db.cursor.execute(open('query.sql', 'r').read())
+
+
+new_user = {
+    "email": "ematembu3@gmail.com",
+    "firstName": "Emmanuel",
+    "lastName": "Matembu",
+    "password": "manuel123",
+    "phoneNumber": 256700701616,
+    "userName": "Manuel"
+}
+
+new_user_response = {"status": 201, "message": "Successfully registered",
+                     "data": {
+                         "phone_number": "256700701616",
+                         "email": "ematembu2@gmail.com",
+                         "first_name": "Emmanuel",
+                         "isadmin": False,
+                         "joinning": "Thu, 10 Jan 2019 04:01:14 GMT",
+                         "last_name": "Matembu",
+                         "user_id": 3,
+                         "user_name": "Manuel"
+                     }, "token": encode_token(3)
+                     }
+
+login_user = {
+    "email": "ireporterManuelDominic@gmail.com",
+    "password": "admin123"
+}
+
+login_user_response = {
+    "message": "Successfully logged In",
+    "token": encode_token(1)
+}
+
+all_users_response = {
+    "data": [
+        [
+            {
+                "email": "ematembu2@gmail.com",
+                "first_name": "manuel",
+                "isadmin": False,
+                "joinning": "Thu, 10 Jan 2019 04:01:14 GMT",
+                "last_name": "manuellast_Name",
+                "passwd": "pbkdf2:sha256:50000$kEBD7Z97$97db32267f5d0956994c5db567ffda9f45cd6f136a7e2d0f9029f3d68b882b1c",
+                "phone_number": "256700701616",
+                "user_id": 2,
+                "user_name": "manuel"
+            }
+        ]
+    ],
+    "status": 200
+}
+
+new_intervention = {
+    "title": "intervention",
+    "comment": "Jinja bridge needs construction",
+    "createdBy": 2,
+    "incident_type": "intervention",
+    "created_On": "Thu, 10 Jan 2019 04:01:14 GMT",
+    "longtitude": 6.66666,
+    "latitude": 7.7777
+}
+
+new_intervention_response = {
+    "data": [
+        {
+            "incident_id": 5
+        },
+        {
+            "message": "Intervention Successfully created"
+        }
+    ],
+    "status": 201
+}
+
+new_intervention_response["data"][1] = {"message": "Intervention Successfully created"}
+
+new_redflag = {
+    "title": "Theft",
+    "createdBy": 2,
+    "comment": "james idle and disorderly",
+    "incident_type": "redflag",
+    "created_On": "Thu, 10 Jan 2019 04:01:14 GMT",
+    "latitude": 5.38974,
+    "longtitude": 0.33737
+}
+
+new_redflag_response = {
+    "data": [
+        {
+            "incident_id": 1
+        },
+        {
+            "message": "Redflag Successfully created"
+        }
+    ],
+    "status": 201
+}
+
+new_redflag_response["data"][1] = {"message": "Redflag Successfully created"}
+
+get_all_redflags = {
+    "data": [
+        {
+            "comment": "Arnold stole hassan phone and laptop from his car",
+            "created_by": 2,
+            "created_on": "Thu, 10 Jan 2019 04:01:14 GMT",
+            "incident_id": 1,
+            "incident_type": "redflag",
+            "latitude": 5.38974,
+            "longtitude": 0.33737,
+            "status_": "draft",
+            "title": "Theift",
+        },
+        {
+            "comment": "Every night at malamba boarders, people smuggle kenya rice into the country",
+            "created_by": 2,
+            "created_on": "Thu, 10 Jan 2019 04:01:14 GMT",
+            "incident_id": 2,
+            "incident_type": "redflag",
+            "latitude": 5.38974,
+            "longtitude": 0.33737,
+            "status_": "draft",
+            "title": "Smuggling"
+        },
+        {
+            "comment": "Timothy raped Jane last night at 11pm after breaking into her apartment",
+            "created_by": 2,
+            "created_on": "Thu, 10 Jan 2019 04:01:14 GMT",
+            "incident_id": 3,
+            "incident_type": "redflag",
+            "latitude": 5.38974,
+            "longtitude": 0.33737,
+            "status_": "Rejected",
+            "title": "Rape"
+        },
+        {
+            "comment": "Hadrico raped lona last month at 11pm after breaking into her apartment",
+            "created_by": 2,
+            "created_on": "Thu, 10 Jan 2019 04:01:14 GMT",
+            "incident_id": 4,
+            "incident_type": "redflag",
+            "latitude": 5.38974,
+            "longtitude": 0.33737,
+            "status_": "Rejected",
+            "title": "Rape"
+        }
+    ],
+    "status": 200
+}
+
+get_redflag = {
+    "data":
+        {
+            "comment": "Arnold stole hassan phone and laptop from his car",
+            "created_by": 2,
+            "created_on": "Thu, 10 Jan 2019 04:01:14 GMT",
+            "incident_id": 1,
+            "incident_type": "redflag",
+            "latitude": 5.38974,
+            "longtitude": 0.33737,
+            "status_": "draft",
+            "title": "Theift"
+        }
+    ,
+    "status": 200
+}
+
+get_all_intervention = {
+    "data": [
+        {
+            "comment": "Mbale highway broken down after a previous track accident last month amonth ",
+            "created_by": 2,
+            "created_on": "Thu, 10 Jan 2019 04:01:14 GMT",
+            "incident_id": 5,
+            "incident_type": "intervention",
+            "latitude": 5.38974,
+            "longtitude": 0.33737,
+            "status_": "draft",
+            "title": "Road Breakdown"
+        },
+        {
+            "comment": "Mbarara medical facilities lack proper medication and labour ward services",
+            "created_by": 2,
+            "created_on": "Thu, 10 Jan 2019 04:01:14 GMT",
+            "incident_id": 6,
+            "incident_type": "intervention",
+            "latitude": 5.38974,
+            "longtitude": 0.33737,
+            "status_": "draft",
+            "title": "Incoprate hospital services"
+        },
+        {
+            "comment": "Jinja bridge needs replacement because it is past its deadline date",
+            "created_by": 2,
+            "created_on": "Thu, 10 Jan 2019 04:01:14 GMT",
+            "incident_id": 7,
+            "incident_type": "intervention",
+            "latitude": 5.38974,
+            "longtitude": 0.33737,
+            "status_": "draft",
+            "title": "Bridge construction"
+        }
+    ],
+    "status": 200
+}
+
+get_intervention = {
+    "data":
+        {
+            "comment": "Mbale highway broken down after a previous track accident last month amonth ",
+            "created_by": 2,
+            "created_on": "Thu, 10 Jan 2019 04:01:14 GMT",
+            "incident_id": 5,
+            "incident_type": "intervention",
+            "latitude": 5.38974,
+            "longtitude": 0.33737,
+            "status_": "draft",
+            "title": "Road Breakdown"
+        }
+    ,
+    "status": 200
+}
+
+new_comment = {"comment": "Just testing comment"}
+
+new_comment_response = {
+    "data": [
+        {
+            "incident_id": 1
+        },
+        {
+            "message": "intervention comment successfully Updated"
+        }
+    ],
+    "status": 200
+}
+
+new_location = {
+    "latitude": 25.5585,
+    "longtitude": 55.6866
+}
+
+new_location_response = {
+    "data": [
+        [
+            {
+                "incident_id": 1
+            }
+        ],
+        {
+            "message": "intervention location successfully Updated"
+        }
+    ],
+    "status": 200
+}
+
+new_status = {
+    "status": "Resolved"
+}
+
+redflag_status_response = {
+    "data": [
+        {
+            "incident_id": 1
+        },
+        {
+            "message": "Redflag status successfully Updated"
+        },{"Email":"Email sent"}
+    ],
+    "status": 200
+}
+
+intervention_status_response = {
+    "data": [
+        {
+            "incident_id": 5
+        },
+        {
+            "message": "Intervention status successfully Updated"
+        },{"Email":"Email sent"}
+    ],
+    "status": 200
+}
+
+new_user_error_mail = {
+    "email": "ematembu2@gmail.com",
+    "firstName": "manuel",
+    "lastName": "Dominic",
+    "password": "manuel123",
+    "phoneNumber": 256700701616,
+    "userName": "mats"
+}
+
+invalid_login_user = {
+    "password": "admin123",
+    "email": "admin@ireporter.com"
+}
+
+new_bad_redflag = {}
+
+new_bad_intervention = {}
+
+new_error_redflag = {
+    "titles": "redflag",
+    "comment": "Jinja bridge needs construction",
+    "createdBy": 2,
+    "incident_type": "redflag",
+    "created_On": "Thu, 10 Jan 2019 04:01:14 GMT",
+    "longtitude": 6.66666,
+    "latitude": 7.7777
+}
+
+new_error_intervention = {
+    "title": "intervention",
+    "comments": "Jinja bridge needs construction",
+    "createdBy": 2,
+    "incident_type": "intervention",
+    "created_On": "Thu, 10 Jan 2019 04:01:14 GMT",
+    "longtitude": 6.66666,
+    "latitude": 7.7777
+}
+
+error = {"status": 404, "error": "Sorry, Incident Not Found"}
+
+
+token_expired = {"Content-Type": "application/json",
+                 "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImV4cCI6MTEzNjA2ODczMn0.jnahXxePeXcJEJM4F8iQgNVMVQquE1Mh64XV26juvs8"}
+
+token_Invalid = {"Content-Type": "application/json",
+                 "token": "eyJ0eXAiOiJKV1iLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjIsImV4cCI6MTU0NjI2MzQxMn0.aszd39bdMvIZnOTfMkHCH5tESTd1cfav06hs0Pp58ko"}
+
+token_signature_error = {"Content-Type": "application/json", "token": encode_token_test(1)}
+
+example_create_data = {"title": "title","comment": "comment","images": "image name",
+        "latitude": 0.111111,"longtitude": 0.1111111,"videos": "video name"}
+
+invalid_key_msg = "Invalid Key in data,please provide valid input data"
+
+
+def encode_token_test(user_id):
+    token = jwt.encode({'userId': user_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24)},
+        secret_key).decode('utf-8')
+    return token
+
+
+def token_header(token):
+    message = {"Content-Type": "application/json", "token": token}
+    return message
