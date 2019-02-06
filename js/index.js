@@ -130,3 +130,4 @@ function userSignup() {
     })
     .catch(error => console.log(error.error));
 }
+ 
