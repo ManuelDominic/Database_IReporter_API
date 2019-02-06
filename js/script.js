@@ -17,10 +17,3 @@ function form() {
 function Delete() {
    alert ("Successfully Deleted!! Thank You");
 }
-
-let element = document.getElementById("test").elements;
-
-for (var i = 0, element; element = elements[i++];) {
-    if (element.type === "text" && element.value === "")
-        console.log("This field is required!")
-}
