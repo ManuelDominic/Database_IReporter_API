@@ -41,7 +41,7 @@ function userLogin() {
     if (response.status === 200) {
       response.json().then((data) => {
         sucessLogin.innerHTML = data.message
-      if (loginemail === "ireporterManuelDominic@gmail.com" && loginpassword === "admin123") {
+      if (loginemail === "ireportermanueldominic@gmail.com" && loginpassword === "admin123") {
        window.setTimeout(function () {
         window.location.replace("templates/admin/home.html");
       }, 800);
@@ -59,18 +59,13 @@ function userLogin() {
 }
 
 function userSignup() {
+
     let fname = document.getElementById('fname').value;
-    let fnameerror = document.getElementById('fnameerror');
     let lname = document.getElementById('lname').value;
-    let lnameerror = document.getElementById('lnameerror');
     let uname = document.getElementById('uname').value;
-    let unameerror = document.getElementById('unameerror');
     let email = document.getElementById('email').value;
-    let emailerror = document.getElementById('emailerror');
     let Phone = document.getElementById('Phone').value;
-    let phoneerror = document.getElementById('Phoneerror');
     let psw = document.getElementById('psw').value;
-    let pswerror = document.getElementById('pswerror');
     let pswrepeat = document.getElementById('psw-repeat').value;
     let messageSignup = document.getElementById("messageSignup");
     let sucessSignup = document.getElementById("sucessSignup");
@@ -95,39 +90,30 @@ function userSignup() {
     .then(function(response) {
         if (response.status === 404) {
           response.json().then((data) => 
-              messageSignup.innerHTML = data.message)
+              messageSignup.innerHTML = data.message);
         }
         if (response.status === 406) {
-        response.json().then((data) => {
-        for (var key in data.error) {
-          if (data.error.hasOwnProperty(key)) {
-            if (fname === "" && lname === "" && uname === "" && email === "" && Phone === "" && psw === "" && pswrepeat === "") {
-                messageSignup.innerHTML = data.error.fields;
+          response.json().then((data) => {
+          for (var key in data.error){
+            if (data.error.hasOwnProperty(key)) {
+              if(data.error.fields){
+                  messageSignup.innerHTML = data.error.fields;
+                  break;
+
               }
-            else{
-              fnameerror.innerHTML = data.error.firstName;
-              lnameerror.innerHTML = data.error.lastName;
-              unameerror.innerHTML = data.error.userName;
-              emailerror.innerHTML = data.error.email;
-              phoneerror.innerHTML = data.error.phoneNumber;
-              pswerror.innerHTML = data.error.password;
+              document.getElementById(key+"Error").innerHTML = data.error[key];
+             }
             }
-            if (psw !== pswrepeat) {
-                pswerror.innerHTML = 'passwords donot match';
-              }
           }
-        }
-      });
-    }
-      if (response.status === 200) {
-        response.json().then((data) => {
-          messageSignup.innerHTML = data.message
-           window.setTimeout(function () {
-            window.location.replace("index.html");
-        })
-        }, 800);
+        );
       }
-    })
-    .catch(error => console.log(error.error));
+      if (response.status === 201) {
+        response.json().then((data) => {
+          sucessSignup.innerHTML = data.message
+        });
+    }
+
+  })
 }
- 
+
+
