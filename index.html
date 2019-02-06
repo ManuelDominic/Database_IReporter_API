@@ -18,6 +18,7 @@
 					<li><a href="index.html">Index Page</a></li>
 					<li><a href="templates/user/about.html">About</a></li>
 					<div class="login">
+						<p id="goodlogin" style="color: green;"></p>
 						<p id="errorlogin" style="color: red;"></p>
 						<form class="user-login" id="Login" action="#" autocomplete="on" onsubmit="return false">
 							<input type="email" id="loginemail" class="bt-input" placeholder="Enter Email" required>
@@ -32,7 +33,7 @@
 			<h2>Welcome To IReporter</h2>
 		</div>
 		<div class="main">
-			<form class="signup" id="userSignup" action="/run.py" style="border:1px solid #ccc"  autocomplete="on">
+			<form class="signup" id="Signup" action="#" style="border:1px solid #ccc"  autocomplete="on">
 		    <h1>Sign Up</h1>
 		    <hr>
 
@@ -40,40 +41,42 @@
 			   <img src="img/img_avatar.png" alt="Avatar" class="avatar">
 			</div>
 
+			<p id="messageSignup" style="color: red;"></p>
+			<p id="sucessSignup" style="color: green;"></p>
+
 		    <label for="fname"><b>First Name</b></label>
 		    <input type="text" id="fname" placeholder="Enter First Name" required>
-		    <p id="fnameerror"></p>
+		    <p id="fnameerror" style="color: red;"></p>
 
 		    <label for="lname"><b>Last Name</b></label>
 		    <input type="text" id="lname" placeholder="Enter Last Name" required>
-		    <p id="lnameerror"></p>
+		    <p id="lnameerror" style="color: red;"></p>
 
 		    <label for="uname"><b>User Name</b></label>
 		    <input type="text" id="uname" placeholder="Enter User Name" required>
-		    <p id="unameerror"></p>
+		    <p id="unameerror" style="color: red;"></p>
 
 		    <label for="email"><b>Email</b></label>
-		    <input type="text" id="email" placeholder="Enter Email" autocomplete="off" required>
-		    <p id="emailerror"></p>
+		    <input type="email" id="email" placeholder="Enter Email" autocomplete="off" required>
+		    <p id="emailerror" style="color: red;"></p>
 
 		    <label for="number"><b>Phone Number</b></label>
-		    <input type="password" id="Phone" placeholder="Enter Contact Number" autocomplete="off" required>
-		    <p id="Phoneerror"></p>
+		    <input type="tel" max="10" id="Phone" placeholder="Enter Contact Number" autocomplete="off" required>
+		    <p id="Phoneerror" style="color: red;"></p>
 
 		    <label for="psw"><b>Password</b></label>
 		    <input type="password" id="psw" autocomplete="off" placeholder="Enter Password" required>
-		    <p id="pswerror"></p>
+		    <p id="pswerror" style="color: red;"></p>
 
 		    <label for="psw-repeat"><b>Repeat Password</b></label>
 		    <input type="password" id="psw-repeat" autocomplete="off" placeholder="Repeat Password" required>
-		    <p id="psw-repeaterror"></p>
 		    
 		    <label>
 		      <input type="checkbox" checked="checked" style="margin-bottom:15px"> Remember me
 		    </label>
 		    
 		    <div class="clearfix">
-		        <a href="index.html" style="float:left;" type="submit" class="signupbtn" placeholder="">Sign Up</a>
+		        <button type="submit" onclick="userSignup();" class="signupbtn">Sign Up</button>
 		    </div>
 		</form>
 		</div>
@@ -83,3 +86,7 @@
 	</div>
 </body>
 </html>
+
+
+
+
