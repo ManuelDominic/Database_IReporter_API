@@ -22,8 +22,6 @@ def get_users():
     return not_found()
 
 
-
-
 @user_bp.route("/auth/signup", methods=["POST"])
 @verify_signup_data
 def user_signup():
@@ -44,7 +42,6 @@ def user_login():
     return jsonify({"message": "Invalid credentials, Please try again"}), 401
 
 
-
 @user_bp.route("/auth/logout", methods=["POST"])
 def user_logout():
     blacklist = logout_user()
@@ -52,9 +49,8 @@ def user_logout():
              "message": "Successfully logged Out"}),200
 
 
-
 def bad_request():
-    return jsonify({"status":400, "error": "Sorry, Bad request"}),400
+    return jsonify({"status":400, "message": "Sorry, Bad request"}),400
 
 def not_found():
     return jsonify({"status":200, "data": "Users Not Found"}),200
