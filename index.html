@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Index</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/grid.css">
+	<script src="js/script.js"></script>
+	<script src="js/index.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<h1><span style="color:rgb(124,252,0)">&#8465;&#8477;&#8455;</span>PORT<span style="color:rgb(124,252,0)">&#8455;&#8477;</span></h1>
+		</div>
+		<div class="nav-bar">
+			<nav>
+				<ul>
+					<li><a href="index.html">Index Page</a></li>
+					<li><a href="templates/user/about.html">About</a></li>
+					<div class="login">
+						<p id="errorlogin" style="color: red;"></p>
+						<form class="user-login" id="Login" action="#" autocomplete="on" onsubmit="return false">
+							<input type="email" id="loginemail" class="bt-input" placeholder="Enter Email" required>
+							<input type="password" id="loginpassword" class="bt-input" placeholder="Enter Password" required>
+							<button type="submit" onclick="userLogin();" class="button">Submit</button>
+						</form>
+					</div>
+				</ul>
+			</nav>
+		</div>
+		<div class="sidebar div">
+			<h2>Welcome To IReporter</h2>
+		</div>
+		<div class="main">
+			<form class="signup" id="userSignup" action="/run.py" style="border:1px solid #ccc"  autocomplete="on" onsubmit="return false">
+		    <h1>Sign Up</h1>
+		    <hr>
+
+		    <div class="imgcontainer">
+			   <img src="img/img_avatar.png" alt="Avatar" class="avatar">
+			</div>
+
+		    <label for="fname"><b>First Name</b></label>
+		    <input type="text" id="fname" placeholder="Enter First Name" required>
+		    <p id="fnameerror"></p>
+
+		    <label for="lname"><b>Last Name</b></label>
+		    <input type="text" id="lname" placeholder="Enter Last Name" required>
+		    <p id="lnameerror"></p>
+
+		    <label for="uname"><b>User Name</b></label>
+		    <input type="text" id="uname" placeholder="Enter User Name" required>
+		    <p id="unameerror"></p>
+
+		    <label for="email"><b>Email</b></label>
+		    <input type="text" id="email" placeholder="Enter Email" autocomplete="off" required>
+		    <p id="emailerror"></p>
+
+		    <label for="number"><b>Phone Number</b></label>
+		    <input type="password" id="Phone" placeholder="Enter Contact Number" autocomplete="off" required>
+		    <p id="Phoneerror"></p>
+
+		    <label for="psw"><b>Password</b></label>
+		    <input type="password" id="psw" autocomplete="off" placeholder="Enter Password" required>
+		    <p id="pswerror"></p>
+
+		    <label for="psw-repeat"><b>Repeat Password</b></label>
+		    <input type="password" id="psw-repeat" autocomplete="off" placeholder="Repeat Password" required>
+		    <p id="psw-repeaterror"></p>
+		    
+		    <label>
+		      <input type="checkbox" checked="checked" style="margin-bottom:15px"> Remember me
+		    </label>
+		    
+		    <div class="clearfix">
+		        <button type="submit" onclick="userLogin();" class="signupbtn">Sign Up</button>
+		    </div>
+		</form>
+		</div>
+		<div class="footer">
+    		<p>copyright @ManuelDominic <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+		</div>
+	</div>
+</body>
+</html>
