@@ -107,17 +107,17 @@ def update_intervention_status(intervention_Id):
     return bad_request()
 
 
-@intervention_bp.route('/intervention/image/<int:incident_Id>', methods=['POST'])
+@intervention_bp.route('/intervention/<int:intervention_Id>/Addimage', methods=['POST'])
 @token_required
-def intervertion_upload_image(incident_Id):
-    file = upload_image(incident_Id)
+def intervertion_upload_image(intervention_Id):
+    file = upload_image(intervention_Id)
     return "Image successfully uploaded"
 
 
-@intervention_bp.route('/intervention/video/<int:incident_Id>', methods=['POST'])
+@intervention_bp.route('/intervention/<int:intervention_Id>/Addvideo', methods=['POST'])
 @token_required
-def intervertion_upload_video(incident_Id):
-    file = upload_video(incident_Id)
+def intervertion_upload_video(intervention_Id):
+    file = upload_video(intervention_Id)
     return "Video successfully uploaded"
 
 

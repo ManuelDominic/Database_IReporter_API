@@ -8,8 +8,6 @@ from api.models.database_model import DatabaseConnection
 
 db =DatabaseConnection()
 
-# class Incident:
-    # """docstring for Incident."""
 
 def get_incidents_by_type(incident_type):
     sql_command="""SELECT incident_id,title,created_by,incident_Type,

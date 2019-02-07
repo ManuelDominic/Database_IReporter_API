@@ -1,7 +1,8 @@
 import os
 import sys
 import unittest
-
+import jwt
+import datetime
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/..")
 from api.app import app
 from api.helpers.auth import encode_token
@@ -15,6 +16,7 @@ class TestBase(unittest.TestCase):
         self.app = app.test_client()
         self.db = DatabaseConnection()
         self.db.cursor.execute(open('query.sql', 'r').read())
+
 
 
 new_user = {
@@ -347,6 +349,19 @@ token_expired = {"Content-Type": "application/json",
 token_Invalid = {"Content-Type": "application/json",
                  "token": "eyJ0eXAiOiJKV1iLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjIsImV4cCI6MTU0NjI2MzQxMn0.aszd39bdMvIZnOTfMkHCH5tESTd1cfav06hs0Pp58ko"}
 
+secret_key = "softwareDeveloper.Manuel@secret_key/mats.com"
+
+def encode_token_test(user_id):
+    token = jwt.encode({'userId': user_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24)},
+        secret_key)
+    return token
+
+
+def token_header(token):
+    message = {"Content-Type": "application/json", "token": token}
+    return message
+
+
 token_signature_error = {"Content-Type": "application/json", "token": encode_token_test(1)}
 
 example_create_data = {"title": "title","comment": "comment","images": "image name",
@@ -355,12 +370,3 @@ example_create_data = {"title": "title","comment": "comment","images": "image na
 invalid_key_msg = "Invalid Key in data,please provide valid input data"
 
 
-def encode_token_test(user_id):
-    token = jwt.encode({'userId': user_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24)},
-        secret_key).decode('utf-8')
-    return token
-
-
-def token_header(token):
-    message = {"Content-Type": "application/json", "token": token}
-    return message
