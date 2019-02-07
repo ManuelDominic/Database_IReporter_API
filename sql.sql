@@ -2,13 +2,12 @@ CREATE TABLE IF NOT EXISTS "users" (
    user_Id BIGSERIAL  PRIMARY KEY  NOT NULL,
    first_Name VARCHAR (255)   NOT NULL,
    last_Name VARCHAR (255)   NOT NULL,
-   email  VARCHAR (255) NOT NULL,
+   email  VARCHAR (255) UNIQUE NOT NULL,
    user_Name  VARCHAR (255)  NOT NULL ,
    phone_Number   VARCHAR (255)  NOT NULL, 
    Passwd VARCHAR (255)   NOT NULL,
    isAdmin  BOOLEAN   NOT NULL  DEFAULT FALSE,
-   joinning  timestamp   NOT NULL,
-   UNIQUE(email)
+   joinning  timestamp   NOT NULL
 );
 
 TRUNCATE TABLE users CASCADE;

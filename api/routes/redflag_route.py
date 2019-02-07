@@ -101,17 +101,17 @@ def update_redflag_status(redflag_Id):
     return bad_request()
 
 
-@redflag_bp.route('/red-flags/image/<int:incident_Id>', methods=['POST'])
+@redflag_bp.route('/red-flags/<int:redflag_Id>/Addimage', methods=['POST'])
 @token_required
-def redflag_upload_image(incident_Id):
-    file = upload_image(incident_Id)
+def redflag_upload_image(redflag_Id):
+    file = upload_image(redflag_Id)
     return "Image successfully uploaded"
 
 
-@redflag_bp.route('/red-flags/video/<int:incident_Id>', methods=['POST'])
+@redflag_bp.route('/red-flags/<int:redflag_Id>/Addvideo', methods=['POST'])
 @token_required
-def redflag_upload_video(incident_Id):
-    file = upload_video(incident_Id)
+def redflag_upload_video(redflag_Id):
+    file = upload_video(redflag_Id)
     return "Video successfully uploaded"
 
 

@@ -6,7 +6,7 @@ from flask import request,jsonify
 invalid_key_msg = "Invalid Key in data,please provide valid input data"
 required_feild = "field is Required"
 Invalid_value_msg = "Invalid value in data,please provide valid input data"
-get_data="Input fields are Required"
+get_data="All Input fields are Required"
 valid_type="Please provide valid data type for fields"
 
 
@@ -24,12 +24,11 @@ def pass_email():
 
     if errors:
         return jsonify({"error":errors}), 406
-
     return None
+
 
 def more_user_data():
     data = request.get_json()
-    verify=pass_email()
     errors = {}
     if not data["firstName"] and not data["lastName"] and not data["userName"] and not data["email"] and not data["password"] and not data["phoneNumber"]:
         errors["fields"] = get_data
@@ -55,15 +54,18 @@ def more_user_data():
         errors["email"] = "You have entered an invalid email address.Please try again." 
     
     if not data["password"]:
-        errors["password"] = "Password feild is required."
+        errors["password"] = "Password feilds are required."
     elif not data["password"].isalnum() or len(data["password"]) < 6:
         errors["password"] = "Password must have atleast six alphanumeric characters"
     
     if not data["phoneNumber"]:
         errors["phoneNumber"] = "phoneNumber feild is required."
-    elif not isinstance(data["phoneNumber"],int) or len(str(data["phoneNumber"]))!=10:
+    elif not isinstance(data["phoneNumber"],str) or len(str(data["phoneNumber"])) != 10:
         errors["phoneNumber"] = "Please enter valid phoneNumber"
-    return jsonify({"error":errors}), 406
+    
+    if errors:
+        return jsonify({"error":errors}), 406
+    return None
 
 
 def verify_login_data(func):
@@ -113,7 +115,6 @@ def verify_signup_data(func):
 def more_incident_data():
     data = request.get_json()
     errors = {}
-    response = None
     if not data["title"] and data["longtitude"] and data["latitude"] and data["comment"]:
         errors["fields"] = get_data
     
@@ -136,7 +137,10 @@ def more_incident_data():
         errors["comment"] = "comment feild is required"
     elif not isinstance(data["comment"],str) or len(data["comment"])<10:
         errors["comment"] = "comment field must have atleast 10 character strings"
-    return jsonify({"error":errors}), 406
+
+    if errors:
+        return jsonify({"error":errors}), 406
+    return None
 
 
 def verify_create_incident_data(func):
