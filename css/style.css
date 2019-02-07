@@ -59,7 +59,7 @@ form {
   border-radius: 8px;
 }
 
-input[type=text], input[type=password],input[type=email],input[type=date] {
+input[type=text], input[type=password],input[type=email],input[type=date],input[type=tel] {
   width: 95%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -96,7 +96,7 @@ select, textarea {
 }
 
 
-a[class=signupbtn] {
+button[class=signupbtn] {
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
