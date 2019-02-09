@@ -70,18 +70,18 @@ $ pytest -vv --cov
 
 |                   End Point                               |           Functionality       |
 |  ---------------------------------------------------------|-------------------------------
-| POST   api/v1/auth/login                                  | Login to application          |
-| POST   api/v1/auth/signup                                 | Register an account           |
-| POST   api/v1/red-flags                                   | Create a red-flag             |
-| GET    api/v1/red-flags                                   | Fetch all red-flags           |
-| GET    api/v1/red-flags/<int:redflag_Id>                  | Fetch a red-flag              |
-| PATCH  api/v1/red-flags/<int:redflag_Id>/record           | Edit red-flag record          |
-| POST   api/v1/intervention                                | Create a intervention         |
-| GET    api/v1/intervention                                | Fetch all intervention        |
-| GET    api/v1/intervention/<int:intervention_Id>          | Fetch a intervention          |
-| PATCH  api/v1/intervention/<int:intervention_Id>/record   | Edit intervention record      |
-| PATCH  api/v1/red-flags/<int:redflag_Id>/status           | Edit red-flag status          |
-| PATCH  api/v1/intervention/<int:intervention_Id>/status   | Edit intervention status      |
+| POST   api/v3/auth/login                                  | Login to application          |
+| POST   api/v3/auth/signup                                 | Register an account           |
+| POST   api/v3/red-flags                                   | Create a red-flag             |
+| GET    api/v3/red-flags                                   | Fetch all red-flags           |
+| GET    api/v3/red-flags/<int:redflag_Id>                  | Fetch a red-flag              |
+| PATCH  api/v3/red-flags/<int:redflag_Id>/record           | Edit red-flag record          |
+| POST   api/v3/intervention                                | Create a intervention         |
+| GET    api/v3/intervention                                | Fetch all intervention        |
+| GET    api/v3/intervention/<int:intervention_Id>          | Fetch a intervention          |
+| PATCH  api/v3/intervention/<int:intervention_Id>/record   | Edit intervention record      |
+| PATCH  api/v3/red-flags/<int:redflag_Id>/status           | Edit red-flag status          |
+| PATCH  api/v3/intervention/<int:intervention_Id>/status   | Edit intervention status      |
 
 ## Built With
 
