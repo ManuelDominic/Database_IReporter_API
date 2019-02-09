@@ -108,9 +108,9 @@ def delete_incident(incident_tpye,incident_Id):
 
 def update_incident_status(incident_type,incident_Id):
     data = request.get_json()
-    sql_command="""UPDATE incidents SET status_='{data['status']}'
+    sql_command="""UPDATE incidents SET status_='{}'
                 WHERE incident_Type='{}' AND incident_id='{}' 
-                RETURNING incident_id;""".format(incident_type,incident_Id)
+                RETURNING incident_id;""".format(data['status'],incident_type,incident_Id)
     db.cursor.execute(sql_command)
     incident=db.cursor.fetchone()
     return incident

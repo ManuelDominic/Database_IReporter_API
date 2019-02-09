@@ -103,8 +103,8 @@ def update_intervention_status(intervention_Id):
         return not_found()
     elif incident_status:
         mail=mailme("intervention",int(incident_status["incident_id"]))
-        return jsonify({"status":200,"data":[incident_status,
-            {"message": "Intervention status successfully Updated"},{"Email":mail}]}), 200   
+        return jsonify({"status":200,"data":incident_status,
+            "message": "Intervention status successfully Updated","Email":mail}), 200   
     return bad_request()
 
 
