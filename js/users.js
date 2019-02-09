@@ -2,7 +2,7 @@
 window.onload = function loadPage() {
   let loading = document.getElementById('table');
 
-  fetch('http://127.0.0.1:5000/api/v1/users', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/users', {
     method: 'GET',
       mode: "cors",
     headers:{

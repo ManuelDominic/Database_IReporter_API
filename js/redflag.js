@@ -64,7 +64,7 @@ function deleteIncident(id){
 window.onload = function loadPage() {
   let loading = document.getElementById('table');
 
-  fetch('http://127.0.0.1:5000/api/v1/admin/red-flags', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags', {
     method: 'GET',
       mode: "cors",
     headers:{
@@ -117,27 +117,7 @@ window.onload = function loadPage() {
           </table>`
           
           loading.innerHTML = output;
-          // console.log(data.data);
      });
     }
-    // else{
-    //   let output = `
-    //       <table>
-    //         <thead>
-    //         <tr>
-    //         <th>redflagId</th>
-    //         <th>Title</th>
-    //         <th>Status</th>
-    //         <th>CreatedOn</th>
-    //         <th>View</th>
-    //         <th>Edit</th>
-    //         <th>Delete</th>
-    //         </tr>
-    //         </thead>
-    //       </table>
-    //     `
-
-    //     loading.innerHTML = output;
-    // }
   })
 }
