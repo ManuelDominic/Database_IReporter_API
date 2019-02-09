@@ -14,7 +14,7 @@ db=DatabaseConnection()
 
 def get_all_users():
     """docstring function that return all users detials"""
-    sql_command="""SELECT * FROM users WHERE isAdmin=False"""
+    sql_command="""SELECT * FROM users"""# WHERE isAdmin=False"""
     db.cursor.execute(sql_command)
     users=db.cursor.fetchall()
     return users
@@ -30,10 +30,10 @@ def signup_user():
             data["lastName"],
         data["email"],data["userName"],data["phoneNumber"],
         generate_password_hash(data["password"]))
-    # try:
-    db.cursor.execute(sql_command)
-    # except psycopg2.IntegrityError:
-    #     return jsonify({"message": "Email already in use"}),406
+    try:
+        db.cursor.execute(sql_command)
+    except psycopg2.IntegrityError:
+        return jsonify({"email": "Email already in use"}),406
     user=db.cursor.fetchone()
     return user
 

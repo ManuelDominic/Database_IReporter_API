@@ -38,3 +38,8 @@ def upload_video(incident_Id):
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         return filename
 
+
+# # @app.route('/uploads/<filename>')
+# def uploaded_file(filename):
+#     return send_from_directory(app.config['UPLOAD_FOLDER'],filename)
+

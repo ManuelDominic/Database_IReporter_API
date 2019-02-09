@@ -4,6 +4,7 @@ from api.routes.user_route import user_bp
 from api.routes.redflag_route import redflag_bp
 from api.routes.intervention_route import intervention_bp
 
+
 app = Flask(__name__)
 cors = CORS(app)
 

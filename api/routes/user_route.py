@@ -7,14 +7,14 @@ from api.controllers.user_controller import get_all_users,signup_user,store_toke
 from werkzeug.security import check_password_hash
 
 
-user_bp = Blueprint("user_bp", __name__, url_prefix="/api/v1")
+user_bp = Blueprint("user_bp", __name__, url_prefix="/api/v3")
 
 
 db =DatabaseConnection()
 
 @user_bp.route("/users", methods=["GET"])
-@token_required
-@admin_required
+# @token_required
+# @admin_required
 def get_users():
     users=get_all_users()
     if users:
@@ -27,7 +27,7 @@ def get_users():
 def user_signup():
     detail = signup_user()
     if detail:
-        return jsonify({"status": 201,"data":detail,"message": "Successfully registered"}), 201
+        return jsonify({"status": 201,"message": "Successfully registered"}), 201
     return bad_request()
 
 
