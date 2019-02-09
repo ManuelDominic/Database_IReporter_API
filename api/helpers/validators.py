@@ -115,7 +115,7 @@ def verify_signup_data(func):
 def more_incident_data():
     data = request.get_json()
     errors = {}
-    if not data["title"] and data["longtitude"] and data["latitude"] and data["comment"]:
+    if not data["title"] and not data["longtitude"] and not data["latitude"] and not data["comment"]:
         errors["fields"] = get_data
     
     if not data["title"]:
@@ -125,12 +125,12 @@ def more_incident_data():
    
     if not data["longtitude"]:
         errors["longtitude"] = "longtitude feild is required"
-    elif not isinstance(data["longtitude"],float):# or data["longtitude"] != range(+180,-180):
+    elif not isinstance(data["longtitude"],str):# or data["longtitude"] != range(+180,-180):
         errors["longtitude"] = "longtitude must be a float in range of -180 to +180"
    
     if not data["latitude"]:
         errors["latitude"] = "latitude feild is required"
-    elif not isinstance(data["latitude"],float):# or data["latitude"] != range(-90,+90):
+    elif not isinstance(data["latitude"],str):# or data["latitude"] != range(-90,+90):
         errors["latitude"] = "latitude must be a float in range of -90 to +90"
    
     if not data["comment"]:
@@ -161,7 +161,7 @@ def verify_create_incident_data(func):
         except ValueError:
             error = jsonify({"message":valid_type}),406
         except TypeError:
-            error = jsonify({"message": "Incident already exist"}),406
+            error = jsonify({"message":"Incident already exist"}),406
         return error
     return wrapper
 
@@ -169,6 +169,7 @@ def verify_create_incident_data(func):
 def verify_upadte_data(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
+        errors = {"comment":""}
         error = None
         try:
             data = request.get_json()
@@ -184,6 +185,6 @@ def verify_upadte_data(func):
         except ValueError:
             error = jsonify({"message":valid_type}),406
         except TypeError:
-            error = jsonify({"message": "Sorry, comments not accepted, make some change"}),406
+            error = jsonify({"message":"Sorry, comments not accepted, make some change"}),406
         return error
     return wrapper

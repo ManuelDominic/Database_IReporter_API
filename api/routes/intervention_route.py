@@ -2,12 +2,13 @@ from flask import Blueprint, jsonify, request
 from api.helpers.auth import token_required, admin_required, non_admin_required,get_current_user
 from api.controllers.incident_controller import mailme,get_incidents_by_status_and_user,get_incidents_by_type_id_and_user,get_incidents_by_type_given_user,get_incidents_by_type,get_incidents_by_type_id,create_incident,update_incident_by_user,update_incident_status,delete_incident
 from api.helpers.validators import verify_create_incident_data,verify_upadte_data
+from api.helpers.fileupload import upload_image,upload_video
 from api.models.database_model import DatabaseConnection
 
 
 db= DatabaseConnection
 
-intervention_bp = Blueprint('intervention_bp', __name__, url_prefix='/api/v1')
+intervention_bp = Blueprint('intervention_bp', __name__, url_prefix='/api/v3')
 
 
 @intervention_bp.route("/")
@@ -18,35 +19,35 @@ def index():
 
 
 @intervention_bp.route('/admin/intervention', methods=['GET'])
-@token_required
+# @token_required
 def get_intervention_by_admin():
     intervention=get_incidents_by_type('intervention')
     if intervention:
-        return jsonify({"status": 200, "data": intervention}), 200
+        return jsonify({"status": 200, "data": [intervention]}), 200
     return bad_request()
 
 
 @intervention_bp.route('/admin/intervention/<int:intervention_Id>', methods=['GET'])
-@token_required
+# @token_required
 def get_specific_intervention_by_admin(intervention_Id):
     intervention=get_incidents_by_type_id('intervention',int(intervention_Id))
     if intervention:
-        return jsonify({"status": 200, "data": intervention}), 200
+        return jsonify({"status": 200, "data":  [intervention]}), 200
     return not_found()
 
 
 
 @intervention_bp.route('/user/intervention', methods=['GET'])
-@token_required
+# @token_required
 def get_intervention_by_user():
     intervention=get_incidents_by_type_given_user('intervention')
     if intervention:
-        return jsonify({"status": 200, "data": intervention}), 200
+        return jsonify({"status": 200, "data":  [intervention]}), 200
     return bad_request()
 
 
 @intervention_bp.route('/user/intervention/<int:intervention_Id>', methods=['GET'])
-@token_required
+# @token_required
 def get_specific_intervention_by_user(intervention_Id):
     intervention=get_incidents_by_type_id_and_user('intervention',int(intervention_Id))
     if intervention:
@@ -56,18 +57,18 @@ def get_specific_intervention_by_user(intervention_Id):
 
 
 @intervention_bp.route('/intervention', methods=['POST'])
-@token_required
+# @token_required
 @verify_create_incident_data
 def create_intervention():
     incident=create_incident('intervention')
     if incident:
-        return  jsonify({"status":201,"data":[incident,
-        {"message": "Intervention Successfully created"}]}), 201
+        return  jsonify({"status":201,"data":incident,
+        "message": "Intervention Successfully created"}), 201
     return bad_request()
 
 
 @intervention_bp.route('/intervention/<int:intervention_Id>/record', methods=['PATCH'])
-@token_required
+# @token_required
 @verify_upadte_data
 def update_intervention_record(intervention_Id):
     can_not_edit=get_incidents_by_status_and_user('intervention',int(intervention_Id))
@@ -81,7 +82,7 @@ def update_intervention_record(intervention_Id):
 
 
 @intervention_bp.route('/intervention/<int:intervention_Id>', methods=['DELETE'])
-@token_required
+# @token_required
 def delete_intervention(intervention_Id):
     incident=get_incidents_by_type_id_and_user('intervention',int(intervention_Id))
     delete=delete_incident('intervention',int(intervention_Id))
@@ -94,7 +95,7 @@ def delete_intervention(intervention_Id):
 
 
 @intervention_bp.route('/intervention/<int:intervention_Id>/status', methods=['PATCH'])
-@token_required
+# @token_required
 def update_intervention_status(intervention_Id):
     incident=get_incidents_by_type_id('intervention',int(intervention_Id))
     incident_status=update_incident_status('intervention',int(intervention_Id))
@@ -107,18 +108,20 @@ def update_intervention_status(intervention_Id):
     return bad_request()
 
 
-@intervention_bp.route('/intervention/<int:intervention_Id>/Addimage', methods=['POST'])
-@token_required
-def intervertion_upload_image(intervention_Id):
+
+@intervention_bp.route('/<int:intervention_Id>/Addimage', methods=['POST'])
+# @token_required
+def redflag_upload_image(intervention_Id):
     file = upload_image(intervention_Id)
     return "Image successfully uploaded"
 
 
-@intervention_bp.route('/intervention/<int:intervention_Id>/Addvideo', methods=['POST'])
-@token_required
-def intervertion_upload_video(intervention_Id):
+@intervention_bp.route('/<int:intervention_Id>/Addvideo', methods=['POST'])
+# @token_required
+def redflag_upload_video(intervention_Id):
     file = upload_video(intervention_Id)
     return "Video successfully uploaded"
+
 
 
 def bad_request():
