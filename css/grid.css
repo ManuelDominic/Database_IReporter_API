@@ -26,6 +26,7 @@
 		grid-area: main;
 		text-align: center;
 		padding: auto;
+		min-height: 512px;
 		margin-bottom: 20px;
 	}
 
@@ -83,6 +84,7 @@
 
 	.main{
 		grid-area: main;
+		min-height: 312px;
 		margin-bottom: 20px;
 	}
 
