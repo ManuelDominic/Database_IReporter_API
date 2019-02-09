@@ -1,28 +1,40 @@
+
+function register() {
+  window.setTimeout(function () {
+        window.location.replace("templates/user/signup.html");
+      }, 100);
+}
+
+function signin() {
+  window.setTimeout(function () {
+        window.location.replace("../../index.html");
+      }, 100);
+}
+
 function userLogin() {
 
-  let loginemail = document.getElementById('loginemail').value;
-  let loginpassword = document.getElementById('loginpassword').value;
-  let login = document.getElementById("Login").elements;
+	let loginemail = document.getElementById('loginemail').value;
+	let loginpassword = document.getElementById('loginpassword').value;
   let messageLogin = document.getElementById("errorlogin");
-  let sucessLogin = document.getElementById("goodlogin");
-  let newLogin = {email: loginemail, password: loginpassword}
+	let sucessLogin = document.getElementById("goodlogin");
+	let newLogin = {email: loginemail, password: loginpassword}
 
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v1/auth/login', {
-    method: 'POST',
-      mode: "cors",
-    headers:{
-      'Accept':'application/json',
-      'content-type':'application/json'
-    },
-    body: JSON.stringify(newLogin)
-  })
-  .then(function(response) {
+	fetch('https://ireporter-api-v3.herokuapp.com/api/v3/auth/login', {
+		method: 'POST',
+	    mode: "cors",
+		headers:{
+			'Accept':'application/json',
+			'content-type':'application/json'
+		},
+	  body: JSON.stringify(newLogin)
+	})
+	.then(function(response) {
       if (response.status === 401) {
         response.json().then((data) => 
           messageLogin.innerHTML = data.message);
       }      
       if (response.status === 406) {
-        response.json().then((data) => {
+      	response.json().then((data) => {
         for (var key in data.error) {
           if (data.error.hasOwnProperty(key)) {
             if (loginemail === "" && loginpassword === "") {
@@ -39,11 +51,11 @@ function userLogin() {
       });
     }      
     if (response.status === 200) {
-      response.json().then((data) => {
-        sucessLogin.innerHTML = data.message
-      if (loginemail === "ireportermanueldominic@gmail.com" && loginpassword === "admin123") {
-       window.setTimeout(function () {
-        window.location.replace("templates/admin/home.html");
+    	response.json().then((data) => {
+      	sucessLogin.innerHTML = data.message
+      if (loginemail === "ireporterManuelDominic@gmail.com") {
+    	 window.setTimeout(function () {
+        window.location.replace("templates/admin/dash.html");
       }, 800);
     }
       else {
@@ -55,11 +67,9 @@ function userLogin() {
 }
  })
   .catch(error => console.log(error.error));
-
 }
 
 function userSignup() {
-
     let fname = document.getElementById('fname').value;
     let lname = document.getElementById('lname').value;
     let uname = document.getElementById('uname').value;
@@ -78,7 +88,7 @@ function userSignup() {
       phoneNumber:Phone
     }
 
-    fetch('https://ireporter-api-v3.herokuapp.com/api/v1/auth/signup', {
+    fetch('https://ireporter-api-v3.herokuapp.com/api/v3/auth/signup', {
       method: 'POST',
         mode: "cors",
       headers:{
@@ -90,7 +100,7 @@ function userSignup() {
     .then(function(response) {
         if (response.status === 404) {
           response.json().then((data) => 
-              messageSignup.innerHTML = data.message);
+              messageSignup.innerHTML = data.message)
         }
         if (response.status === 406) {
           response.json().then((data) => {

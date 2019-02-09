@@ -68,6 +68,12 @@ input[type=text], input[type=password],input[type=email],input[type=date],input[
   box-sizing: border-box;
 }
 
+input[type=location] {
+  width: 25%;
+  padding: 10px;
+  margin: 2px;
+  border: 1px solid #ccc;
+}
 
 button:hover {
   opacity: 0.8;
@@ -106,9 +112,9 @@ button[class=signupbtn] {
   background-color: green;
 }
 
-.signup{
-  width: 85%;
-  height: 40%;
+form[class="signup"]{
+  width: 75%;
+  height: 20%;
   margin: auto;
 }
 
@@ -118,7 +124,7 @@ button[class=signupbtn] {
 }
 
 img.avatar {
-  width: 20%;
+  width: 15%;
   border-radius: 50%;
 }
 
@@ -183,18 +189,104 @@ span.psw {
 
 .flex-container {
   display: flex;
-  align-items: stretch;
+  align-items: center;
 }
 
 .flex-container > div {
   color: black;
+  background-color: blue;
   width: 100px;
-  margin: 5px;
-  text-align: left;
+  margin: auto;
+  margin-bottom: 50px;
+  padding: auto;
+  text-align: center;
   line-height: 40px;
   font-size: 24px;
 }
 
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+
+.open-button {
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 280px;
+}
+
+.form-popup {
+  display: none;
+  margin: auto;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+.form-container {
+  max-width: 300px;
+  margin: auto;
+  padding: 10px;
+  background-color: white;
+}
+
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+.form-container .cancel {
+  background-color: red;
+}
+
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.card-container {
+  padding: 4px 24px;
+}
+
+output{
+  float: left;
+  font-weight: bold;
+}
 
 label {
   margin-bottom: 5px;
@@ -210,6 +302,7 @@ label {
 }
 
 .bt-input {
+  background-color: grey;
   padding: 12px;
   margin: 10px 0;
   width: 70%;
@@ -243,6 +336,15 @@ hr {
 span.price {
   float: right;
   color: grey;
+}
+
+table {
+  counter-reset: section;
+}
+
+.count:before {
+  counter-increment: section;
+  content: counter(section);
 }
 
 .logout{
@@ -285,7 +387,6 @@ input[type=submit]:hover {
 }
 
 input[class="bt-input"]{
-    width: 30%;
     border-radius: 4px;
     box-sizing: border-box;
     height: 39px;
@@ -299,6 +400,17 @@ input[class="bt-input"]{
     background: rgb(0,0,0,1);
     color: white;
     width: 20%;
+    border-radius: 4px;
+    height: 39px;
+    text-align: center;
+    cursor: pointer;
+    padding: 10px;
+    margin: 10px;
+}
+
+.dash{
+    color: black;
+    width: 100%;
     border-radius: 4px;
     height: 39px;
     text-align: center;

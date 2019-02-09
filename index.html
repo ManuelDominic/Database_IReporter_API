@@ -4,6 +4,8 @@
 	<title>Index</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/grid.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="icon" href="img/favicon.jpg" sizes="16x16 32x32" type="image/png">
 	<script src="js/index.js"></script>
 </head>
 <body>
@@ -16,15 +18,6 @@
 				<ul>
 					<li><a href="index.html">Index Page</a></li>
 					<li><a href="templates/user/about.html">About</a></li>
-					<div class="login">
-						<p id="goodlogin" style="color: green;"></p>
-						<p id="errorlogin" style="color: red;"></p>
-						<form class="user-login" id="Login" action="#" autocomplete="on" onsubmit="return false">
-							<input type="email" id="loginemail" class="bt-input" placeholder="Enter Email" required>
-							<input type="password" id="loginpassword" class="bt-input" placeholder="Enter Password" required>
-							<button type="submit" onclick="userLogin();" class="button">Submit</button>
-						</form>
-					</div>
 				</ul>
 			</nav>
 		</div>
@@ -32,52 +25,25 @@
 			<h2>Welcome To IReporter</h2>
 		</div>
 		<div class="main">
-			<form class="signup" id="Signup" action="#" style="border:1px solid #ccc"  autocomplete="on">
-		    <h1>Sign Up</h1>
-		    <hr>
+			<p id="goodlogin" style="color: green;"></p>
+			<p id="errorlogin" style="color: red;"></p>
+			<form class="user-login" id="Login" action="#" autocomplete="on" onsubmit="return false">
+			    <h1>Sign In</h1>
+			    <hr>
 
-		    <div class="imgcontainer">
-			   <img src="img/img_avatar.png" alt="Avatar" class="avatar">
-			</div>
+			    <div class="imgcontainer">
+				   <img src="../../img/img_avatar.png" alt="Avatar" class="avatar">
+				</div>
 
-			<p id="messageSignup" style="color: red;"></p>
-			<p id="sucessSignup" style="color: green;"></p>
+				<label><b>Email: </b><i class="fa fa-envelope" aria-hidden="true"></i></label>
+				<input type="email" id="loginemail" class="bt-input" placeholder="Enter Email" required>
 
-		    <label for="fname"><b>First Name</b></label>
-		    <input type="text" id="fname" placeholder="Enter First Name" required>
-		    <p id="firstNameError" style="color: red;"></p>
+				<label><b>Password: </b><i class="fa fa-lock" aria-hidden="true"></i></label>
+				<input type="password" id="loginpassword" class="bt-input" placeholder="Enter Password" required>
+				<button type="submit" onclick="userLogin();" class="signupbtn">Login</button>
+			</form>
+			<button type="submit" onclick="register();" class="bt-input">Register</button>
 
-		    <label for="lname"><b>Last Name</b></label>
-		    <input type="text" id="lname" placeholder="Enter Last Name" required>
-		    <p id="lastNameError" style="color: red;"></p>
-
-		    <label for="uname"><b>User Name</b></label>
-		    <input type="text" id="uname" placeholder="Enter User Name" required>
-		    <p id="userNameError" style="color: red;"></p>
-
-		    <label for="email"><b>Email</b></label>
-		    <input type="email" id="email" placeholder="Enter Email" autocomplete="off" required>
-		    <p id="emailError" style="color: red;"></p>
-
-		    <label for="number"><b>Phone Number</b></label>
-		    <input type="tel" max="10" id="Phone" placeholder="Enter Contact Number" autocomplete="off" required>
-		    <p id="phoneNumberError" style="color: red;"></p>
-
-		    <label for="psw"><b>Password</b></label>
-		    <input type="password" id="psw" autocomplete="off" placeholder="Enter Password" required>
-		    <p id="passwordError" style="color: red;"></p>
-
-		    <label for="psw-repeat"><b>Repeat Password</b></label>
-		    <input type="password" id="psw-repeat" autocomplete="off" placeholder="Repeat Password" required>
-		    
-		    <label>
-		      <input type="checkbox" checked="checked" style="margin-bottom:15px"> Remember me
-		    </label>
-		    
-		    <div class="clearfix">
-		        <button type="submit" onclick="userSignup();" class="signupbtn">Sign Up</button>
-		    </div>
-		</form>
 		</div>
 		<div class="footer">
     		<p>copyright @ManuelDominic <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
