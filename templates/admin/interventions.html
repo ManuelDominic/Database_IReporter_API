@@ -20,8 +20,7 @@
 			<nav>
 				<ul>
 					<li><a href="dash.html">DashBoard</a></li>
-					<li><a href="edit-red.html">Edit Redflag</a></li>
-					<li><a href="edit-inter.html">Edit Intervestion</a></li>
+					<li><a href="location.html">Location</a></li>
 					<a href="../../index.html"  type="" name="" class="logout" style="float: right;">LogOut</a>
 				</ul>
 			</nav>
@@ -33,10 +32,12 @@
 			<div class="card form-popup" id="myForm"></div>
 			<div id="table"></div>
 			<script>
-				function openForm() {
+				function openview() {
 				  document.getElementById("myForm").style.display = "block";
 				}
-
+				function openedit() {
+				  document.getElementById("myForm").style.display = "block";
+				}
 				function closeForm() {
 				  document.getElementById("myForm").style.display = "none";
 				}
@@ -47,5 +48,5 @@
 		</div>
 	</div>
 </body>
-<script src="../../js/intervention.js"></script>
+<script src="../../js/interventionadmin.js"></script>
 </html>

@@ -5,11 +5,9 @@ function viewIncident(id){
       <h2><span style="color:darkgreen">form-number</span> ${id}</h2>
       <h4>Under Investigation</h4>
       <label class="output"><i class="fa fa-institution"></i> Title</label>
-      <br>
       <output>${redflags[redflag].title}</output>
       <br>
       <label class="output"><i class="fa fa-address-card-o"></i> Location</label>
-      <br>
       <output>${redflags[redflag].longtitude}, </output>
       <output> ${redflags[redflag].latitude}</output>
       <br>
@@ -31,28 +29,33 @@ function editIncident(id){
       <h2><span style="color:darkgreen">form-number</span> ${id}</h2> 
       <p id="sucessIntervention" style="color: green"></p>
       <p id="messageError" style="color: red"></p>
-      <h4>Resolved</h4>
+      <select id="status">
+        <option>Update-Status</option>
+        <option>Rejected</option>
+        <option>Resolved</option>
+        <option>Under Investigation</option>
+      </select>
       <label for="title"><i class="fa fa-institution"></i> Title</label>
-      <input type="text" id="title" name="title" placeholder="${redflags[redflag].title}" required>
+      <br>
+      <output class="output">${redflags[redflag].title}</output>
       <p id="longtitudeError" style="color: red"></p>
       <p id="latitudeError" style="color: red"></p>
+      <br>
       <label for="adr"><i class="fa fa-address-card-o"></i> Location</label>
       <br>
-      <input type="location" id="long" style="float:left;" placeholder="${redflags[redflag].longtitude}" required>
-      <input type="location" id="lat" style="float:left;" placeholder="${redflags[redflag].latitude}" required>
+      <output class="output">${redflags[redflag].longtitude}</output>
+      <output class="output">${redflags[redflag].latitude}</output>
       <br>
       <label for="Comment"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
-       <textarea type="text" id="comment" name="comment" placeholder="${redflags[redflag].comment}" required></textarea>
+      <br>
+      <output class="output">${redflags[redflag].comment}</output>
       <p id="commentError" style="color: red"></p>
+      <br>
       <button type="submit" class="btn">Update</button>
       <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
     </form>
   `
   myForm.innerHTML = output;
-}
-
-function deleteIncident(id){
-  alert(id);
 }
 
 
@@ -87,7 +90,6 @@ window.onload = function loadPage() {
 	          <th>CreatedOn</th>
 	          <th>View</th>
 	          <th>Edit</th>
-	          <th>Delete</th>
 	          </tr>
 	          </thead>
 	          <tbody>
@@ -103,7 +105,6 @@ window.onload = function loadPage() {
               <td>${redflags[redflag].created_on}</td>
               <td><label onclick="(viewIncident(${redflags[redflag].incident_id}))"><i class="fa fa-eye" style="color:green;"></i></label></td>
               <td><label onclick="(editIncident(${redflags[redflag].incident_id}))"><i class="fa fa-edit" style="color:blue;"></i></label></td>
-              <td><label onclick="(deleteIncident(${redflags[redflag].incident_id}))"><i class="fa fa-trash" style="color:red;"></i></label></td>
               </tr>
             `
           }

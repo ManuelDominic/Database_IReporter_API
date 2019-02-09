@@ -1,30 +1,29 @@
-function deleteIncident(id){
-  alert(id);
-}
-
 function editIncident(id){
-  let myForm = document.getElementById('myForm');
+  let myForm = document.getElementById('openedit');
   output = `
       <form action="#" class="form-container">
         <h1>Upadte Record</h1>
         <h2><span style="color:darkgreen">form-number</span> ${id}</h2> 
         <p id="sucessIntervention" style="color: green"></p>
         <p id="messageError" style="color: red"></p>
-        <h4 id="status">Update-Status</h4>
+        <select id="status">
+          <option>Update-Status</option>
+          <option>Rejected</option>
+          <option>Resolved</option>
+          <option>Under Investigation</option>
+        </select>
         <label for="title"><i class="fa fa-institution"></i> Title</label>
+        <br>
         <output class="output">${records[record].title}</output>
         <br>
-        <p id="longtitudeError" style="color: red"></p>
-        <p id="latitudeError" style="color: red"></p>
         <label for="adr"><i class="fa fa-address-card-o"></i> Location</label>
         <br>
-        <input type="location" id="long" style="float:left;" placeholder="${records[record].longtitude}" required>
-        <input type="location" id="lat" style="float:left;" placeholder="${records[record].latitude}" required>
+        <output class="output">${records[record].longtitude}</output>
+        <output class="output">${records[record].latitude}</output>
         <br>
         <label for="Comment"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
         <br>
-         <textarea type="text" id="comment" name="comment" placeholder="${records[record].comment}" required></textarea>
-        <p id="commentError" style="color: red"></p>
+        <output class="output">${records[record].comment}</output>
         <br>
         <button type="submit" class="btn">Update</button>
         <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
@@ -41,9 +40,11 @@ function viewIncident(id){
         <h2><span style="color:darkgreen">form-number</span> ${id}</h2>
         <h4>Resolved</h4>
         <label class="output"><i class="fa fa-institution"></i> Title</label>
+        <br>
         <output>${records[record].title}</output>
         <br>
         <label class="output"><i class="fa fa-address-card-o"></i> Location</label>
+        <br>
         <output>${records[record].longtitude},</output>
         <output>${ records[record].latitude}</output>
         <br>
@@ -89,7 +90,6 @@ window.onload = function loadPage() {
 	          <th>CreatedOn</th>
 	          <th>View</th>
 	          <th>Edit</th>
-	          <th>Delete</th>
 	          </tr>
 	          </thead>
 	          <tbody>
@@ -103,9 +103,8 @@ window.onload = function loadPage() {
             <td>${records[record].incident_type}</td>
             <td>${records[record].status_}</td>
             <td>${records[record].created_on}</td>
-            <td><label onclick="(viewIncident(${records[record].incident_id})),openForm()"><i class="fa fa-eye" style="color:green;"></i></label></td>
-            <td><label onclick="(editIncident(${records[record].incident_id}))"><i class="fa fa-edit" style="color:blue;"></i></label></td>
-            <td><label onclick="(deleteIncident(${records[record].incident_id}))"><i class="fa fa-trash" style="color:red;"></i></label></td>
+            <td><label onclick="(viewIncident(${records[record].incident_id})),openview()"><i class="fa fa-eye" style="color:green;"></i></label></td>
+            <td><label onclick="(editIncident(${records[record].incident_id})),openedit()"><i class="fa fa-edit" style="color:blue;"></i></label></td>
             </tr>
             `
           }

@@ -15,7 +15,7 @@ function createIntervention() {
       longtitude:long
     }
 
-    fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention', {
+    fetch('http://127.0.0.1:5000/api/v3/intervention', {
       method: 'POST',
         mode: "cors",
       headers:{
@@ -73,7 +73,7 @@ function createRedflag() {
       longtitude:long
     }
 
-    fetch('https://ireporter-api-v3.herokuapp.com/api/v3/red-flags', {
+    fetch('http://127.0.0.1:5000/api/v3/red-flags', {
       method: 'POST',
         mode: "cors",
       headers:{
