@@ -31,20 +31,32 @@ function userLogin() {
 	.then(function(response) {
       if (response.status === 401) {
         response.json().then((data) => 
-          messageLogin.innerHTML = data.message);
+          messageLogin.innerHTML = data.message
+          window.setTimeout(function () {
+            document.getElementById("messageLogin").style.display = "none";
+          }, 1000);
       }      
       if (response.status === 406) {
       	response.json().then((data) => {
         for (var key in data.error) {
           if (data.error.hasOwnProperty(key)) {
             if (loginemail === "" && loginpassword === "") {
-                    messageLogin.innerHTML = data.error.fields;
+                messageLogin.innerHTML = data.error.fields;
+                window.setTimeout(function () {
+                  document.getElementById("messageLogin").style.display = "none";
+                }, 1000);
               }
             else if (loginemail === "") {
                 messageLogin.innerHTML = data.error.email;
+                window.setTimeout(function () {
+                  document.getElementById("messageLogin").style.display = "none";
+                }, 1000);
               }
             else if (loginpassword === ""){
                 messageLogin.innerHTML = data.error.password;
+                window.setTimeout(function () {
+                  document.getElementById("messageLogin").style.display = "none";
+                }, 1000);
               }
           }
         }
@@ -53,15 +65,19 @@ function userLogin() {
     if (response.status === 200) {
     	response.json().then((data) => {
       	sucessLogin.innerHTML = data.message
+        window.setTimeout(function () {
+          document.getElementById("sucessLogin").style.display = "none";
+        }, 800);
+        headers.append('token', data.token)
       if (loginemail === "ireporterManuelDominic@gmail.com") {
     	 window.setTimeout(function () {
         window.location.replace("templates/admin/dash.html");
-      }, 800);
+      }, 1000);
     }
       else {
        window.setTimeout(function () {
         window.location.replace("templates/user/dash.html");
-      }, 800);
+      }, 1000);
     }
   })
 }
@@ -100,7 +116,10 @@ function userSignup() {
     .then(function(response) {
         if (response.status === 404) {
           response.json().then((data) => 
-              messageSignup.innerHTML = data.message)
+            messageSignup.innerHTML = data.message
+            window.setTimeout(function () {
+              document.getElementById("messageSignup").style.display = "none";
+            }, 1000);
         }
         if (response.status === 406) {
           response.json().then((data) => {
@@ -108,10 +127,16 @@ function userSignup() {
             if (data.error.hasOwnProperty(key)) {
               if(data.error.fields){
                   messageSignup.innerHTML = data.error.fields;
+                  window.setTimeout(function () {
+                    document.getElementById("messageSignup").style.display = "none";
+                  }, 1000);
                   break;
 
               }
               document.getElementById(key+"Error").innerHTML = data.error[key];
+              window.setTimeout(function () {
+                document.getElementById(key+"Error").style.display = "none";
+              }, 1000);
              }
             }
           }
@@ -120,6 +145,9 @@ function userSignup() {
       if (response.status === 201) {
         response.json().then((data) => {
           sucessSignup.innerHTML = data.message
+          window.setTimeout(function () {
+                document.getElementById("sucessSignup").style.display = "none";
+              }, 1000);
         });
     }
 

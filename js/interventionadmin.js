@@ -14,11 +14,17 @@ function editIncident(id){
   }).then(function(response) {
       if (response.status === 404) {
         response.json().then((data) => 
-            messageError.innerHTML = data.message)
+          messageError.innerHTML = data.message
+          window.setTimeout(function () {
+            document.getElementById("messageError").style.display = "none";
+          }, 1000);  
       }
       if (response.status === 406) {
         response.json().then((data) => 
-            messageError.innerHTML = data.message)
+          messageError.innerHTML = data.message
+          window.setTimeout(function () {
+            document.getElementById("messageError").style.display = "none";
+          }, 1000);  
       }
       if (response.status === 200) {
         response.json().then((data) => {
@@ -69,11 +75,17 @@ function viewIncident(id){
   }).then(function(response) {
       if (response.status === 404) {
         response.json().then((data) => 
-            messageError.innerHTML = data.message)
+          messageError.innerHTML = data.message
+          window.setTimeout(function () {
+            document.getElementById("messageError").style.display = "none";
+          }, 1000);  
       }
       if (response.status === 406) {
         response.json().then((data) => 
-            messageError.innerHTML = data.message)
+          messageError.innerHTML = data.message
+          window.setTimeout(function () {
+            document.getElementById("messageError").style.display = "none";
+          }, 1000);
       }
       if (response.status === 200) {
         response.json().then((data) => {
@@ -117,11 +129,17 @@ window.onload = function loadPage() {
   }).then(function(response) {
       if (response.status === 404) {
         response.json().then((data) => 
-            messageError.innerHTML = data.message)
+          messageError.innerHTML = data.message
+          window.setTimeout(function () {
+            document.getElementById("messageError").style.display = "none";
+          }, 1000);  
       }
       if (response.status === 406) {
         response.json().then((data) => 
-            messageError.innerHTML = data.message)
+          messageError.innerHTML = data.message
+          window.setTimeout(function () {
+            document.getElementById("messageError").style.display = "none";
+          }, 1000);  
       }
       if (response.status === 200) {
         response.json().then((data) => {

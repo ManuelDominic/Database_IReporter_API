@@ -27,21 +27,28 @@ function createIntervention() {
     .then(function(response) {
         if (response.status === 404) {
           response.json().then((data) => 
-              messageError.innerHTML = data.message)
+            messageError.innerHTML = data.message
+            window.setTimeout(function () {
+              document.getElementById("messageError").style.display = "none";
+            }, 1000);
+              
         }
         if (response.status === 406) {
           response.json().then((data) => {
           for (var key in data.error){
             if (data.error.hasOwnProperty(key)) {
               if(data.error.fields){
-                  messageError.innerHTML = data.error.fields;
+                  messageError.innerHTML = data.error.fields
+                  window.setTimeout(function () {
+                    document.getElementById("messageError").style.display = "none";
+                  }, 1000);
                   break;
 
               }
-              document.getElementById(key+"Error").innerHTML = data.error[key];
-              setTimeout(function(){
-                 document.getElementById(key+"Error").innerHTML = '';
-                },3000);
+                document.getElementById(key+"Error").innerHTML = data.error[key];
+                window.setTimeout(function () {
+                document.getElementById(key+"Error").style.display = "none";
+              }, 1000);
              }
             }
           }
@@ -85,21 +92,27 @@ function createRedflag() {
     .then(function(response) {
         if (response.status === 404) {
           response.json().then((data) => 
-              messageError.innerHTML = data.message)
+              messageError.innerHTML = data.message
+              window.setTimeout(function () {
+                document.getElementById("messageError").style.display = "none";
+              }, 1000);
         }
         if (response.status === 406) {
           response.json().then((data) => {
           for (var key in data.error){
             if (data.error.hasOwnProperty(key)) {
               if(data.error.fields){
-                  messageError.innerHTML = data.error.fields;
+                  messageError.innerHTML = data.error.fields
+                  window.setTimeout(function () {
+                    document.getElementById("messageError").style.display = "none";
+                  }, 1000);
                   break;
 
               }
               document.getElementById(key+"Error").innerHTML = data.error[key];
-              setTimeout(function(){
-                 document.getElementById(key+"Error").innerHTML = '';
-                },3000);
+              window.setTimeout(function () {
+                document.getElementById(key+"Error").style.display = "none";
+              }, 1000);
              }
             }
           }
@@ -108,6 +121,9 @@ function createRedflag() {
       if (response.status === 201) {
         response.json().then((data) => {
           sucessRedflag.innerHTML = data.message;
+          window.setTimeout(function () {
+            document.getElementById("sucessRedflag").style.display = "none";
+          }, 1000);
         });
     }
 
