@@ -1,4 +1,3 @@
-
 function updateIncident(id){
   let myForm = document.getElementById('myForm');
   let sucessRedflag = document.getElementById('sucessRedflag');
@@ -11,7 +10,7 @@ function updateIncident(id){
     longtitude:longtitude,
   }
     
-   fetch('http://127.0.0.1:5000/api/v3/red-flags/' + id +'/record', {
+   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/red-flags/' + id +'/record', {
       method: 'PATCH',
         mode: "cors",
       headers:{
@@ -56,7 +55,10 @@ function updateIncident(id){
 
 function viewIncident(id){
   let myForm = document.getElementById('myForm');
-  fetch('http://127.0.0.1:5000/api/v3/user/red-flags/' + id, {
+  let messageError = document.getElementById("messageError");
+  let sucessRedflag = document.getElementById("sucessRedflag");
+
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/red-flags/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -121,7 +123,10 @@ function viewIncident(id){
 
 function editIncident(id){
   let myForm = document.getElementById('myForm');
-  fetch('http://127.0.0.1:5000/api/v3/user/red-flags/' + id, {
+  let messageError = document.getElementById("messageError");
+  let sucessRedflag = document.getElementById("sucessRedflags");
+
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/red-flags/' + id, {
       method: 'GET',
       mode: "cors",
       headers:{
@@ -194,8 +199,10 @@ function deleteIncident(id){
 
 window.onload = function loadPage() {
   let loading = document.getElementById('table');
+  let messageError = document.getElementById("messageError");
+  let sucessRedflag = document.getElementById("sucessRedflag");
 
-  fetch('http://127.0.0.1:5000/api/v3/user/red-flags', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/red-flags', {
       method: 'GET',
         mode: "cors",
       headers:{

@@ -1,7 +1,8 @@
 function viewUesr(id) {
   let myForm = document.getElementById("myForm");
+  let messageError = document.getElementById("messageError");
 
-  fetch('http://127.0.0.1:5000/api/v3/users' + id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/users' + id, {
     method: 'GET',
       mode: "cors",
     headers:{
@@ -41,7 +42,7 @@ function viewUesr(id) {
                     <p><button>${user.phone_number}</button></p>
                     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
                   </form>`
-          myForm.innerHTML = data.message
+            myForm.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("myForm").style.display = "none";
           }, 1000);
@@ -53,8 +54,9 @@ function viewUesr(id) {
 
 window.onload = function loadPage() {
   let loading = document.getElementById('table');
+  let messageError = document.getElementById("messageError");
 
-  fetch('http://127.0.0.1:5000/api/v3/users', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/users', {
       method: 'GET',
         mode: "cors",
       headers:{

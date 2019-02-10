@@ -15,7 +15,7 @@ function updateIncident(id){
     latitude:latitude,
     longtitude:longtitude
   }
-  fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id +'/record', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/record', {
       method: 'PATCH',
       mode: "cors",
       headers:{
@@ -61,6 +61,8 @@ function updateIncident(id){
 
 function editIncident(id){
   let myForm = document.getElementById('myForm');
+  let messageError = document.getElementById("messageError");
+  let sucessIntervention = document.getElementById("sucessIntervention");
   fetch('http://127.0.0.1:5000/api/v3/user/intervention/' + id, {
       method: 'GET',
         mode: "cors",
@@ -131,6 +133,8 @@ function editIncident(id){
 
 
 function viewIncident(id){
+  let messageError = document.getElementById("messageError");
+  let sucessIntervention = document.getElementById("sucessIntervention");
   let myForm = document.getElementById('myForm');
   fetch('http://127.0.0.1:5000/api/v3/user/intervention/' + id, {
       method: 'GET',
@@ -194,6 +198,8 @@ function viewIncident(id){
 
 
 window.onload = function loadPage() {
+  let messageError = document.getElementById("messageError");
+  let sucessIntervention = document.getElementById("sucessIntervention");
   let loading = document.getElementById('table');
 
   fetch('http://127.0.0.1:5000/api/v3/user/intervention', {

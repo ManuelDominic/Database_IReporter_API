@@ -7,7 +7,7 @@ function updateStatus(id){
   let newStatus = {
     status:status
   }
-  fetch('http://127.0.0.1:5000/api/v3/intervention/' + id +'/status', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/' + id +'/status', {
       method: 'PATCH',
         mode: "cors",
       headers:{
@@ -54,9 +54,10 @@ function updateStatus(id){
 function editIncident(id){
 
   let myForm = document.getElementById('myForm');
+  let sucessIntervention = document.getElementById("sucessIntervention");
   let messageError = document.getElementById('messageError');
 
-  fetch('http://127.0.0.1:5000/api/v3/admin/intervention/' + id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -130,7 +131,10 @@ function editIncident(id){
 
 function viewIncident(id){
   let myForm = document.getElementById('myForm');
-  fetch('http://127.0.0.1:5000/api/v3/admin/intervention/' + id, {
+  let messageError = document.getElementById("messageError");
+  let sucessIntervention = document.getElementById("sucessIntervention");
+
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -195,8 +199,10 @@ function viewIncident(id){
 
 window.onload = function loadPage() {
   let loading = document.getElementById('table');
+  let messageError = document.getElementById("messageError");
+  let sucessIntervention = document.getElementById("sucessIntervention");
 
-  fetch('http://127.0.0.1:5000/api/v3/admin/intervention', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention', {
       method: 'GET',
       mode: "cors",
       headers:{
