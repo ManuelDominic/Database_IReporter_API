@@ -19,16 +19,16 @@ def index():
 
 
 @intervention_bp.route('/admin/intervention', methods=['GET'])
-# @token_required
+@token_required
 def get_intervention_by_admin():
     intervention=get_incidents_by_type('intervention')
     if intervention:
         return jsonify({"status": 200, "data": [intervention]}), 200
-    return bad_request()
+    return not_found()
 
 
 @intervention_bp.route('/admin/intervention/<int:intervention_Id>', methods=['GET'])
-# @token_required
+@token_required
 def get_specific_intervention_by_admin(intervention_Id):
     intervention=get_incidents_by_type_id('intervention',int(intervention_Id))
     if intervention:
@@ -36,18 +36,17 @@ def get_specific_intervention_by_admin(intervention_Id):
     return not_found()
 
 
-
 @intervention_bp.route('/user/intervention', methods=['GET'])
-# @token_required
+@token_required
 def get_intervention_by_user():
     intervention=get_incidents_by_type_given_user('intervention')
     if intervention:
         return jsonify({"status": 200, "data":  [intervention]}), 200
-    return bad_request()
+    return not_found()
 
 
 @intervention_bp.route('/user/intervention/<int:intervention_Id>', methods=['GET'])
-# @token_required
+@token_required
 def get_specific_intervention_by_user(intervention_Id):
     intervention=get_incidents_by_type_id_and_user('intervention',int(intervention_Id))
     if intervention:
@@ -57,7 +56,7 @@ def get_specific_intervention_by_user(intervention_Id):
 
 
 @intervention_bp.route('/intervention', methods=['POST'])
-# @token_required
+@token_required
 @verify_create_incident_data
 def create_intervention():
     incident=create_incident('intervention')
@@ -68,7 +67,7 @@ def create_intervention():
 
 
 @intervention_bp.route('/intervention/<int:intervention_Id>/record', methods=['PATCH'])
-# @token_required
+@token_required
 @verify_upadte_data
 def update_intervention_record(intervention_Id):
     can_not_edit=get_incidents_by_status_and_user('intervention',int(intervention_Id))
@@ -76,21 +75,21 @@ def update_intervention_record(intervention_Id):
     if can_not_edit:
         return can_not_edit
     elif incident:
-        return jsonify({"status":200,"data":[incident,
-            {"message": "Intervention location successfully Updated"}]}), 200
+        return jsonify({"status":200,"data":incident,
+            "message": "Intervention record successfully Updated"}), 200
     return bad_request()  
 
 
 @intervention_bp.route('/intervention/<int:intervention_Id>', methods=['DELETE'])
-# @token_required
+@token_required
 def delete_intervention(intervention_Id):
     incident=get_incidents_by_type_id_and_user('intervention',int(intervention_Id))
     delete=delete_incident('intervention',int(intervention_Id))
     if not incident:
         return not_found()
     elif delete:
-        return jsonify({"status":200,"data":[delete,
-            {"message": "Intervention successfully Deleted"}]}), 200 
+        return jsonify({"status":200,"data":delete,
+            "message": "Intervention successfully Deleted"}), 200 
     return bad_request()
 
 
@@ -102,22 +101,22 @@ def update_intervention_status(intervention_Id):
     if not incident:
         return not_found()
     elif incident_status:
-        mail=mailme("intervention",int(incident_status["incident_id"]))
+        #mail=mailme("intervention",int(incident_status["incident_id"]))
         return jsonify({"status":200,"data":incident_status,
-            "message": "Intervention status successfully Updated","Email":mail}), 200   
+            "message": "Intervention status successfully Updated"}), 200 #,"Email":mail}), 200   
     return bad_request()
 
 
 
 @intervention_bp.route('/<int:intervention_Id>/Addimage', methods=['POST'])
-# @token_required
+@token_required
 def redflag_upload_image(intervention_Id):
     file = upload_image(intervention_Id)
     return "Image successfully uploaded"
 
 
 @intervention_bp.route('/<int:intervention_Id>/Addvideo', methods=['POST'])
-# @token_required
+@token_required
 def redflag_upload_video(intervention_Id):
     file = upload_video(intervention_Id)
     return "Video successfully uploaded"
@@ -125,12 +124,12 @@ def redflag_upload_video(intervention_Id):
 
 
 def bad_request():
-    return jsonify({"status":400, "error": "Sorry, Bad request"}),400
+    return jsonify({"status":400, "message": "Sorry, Bad request"}),400
 
 def not_found():
-    return jsonify({"status":404, "error": "Sorry, Incident Not Found"}),404
+    return jsonify({"status":404, "message": "Sorry, Incident Not Found"}),404
 
 def not_data():
-    return jsonify({"status":406, "error": "Sorry, no input data found"}),406
+    return jsonify({"status":406, "message": "Sorry, no input data found"}),406
 
 

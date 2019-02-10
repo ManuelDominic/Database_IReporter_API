@@ -7,11 +7,12 @@ invalid_key_msg = "Invalid Key in data,please provide valid input data"
 required_feild = "field is Required"
 Invalid_value_msg = "Invalid value in data,please provide valid input data"
 get_data="All Input fields are Required"
+get_update="No Input field provided"
 valid_type="Please provide valid data type for fields"
 
 
 def pass_email():
-    data= request.get_json()
+    data= request.get_json(force=True)
     errors = {}
     if not data["email"] and not data["password"]:
         errors["fields"] = get_data
@@ -28,7 +29,7 @@ def pass_email():
 
 
 def more_user_data():
-    data = request.get_json()
+    data = request.get_json(force=True)
     errors = {}
     if not data["firstName"] and not data["lastName"] and not data["userName"] and not data["email"] and not data["password"] and not data["phoneNumber"]:
         errors["fields"] = get_data
@@ -105,15 +106,13 @@ def verify_signup_data(func):
             error = jsonify({"message":invalid_key_msg}), 400
         except ValueError:
             error = jsonify({"message":valid_type}),400
-        except TypeError:
-            error = jsonify({"message": "Email already in use"}),406
         return error
     return wrapper
 
 
 
 def more_incident_data():
-    data = request.get_json()
+    data = request.get_json(force=True)
     errors = {}
     if not data["title"] and not data["longtitude"] and not data["latitude"] and not data["comment"]:
         errors["fields"] = get_data
@@ -160,21 +159,38 @@ def verify_create_incident_data(func):
             error = jsonify({"message":invalid_key_msg}), 406
         except ValueError:
             error = jsonify({"message":valid_type}),406
-        except TypeError:
-            error = jsonify({"message":"Incident already exist"}),406
         return error
     return wrapper
+
+
+def update_incident_data():
+    data = request.get_json(force=True)
+    errors = {}
+    if not data["longtitude"] and not data["latitude"] or not data["comment"]:
+        errors["fields"] = get_update
+
+    if not isinstance(data["longtitude"],str):# or data["longtitude"] != range(+180,-180):
+        errors["longtitude"] = "longtitude must be a float in range of -180 to +180"
+   
+    if not isinstance(data["latitude"],str):# or data["latitude"] != range(-90,+90):
+        errors["latitude"] = "latitude must be a float in range of -90 to +90"
+   
+    if not isinstance(data["comment"],str) or len(data["comment"])<10:
+        errors["comment"] = "comment field must have atleast 10 character strings"
+
+    if errors:
+        return jsonify({"error":errors}), 406
+    return None
 
 
 def verify_upadte_data(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
-        errors = {"comment":""}
         error = None
         try:
             data = request.get_json()
             response = None
-            incident_data = more_incident_data()
+            incident_data = update_incident_data()
             if incident_data:
                 response = incident_data
             else:
@@ -184,7 +200,5 @@ def verify_upadte_data(func):
             error = jsonify({"message":invalid_key_msg}), 406
         except ValueError:
             error = jsonify({"message":valid_type}),406
-        except TypeError:
-            error = jsonify({"message":"Sorry, comments not accepted, make some change"}),406
         return error
     return wrapper

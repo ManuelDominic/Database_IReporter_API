@@ -7,21 +7,18 @@ from api.models.database_model import DatabaseConnection
 from api.helpers.auth import get_current_user
 
 
-# class User:
-#     """docstring for User."""
-
 db=DatabaseConnection()
 
 def get_all_users():
     """docstring function that return all users detials"""
-    sql_command="""SELECT * FROM users"""# WHERE isAdmin=False"""
+    sql_command="""SELECT * FROM users WHERE isAdmin=False"""
     db.cursor.execute(sql_command)
     users=db.cursor.fetchall()
     return users
 
 
 def signup_user():
-    data = request.get_json()
+    data = request.get_json(force=True)
     sql_command="""INSERT INTO users (first_Name,last_Name,email,
             user_Name,phone_Number,passwd,isAdmin,joinning)
         VALUES ('{}','{}','{}',
@@ -39,7 +36,7 @@ def signup_user():
 
 
 def login_user():
-    data = request.get_json()
+    data = request.get_json(force=True)
     sql_command="""SELECT  passwd,email,user_Id FROM users WHERE email='{}'""".format(data["email"])
     db.cursor.execute(sql_command)
     user=db.cursor.fetchone()

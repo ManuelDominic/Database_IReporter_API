@@ -13,8 +13,8 @@ user_bp = Blueprint("user_bp", __name__, url_prefix="/api/v3")
 db =DatabaseConnection()
 
 @user_bp.route("/users", methods=["GET"])
-# @token_required
-# @admin_required
+@token_required
+@admin_required
 def get_users():
     users=get_all_users()
     if users:
@@ -34,7 +34,7 @@ def user_signup():
 @user_bp.route("/auth/login", methods=["POST"])
 @verify_login_data
 def user_login():
-    data = request.get_json()
+    data = request.get_json(force=True)
     user = login_user()
     if user and check_password_hash(user["passwd"],data["password"]):
         token = store_token(user["user_id"],encode_token(user["user_id"]))

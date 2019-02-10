@@ -11,14 +11,13 @@ db= DatabaseConnection
 redflag_bp = Blueprint('redflag_bp', __name__, url_prefix='/api/v3')
 
 
-
 @redflag_bp.route('/admin/red-flags', methods=['GET'])
-# @token_required
+@token_required
 def get_all_redflags_by_admin():
     redflag=get_incidents_by_type('redflag')
     if redflag:
         return jsonify({"status": 200, "data": [redflag]}), 200
-    return bad_request()
+    return not_found()
 
 
 @redflag_bp.route('/admin/red-flags/<int:redflag_Id>', methods=['GET'])
@@ -31,12 +30,12 @@ def get_specific_redflag_by_admin(redflag_Id):
 
 
 @redflag_bp.route('/user/red-flags', methods=['GET'])
-# @token_required
+@token_required
 def get_all_redflags_by_user():
     redflag=get_incidents_by_type_given_user('redflag')
     if redflag:
         return jsonify({"status": 200, "data":  [redflag]}), 200
-    return bad_request()
+    return not_found()
 
 
 @redflag_bp.route('/user/red-flags/<int:redflag_Id>', methods=['GET'])
@@ -48,9 +47,8 @@ def get_specific_redflag_by_user(redflag_Id):
     return not_found()
 
 
-
 @redflag_bp.route('/red-flags', methods=['POST'])
-# @token_required
+@token_required
 @verify_create_incident_data
 def create_redflag():
     incident=create_incident('redflag')
@@ -62,28 +60,28 @@ def create_redflag():
 
 @redflag_bp.route('/red-flags/<int:redflag_Id>/record', methods=['PATCH'])
 # @token_required
-@verify_upadte_data
+# @verify_update_data
 def update_redflag_record(redflag_Id):
     not_incident_status=get_incidents_by_status_and_user('redflag',int(redflag_Id))
     incident=update_incident_by_user('redflag',int(redflag_Id))
     if not_incident_status:
         return not_incident_status
     elif incident:
-        return jsonify({"status":200,"data":[incident,
-            {"message": "Redflag location successfully Updated"}]}), 200
+        return jsonify({"status":200,"data":incident,
+            "message": "Redflag record successfully Updated"}), 200
     return bad_request()
 
 
 @redflag_bp.route('/red-flags/<int:redflag_Id>', methods=['DELETE'])
-# @token_required
+@token_required
 def delete_redflag(redflag_Id):
     not_found_id=get_incidents_by_type_id_and_user('redflag',int(redflag_Id))
     incident=delete_incident('redflag',redflag_Id)
     if not not_found_id:
         return not_found()
     if incident:
-        return jsonify({"status":200,"data":[incident,
-            {"message": "Redflag successfully Deleted"}]}), 200
+        return jsonify({"status":200,"data":incident,
+            "message": "Redflag successfully Deleted"}), 200
     return bad_request()
 
 
@@ -95,33 +93,33 @@ def update_redflag_status(redflag_Id):
     if not not_incident_id:
         return not_found()
     if incident:
-        mail=mailme("redflag",int(incident["incident_id"]))
+        #mail=mailme("redflag",int(incident["incident_id"]))
         return jsonify({"status":200,"data":incident,
-            "message": "Redflag status successfully Updated","Email":mail}), 200
+            "message": "Redflag status successfully Updated"}), 200#,"Email":mail}), 200
     return bad_request()
 
 
 @redflag_bp.route('/<int:redflag_Id>/Addimage', methods=['POST'])
-# @token_required
+@token_required
 def redflag_upload_image(redflag_Id):
     file = upload_image(redflag_Id)
     return "Image successfully uploaded"
 
 
 @redflag_bp.route('/<int:redflag_Id>/Addvideo', methods=['POST'])
-# @token_required
+@token_required
 def redflag_upload_video(redflag_Id):
     file = upload_video(redflag_Id)
     return "Video successfully uploaded"
 
 
 def bad_request():
-    return jsonify({"status":400, "error": "Sorry, Bad request"}),400
+    return jsonify({"status":400, "message": "Sorry, Bad request"}),400
 
 def not_found():
-    return jsonify({"status":404, "error": "Sorry, Incident Not Found"}),404
+    return jsonify({"status":404, "message": "Sorry, Incident Not Found"}),404
 
 def not_data():
-    return jsonify({"status":406, "error": "Sorry, no input data found"}),406
+    return jsonify({"status":406, "message": "Sorry, no input data found"}),406
 
 
