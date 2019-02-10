@@ -14,23 +14,32 @@ function createIntervention() {
       latitude:lat,
       longtitude:long
     }
-
     fetch('http://127.0.0.1:5000/api/v3/intervention', {
       method: 'POST',
         mode: "cors",
       headers:{
         'Accept':'application/json',
-        'content-type':'application/json'
+        'content-type':'application/json',
+        'token': sessionStorage.getItem("token")
       },
       body: JSON.stringify(newIntervention)
     })
     .then(function(response) {
+        if (response.status === 401) {
+          response.json().then((data) => {
+            window.setTimeout(function () {
+              window.location.replace("../../index.html");
+            }, 800);
+          })
+              
+        }
         if (response.status === 404) {
-          response.json().then((data) => 
+          response.json().then((data) => {
             messageError.innerHTML = data.message
             window.setTimeout(function () {
               document.getElementById("messageError").style.display = "none";
             }, 1000);
+          })
               
         }
         if (response.status === 406) {
@@ -51,8 +60,7 @@ function createIntervention() {
               }, 1000);
              }
             }
-          }
-        );
+          });
       }
       if (response.status === 201) {
         response.json().then((data) => {
@@ -85,17 +93,26 @@ function createRedflag() {
         mode: "cors",
       headers:{
         'Accept':'application/json',
-        'content-type':'application/json'
+        'content-type':'application/json',
+        'token': sessionStorage.getItem("token")
       },
       body: JSON.stringify(newRedflag)
     })
     .then(function(response) {
+        if (response.status === 401) {
+          response.json().then((data) => {
+            window.setTimeout(function () {
+              window.location.replace("../../index.html");
+            }, 800);
+          })
+        }
         if (response.status === 404) {
-          response.json().then((data) => 
+          response.json().then((data) => {
               messageError.innerHTML = data.message
               window.setTimeout(function () {
                 document.getElementById("messageError").style.display = "none";
               }, 1000);
+            })
         }
         if (response.status === 406) {
           response.json().then((data) => {
@@ -115,8 +132,7 @@ function createRedflag() {
               }, 1000);
              }
             }
-          }
-        );
+          });
       }
       if (response.status === 201) {
         response.json().then((data) => {
