@@ -30,11 +30,12 @@ function userLogin() {
 	})
 	.then(function(response) {
       if (response.status === 401) {
-        response.json().then((data) => 
+        response.json().then((data) => {
           messageLogin.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("messageLogin").style.display = "none";
           }, 1000);
+        })
       }      
       if (response.status === 406) {
       	response.json().then((data) => {
@@ -68,7 +69,7 @@ function userLogin() {
         window.setTimeout(function () {
           document.getElementById("sucessLogin").style.display = "none";
         }, 800);
-        headers.append('token', data.token)
+        sessionStorage.setItem("token", data.token);
       if (loginemail === "ireporterManuelDominic@gmail.com") {
     	 window.setTimeout(function () {
         window.location.replace("templates/admin/dash.html");
@@ -115,11 +116,12 @@ function userSignup() {
     })
     .then(function(response) {
         if (response.status === 404) {
-          response.json().then((data) => 
+          response.json().then((data) => {
             messageSignup.innerHTML = data.message
             window.setTimeout(function () {
               document.getElementById("messageSignup").style.display = "none";
             }, 1000);
+          })
         }
         if (response.status === 406) {
           response.json().then((data) => {
@@ -139,15 +141,14 @@ function userSignup() {
               }, 1000);
              }
             }
-          }
-        );
+          });
       }
       if (response.status === 201) {
         response.json().then((data) => {
           sucessSignup.innerHTML = data.message
           window.setTimeout(function () {
-                document.getElementById("sucessSignup").style.display = "none";
-              }, 1000);
+            document.getElementById("sucessSignup").style.display = "none";
+          }, 1000);
         });
     }
 

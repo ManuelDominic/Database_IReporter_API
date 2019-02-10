@@ -2,41 +2,100 @@ function deleteIncident(id){
   alert(id);
 }
 
-function editIncident(id){
+function updateIncident(id){
+
   let myForm = document.getElementById('myForm');
+  let sucessIntervention = document.getElementById('sucessIntervention');
+  let messageError = document.getElementById('messageError');
   let comment = document.getElementById('comment').value;
   let latitude = document.getElementById('latitude').value;
   let longtitude = document.getElementById('longtitude').value;
-  let newEdit ={
+  let newEdit = {
     comment:comment,
     latitude:latitude,
-    longtitude:longtitude,
+    longtitude:longtitude
   }
-   fetch('http://127.0.0.1:5000/api/v3/admin/intervention' +id '/record', {
-    method: 'PATCH',
+  fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id +'/record', {
+      method: 'PATCH',
       mode: "cors",
-    headers:{
-      'content-type':'application/json'
-    },
-    body: JSON.stringify(newEdit)
-  }).then(function(response) {
+      headers:{
+        'content-type':'application/json',
+        'token': sessionStorage.getItem("token")
+      },
+      body: JSON.stringify(newEdit)
+    }).then(function(response) {
+      if (response.status === 401) {
+        response.json().then((data) => {
+          window.setTimeout(function () {
+            window.location.replace("../../index.html");
+          }, 800);
+        })
+      }
       if (response.status === 404) {
-        response.json().then((data) => 
+        response.json().then((data) => {
           messageError.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("messageError").style.display = "none";
           }, 1000);
+        })
       }
       if (response.status === 406) {
-        response.json().then((data) => 
+        response.json().then((data) => {
           messageError.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("messageError").style.display = "none";
           }, 1000);
+        })
+      }
+      if (response.status === 200) {
+        response.json().then((data) => {
+          sucessIntervention.innerHTML = data.message
+          window.setTimeout(function () {
+            document.getElementById("sucessIntervention").style.display = "none";
+          }, 800);
+     });
+    }
+  })
+}
+
+
+function editIncident(id){
+  let myForm = document.getElementById('myForm');
+  fetch('http://127.0.0.1:5000/api/v3/user/intervention/' + id, {
+      method: 'GET',
+        mode: "cors",
+      headers:{
+        'content-type':'application/json',
+        'token': sessionStorage.getItem("token")
+      }
+    }).then(function(response) {
+      if (response.status === 401) {
+        response.json().then((data) => {
+          window.setTimeout(function () {
+            window.location.replace("../../index.html");
+          }, 800);
+        })
+      }
+      if (response.status === 404) {
+        response.json().then((data) => {
+          messageError.innerHTML = data.message
+          window.setTimeout(function () {
+            document.getElementById("messageError").style.display = "none";
+          }, 1000);
+        })
+      }
+      if (response.status === 406) {
+        response.json().then((data) => {
+          messageError.innerHTML = data.message
+          window.setTimeout(function () {
+            document.getElementById("messageError").style.display = "none";
+          }, 1000);
+        })
       }
       if (response.status === 200) {
         response.json().then((data) => {
           records = data.data
+          for(record in records){
           let output = `
               <form action="#" class="form-container">
                 <h1>Upadte Record</h1>
@@ -51,56 +110,69 @@ function editIncident(id){
                 <p id="latitudeError" style="color: red"></p>
                 <label for="adr"><i class="fa fa-address-card-o"></i> Location</label>
                 <br>
-                <input type="location" id="long" style="float:left;" placeholder="${records.longtitude}" required>
-                <input type="location" id="lat" style="float:left;" placeholder="${records.latitude}" required>
+                <input type="location" id="longtitude" style="float:left;" placeholder="${records.longtitude}" required>
+                <input type="location" id="latitude" style="float:left;" placeholder="${records.latitude}" required>
                 <br>
                 <label for="Comment"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
                 <br>
                  <textarea type="text" id="comment" name="comment" placeholder="${records.comment}" required></textarea>
                 <p id="commentError" style="color: red"></p>
                 <br>
-                <button type="submit" class="btn">Update</button>
+                <button type="submit" onclick="updateIncident(${id})" class="btn">Update</button>
                 <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
               </form>
           `
           myForm.innerHTML = output;
+        }
      });
     }
   })
 }
 
+
 function viewIncident(id){
   let myForm = document.getElementById('myForm');
-   fetch('http://127.0.0.1:5000/api/v3/admin/intervention' + id, {
-    method: 'GET',
-      mode: "cors",
-    headers:{
-      'content-type':'application/json'
-    }
-  }).then(function(response) {
+  fetch('http://127.0.0.1:5000/api/v3/user/intervention/' + id, {
+      method: 'GET',
+        mode: "cors",
+      headers:{
+        'content-type':'application/json',
+        'token': sessionStorage.getItem("token")
+      }
+    }).then(function(response) {
+      if (response.status === 401) {
+        response.json().then((data) => {
+          window.setTimeout(function () {
+            window.location.replace("../../index.html");
+          }, 800);
+        })
+      }
       if (response.status === 404) {
-        response.json().then((data) => 
+        response.json().then((data) => {
           messageError.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("messageError").style.display = "none";
           }, 1000);
+        })
       }
       if (response.status === 406) {
-        response.json().then((data) => 
+        response.json().then((data) => {
           messageError.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("messageError").style.display = "none";
           }, 1000);
+        })
       }
       if (response.status === 200) {
         response.json().then((data) => {
           records = data.data
+          for(record in records){
             let output = `
                   <form action="#" class="form-container">
                     <h2><span style="color:darkgreen">form-number</span> ${id}</h2>
                     <h4>${records.status_}</h4>
                     <label class="output"><i class="fa fa-institution"></i> Title</label>
-                    <output>${records[record].title}</output>
+                    <output>${records.title}</output>
                     <br>
                     <label class="output"><i class="fa fa-address-card-o"></i> Location</label>
                     <output>${records.longtitude},</output>
@@ -114,34 +186,46 @@ function viewIncident(id){
                   </form>
               `
               myForm.innerHTML = output;
+            }
      });
     }
   })
 }
 
+
 window.onload = function loadPage() {
   let loading = document.getElementById('table');
 
-  fetch('http://127.0.0.1:5000/api/v3/admin/intervention', {
-    method: 'GET',
-      mode: "cors",
-    headers:{
-      'content-type':'application/json'
-    }
-  }).then(function(response) {
+  fetch('http://127.0.0.1:5000/api/v3/user/intervention', {
+      method: 'GET',
+        mode: "cors",
+      headers:{
+        'content-type':'application/json',
+        'token': sessionStorage.getItem("token")
+      }
+    }).then(function(response) {
+      if (response.status === 401) {
+        response.json().then((data) => {
+          window.setTimeout(function () {
+            window.location.replace("../../index.html");
+          }, 800);
+        })
+      }
       if (response.status === 404) {
-        response.json().then((data) => 
+        response.json().then((data) => {
           messageError.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("messageError").style.display = "none";
           }, 1000);
+        })
       }
       if (response.status === 406) {
-        response.json().then((data) => 
+        response.json().then((data) => {
           messageError.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("messageError").style.display = "none";
-          }, 1000);  
+          }, 1000);
+        })
       }
       if (response.status === 200) {
         response.json().then((data) => {
