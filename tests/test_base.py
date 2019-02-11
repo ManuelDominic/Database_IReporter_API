@@ -21,28 +21,15 @@ new_user = {
     "email": "ematembu3@gmail.com",
     "firstName": "Emmanuel",
     "lastName": "Matembu",
-    "otherName": "Dominic",
     "password": "manuel123",
-    "phoneNumber": 256700701616,
+    "phoneNumber": "0700701616",
     "userName": "Manuel"
 }
 
-new_user_response = {"status": 201, "message": "Successfully registered",
-                     "data": {
-                         "phone_number": "256700701616",
-                         "email": "ematembu2@gmail.com",
-                         "first_name": "Emmanuel",
-                         "isadmin": False,
-                         "joinning": "Thu, 10 Jan 2019 04:01:14 GMT",
-                         "last_name": "Matembu",
-                         "other_name": "Dominic",
-                         "user_id": 3,
-                         "user_name": "Manuel"
-                     }, "token": encode_token(3)
-                     }
+new_user_response = {"status": 201, "message": "Successfully registered"}
 
 login_user = {
-    "email": "ireporterManuelDominic@gmail.com",
+    "email": "ireportermanueldominic@gmail.com",
     "password": "admin123"
 }
 
@@ -53,21 +40,18 @@ login_user_response = {
 
 all_users_response = {
     "data": [
-        [
             {
                 "email": "ematembu2@gmail.com",
                 "first_name": "manuel",
                 "isadmin": False,
                 "joinning": "Thu, 10 Jan 2019 04:01:14 GMT",
                 "last_name": "manuellast_Name",
-                "other_name": "manuelother_Name",
                 "passwd": "pbkdf2:sha256:50000$kEBD7Z97$97db32267f5d0956994c5db567ffda9f45cd6f136a7e2d0f9029f3d68b882b1c",
-                "phone_number": "256700701616",
+                "phone_number": "0700701616",
                 "user_id": 2,
                 "user_name": "manuel"
             }
-        ]
-    ],
+        ],
     "status": 200
 }
 
@@ -77,10 +61,8 @@ new_intervention = {
     "createdBy": 2,
     "incident_type": "intervention",
     "created_On": "Thu, 10 Jan 2019 04:01:14 GMT",
-    "images": "1.jpeg",
-    "longtitude": 6.66666,
-    "latitude": 7.7777,
-    "videos": "1.gif"
+    "longtitude": "6.66666",
+    "latitude": "7.7777"
 }
 
 new_intervention_response = {
@@ -103,16 +85,14 @@ new_redflag = {
     "comment": "james idle and disorderly",
     "incident_type": "redflag",
     "created_On": "Thu, 10 Jan 2019 04:01:14 GMT",
-    "images": "1.jpeg",
-    "latitude": 5.38974,
-    "longtitude": 0.33737,
-    "videos": "1.gif"
+    "latitude": "5.38974",
+    "longtitude": "0.33737"
 }
 
 new_redflag_response = {
     "data": [
         {
-            "incident_id": int
+            "incident_id": 9
         },
         {
             "message": "Redflag Successfully created"
@@ -129,27 +109,23 @@ get_all_redflags = {
             "comment": "Arnold stole hassan phone and laptop from his car",
             "created_by": 2,
             "created_on": "Thu, 10 Jan 2019 04:01:14 GMT",
-            "images": "1.jpeg",
             "incident_id": 1,
             "incident_type": "redflag",
             "latitude": 5.38974,
             "longtitude": 0.33737,
             "status_": "draft",
-            "title": "Theift",
-            "videos": "1.gif"
+            "title": "Theift"
         },
         {
             "comment": "Every night at malamba boarders, people smuggle kenya rice into the country",
             "created_by": 2,
             "created_on": "Thu, 10 Jan 2019 04:01:14 GMT",
-            "images": "1.jpeg",
             "incident_id": 2,
             "incident_type": "redflag",
             "latitude": 5.38974,
             "longtitude": 0.33737,
             "status_": "draft",
-            "title": "Smuggling",
-            "videos": "1.gif"
+            "title": "Smuggling"
         },
         {
             "comment": "Timothy raped Jane last night at 11pm after breaking into her apartment",
@@ -264,26 +240,14 @@ get_intervention = {
     "status": 200
 }
 
-new_comment = {"comment": "Just testing comment"}
 
-new_comment_response = {
-    "data": [
-        {
-            "incident_id": 1
-        },
-        {
-            "message": "intervention comment successfully Updated"
-        }
-    ],
-    "status": 200
+new_record = {
+    "comment": "Just testing comment",
+    "latitude": "25.5585",
+    "longtitude": "55.6866"
 }
 
-new_location = {
-    "latitude": 25.5585,
-    "longtitude": 55.6866
-}
-
-new_location_response = {
+new_record_response = {
     "data": [
         [
             {
@@ -302,36 +266,29 @@ new_status = {
 }
 
 redflag_status_response = {
-    "data": [
+    "data": 
         {
             "incident_id": 1
-        },
-        {
-            "message": "Redflag status successfully Updated"
-        },{"Email":"Email sent"}
-    ],
+        }, "message": "Redflag status successfully Updated",
+        #,{"Email":"Email sent"},
     "status": 200
 }
 
 intervention_status_response = {
-    "data": [
+    "data": 
         {
             "incident_id": 5
-        },
-        {
-            "message": "Intervention status successfully Updated"
-        },{"Email":"Email sent"}
-    ],
+        },"message": "Intervention status successfully Updated",
+        #,{"Email":"Email sent"}
     "status": 200
 }
 
 new_user_error_mail = {
-    "email": "ematembu2@gmail.com",
+    "email": "ireportermanueldominic@gmail.com",
     "firstName": "manuel",
     "lastName": "Dominic",
-    "otherName": "highway",
     "password": "manuel123",
-    "phoneNumber": 256700701616,
+    "phoneNumber": "0700701616",
     "userName": "mats"
 }
 
@@ -350,10 +307,8 @@ new_error_redflag = {
     "createdBy": 2,
     "incident_type": "redflag",
     "created_On": "Thu, 10 Jan 2019 04:01:14 GMT",
-    "images": "1.jpeg",
-    "longtitude": 6.66666,
-    "latitude": 7.7777,
-    "videos": "1.gif"
+    "longtitude": "6.66666",
+    "latitude": "7.7777"
 }
 
 new_error_intervention = {
@@ -363,12 +318,11 @@ new_error_intervention = {
     "incident_type": "intervention",
     "created_On": "Thu, 10 Jan 2019 04:01:14 GMT",
     "images": "1.jpeg",
-    "longtitude": 6.66666,
-    "latitude": 7.7777,
-    "videos": "1.gif"
+    "longtitude": "6.66666",
+    "latitude": "7.7777"
 }
 
-error = {"status": 404, "error": "Sorry, Incident Not Found"}
+error = {"status": 404, "message": "Sorry, Incident Not Found"}
 
 token_expired = {"Content-Type": "application/json",
                  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImV4cCI6MTEzNjA2ODczMn0.jnahXxePeXcJEJM4F8iQgNVMVQquE1Mh64XV26juvs8"}
