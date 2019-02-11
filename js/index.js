@@ -70,7 +70,7 @@ function userLogin() {
           document.getElementById("sucessLogin").style.display = "none";
         }, 800);
         sessionStorage.setItem("token", data.token);
-      if (loginemail === "ireporterManuelDominic@gmail.com") {
+      if (loginemail === "ireportermanueldominic@gmail.com") {
     	 window.setTimeout(function () {
         window.location.replace("templates/admin/dash.html");
       }, 1000);
