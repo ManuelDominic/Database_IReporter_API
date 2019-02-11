@@ -302,6 +302,13 @@ label {
   padding-left: 4%;
 }
 
+
+.user-login{
+  width: 50%;
+  margin: auto;
+  border: 1px solid lightgrey;
+}
+
 .icon-container {
   margin-bottom: 20px;
   padding: 7px 0;
@@ -309,7 +316,6 @@ label {
 }
 
 .bt-input {
-  background-color: grey;
   padding: 12px;
   margin: 10px 0;
   width: 70%;

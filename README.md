@@ -64,7 +64,9 @@ $ pytest -vv --cov
 
 ## Versioning
 
--   This is version one "v1" of the API
+
+-   This is version one "v3" of the API
+
 
 ## End Points(Required Features)
 
@@ -82,6 +84,11 @@ $ pytest -vv --cov
 | PATCH  api/v3/intervention/<int:intervention_Id>/record   | Edit intervention record      |
 | PATCH  api/v3/red-flags/<int:redflag_Id>/status           | Edit red-flag status          |
 | PATCH  api/v3/intervention/<int:intervention_Id>/status   | Edit intervention status      |
+| PATCH  api/v3/intervention/<int:intervention_Id>/addimage | Add image on an intervention  |
+| PATCH  api/v3/red-flags/<int:redflag_Id>/addimage         | Add image on a redflag        |
+| PATCH  api/v3/intervention/<int:intervention_Id>/addvideo | Add video on an intervention  |
+| PATCH  api/v3/red-flags/<int:redflag_Id>/addvideo         | Add video on a redflag        |
+
 
 ## Built With
 
