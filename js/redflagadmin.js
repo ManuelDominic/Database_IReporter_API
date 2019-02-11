@@ -1,68 +1,3 @@
-function viewIncident(id){
-
-  let myForm = document.getElementById('myForm');
-  let sucessRedflag = document.getElementById('sucessRedflag');
-  let messageError = document.getElementById("messageError");
-
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags/' + id, {
-      method: 'GET',
-        mode: "cors",
-      headers:{
-        'content-type':'application/json',
-        'token': sessionStorage.getItem("token")
-      }
-    }).then(function(response) {
-      if (response.status === 401) {
-        response.json().then((data) => {
-          window.setTimeout(function () {
-            window.location.replace("../../index.html");
-          }, 800);
-        })
-      }
-      if (response.status === 404) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 1000);
-        })
-      }
-      if (response.status === 406) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 1000);
-        })
-      }
-      if (response.status === 200) {
-        response.json().then((data) => {
-        redflags = data.data
-        for(redflag in redflags){
-          let output = `
-            <form action="#" class="form-container">
-              <h2><span style="color:darkgreen">form-number</span> ${id}</h2>
-              <h4>${redflags[redflag].status_}</h4>
-              <label class="output"><i class="fa fa-institution"></i> Title</label>
-              <output>${redflags[redflag].title}</output>
-              <br>
-              <label class="output"><i class="fa fa-address-card-o"></i> Location</label>
-              <output>${redflags[redflag].longtitude},</output>
-              <output> ${redflags[redflag].latitude}</output>
-              <br>
-              <label class="output"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
-              <br>
-              <output>${redflags[redflag].comment}</output>
-              <br>
-              <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-            </form>
-          `
-          myForm.innerHTML = output;
-        }
-      });
-    }
-  })
-}
 
 function updateStatus(id){
 
@@ -74,7 +9,8 @@ function updateStatus(id){
   let newStatus = {
     status:status
   }
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/red-flags/' + id + '/status', {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/red-flags/' + id + '/status', {
+  fetch('http://127.0.0.1:5000/api/v3/red-flags/' + id + '/status', {
       method: 'PATCH',
         mode: "cors",
       headers:{
@@ -124,7 +60,8 @@ function editIncident(id){
   let messageError = document.getElementById("messageError");
   let sucessRedflag = document.getElementById("sucessRedflag");
 
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags/'+ id, {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags/'+ id, {
+  fetch('http://127.0.0.1:5000/api/v3/admin/red-flags/'+ id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -140,14 +77,6 @@ function editIncident(id){
         })
       }
       if (response.status === 404) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 1000);
-        })
-      }
-      if (response.status === 406) {
         response.json().then((data) => {
           messageError.innerHTML = data.message
           window.setTimeout(function () {
@@ -199,12 +128,14 @@ function editIncident(id){
 }
 
 
-window.onload = function loadPage() {
-  let loading = document.getElementById('table');
-  let messageError = document.getElementById("messageError");
-  let sucessRedflag = document.getElementById("sucessRedflag");
+function viewIncident(id){
 
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags', {
+  let myForm = document.getElementById('myForm');
+  let sucessRedflag = document.getElementById('sucessRedflag');
+  let messageError = document.getElementById("messageError");
+
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags/' + id, {
+  fetch('http://127.0.0.1:5000/api/v3/admin/red-flags/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -227,7 +158,58 @@ window.onload = function loadPage() {
           }, 1000);
         })
       }
-      if (response.status === 406) {
+      if (response.status === 200) {
+        response.json().then((data) => {
+        redflags = data.data
+        for(redflag in redflags){
+          let output = `
+            <form action="#" class="form-container">
+              <h2><span style="color:darkgreen">form-number</span> ${id}</h2>
+              <h4>${redflags[redflag].status_}</h4>
+              <label class="output"><i class="fa fa-institution"></i> Title</label>
+              <output>${redflags[redflag].title}</output>
+              <br>
+              <label class="output"><i class="fa fa-address-card-o"></i> Location</label>
+              <output>${redflags[redflag].longtitude},</output>
+              <output> ${redflags[redflag].latitude}</output>
+              <br>
+              <label class="output"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
+              <br>
+              <output>${redflags[redflag].comment}</output>
+              <br>
+              <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            </form>
+          `
+          myForm.innerHTML = output;
+        }
+      });
+    }
+  })
+}
+
+
+window.onload = function loadPage() {
+  let loading = document.getElementById('table');
+  let messageError = document.getElementById("messageError");
+  let sucessRedflag = document.getElementById("sucessRedflag");
+
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags', {
+  fetch('http://127.0.0.1:5000/api/v3/admin/red-flags', {
+      method: 'GET',
+        mode: "cors",
+      headers:{
+        'content-type':'application/json',
+        'token': sessionStorage.getItem("token")
+      }
+    }).then(function(response) {
+      if (response.status === 401) {
+        response.json().then((data) => {
+          window.setTimeout(function () {
+            window.location.replace("../../index.html");
+          }, 800);
+        })
+      }
+      if (response.status === 404) {
         response.json().then((data) => {
           messageError.innerHTML = data.message
           window.setTimeout(function () {
