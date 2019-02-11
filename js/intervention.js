@@ -493,8 +493,8 @@ window.onload = function loadPage() {
             <td>${records[record].incident_type}</td>
             <td>${records[record].status_}</td>
             <td>${records[record].created_on}</td>
-            <td><label onclick="(viewImage(${records[record].incident_id})),addImage()"><i class="fa fa-file-image-o" style="color:orange;"></i></label></td>
-            <td><label onclick="(viewVideo(${records[record].incident_id})),addVideo()"><i class="fa fa-video-camera" style="color:purple;"></i></label></td>
+            <td><label onclick="(viewImage(${records[record].incident_id})),openImage()"><i class="fa fa-file-image-o" style="color:orange;"></i></label></td>
+            <td><label onclick="(viewVideo(${records[record].incident_id})),openVideo()"><i class="fa fa-video-camera" style="color:purple;"></i></label></td>
             <td><label onclick="(viewIncident(${records[record].incident_id})),openView()"><i class="fa fa-eye" style="color:green;"></i></label></td>
             <td><label onclick="(editIncident(${records[record].incident_id})),openEdit()"><i class="fa fa-edit" style="color:blue;"></i></label></td>
             <td><label onclick="(deleteIncident(${records[record].incident_id}))"><i class="fa fa-trash" style="color:red;"></i></label></td>

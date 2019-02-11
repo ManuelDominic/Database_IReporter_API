@@ -492,8 +492,8 @@ window.onload = function loadPage() {
               <td>${redflags[redflag].incident_type}</td>
               <td>${redflags[redflag].status_}</td>
               <td>${redflags[redflag].created_on}</td>
-              <td><label onclick="(viewImage(${redflags[redflag].incident_id}))"><i class="fa fa-file-image-o" style="color:orange;"></i></label></td>
-              <td><label onclick="(viewVideo(${redflags[redflag].incident_id}))"><i class="fa fa-video-camera" style="color:purple;"></i></label></td>
+              <td><label onclick="(viewImage(${redflags[redflag].incident_id})),openImage()"><i class="fa fa-file-image-o" style="color:orange;"></i></label></td>
+              <td><label onclick="(viewVideo(${redflags[redflag].incident_id})),openVideo()"><i class="fa fa-video-camera" style="color:purple;"></i></label></td>
               <td><label onclick="(viewIncident(${redflags[redflag].incident_id})),openView()"><i class="fa fa-eye" style="color:green;"></i></label></td>
               <td><label onclick="(editIncident(${redflags[redflag].incident_id})),openEdit()"><i class="fa fa-edit" style="color:blue;"></i></label></td>
               <td><label onclick="(deleteIncident(${redflags[redflag].incident_id}))"><i class="fa fa-trash" style="color:red;"></i></label></td>
