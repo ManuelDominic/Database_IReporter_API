@@ -1,4 +1,5 @@
 function updateIncident(id){
+
   let myForm = document.getElementById('myForm');
   let sucessRedflag = document.getElementById('sucessRedflag');
   let comment = document.getElementById('comment').value;
@@ -81,14 +82,6 @@ function uploadVideo(id){
         })
       }
       if (response.status === 404) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 1000);
-        })
-      }
-      if (response.status === 406) {
         response.json().then((data) => {
           messageError.innerHTML = data.message
           window.setTimeout(function () {
@@ -202,14 +195,6 @@ function uploadImage(id){
           }, 1000);
         })
       }
-      if (response.status === 406) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 1000);
-        })
-      }
       if (response.status === 200) {
         response.json().then((data) => {
           sucessIntervention.innerHTML = data.message
@@ -244,14 +229,6 @@ function viewImage(id){
         })
       }
       if (response.status === 404) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 1000);
-        })
-      }
-      if (response.status === 406) {
         response.json().then((data) => {
           messageError.innerHTML = data.message
           window.setTimeout(function () {
@@ -381,14 +358,6 @@ function editIncident(id){
           }, 1000);
         })
       }
-      if (response.status === 406) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 1000);
-        })
-      }
       if (response.status === 200) {
         response.json().then((data) => {
         redflags = data.data
@@ -465,6 +434,7 @@ function deleteIncident(id){
 
 
 window.onload = function loadPage() {
+  
   let loading = document.getElementById('table');
   let messageError = document.getElementById("messageError");
   let sucessRedflag = document.getElementById("sucessRedflag");
@@ -472,7 +442,7 @@ window.onload = function loadPage() {
   // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/red-flags', {
   fetch('http://127.0.0.1:5000/api/v3/user/red-flags', {
       method: 'GET',
-        mode: "cors",
+      mode: "cors",
       headers:{
         'content-type':'application/json',
         'token': sessionStorage.getItem("token")
@@ -486,14 +456,6 @@ window.onload = function loadPage() {
         })
       }
       if (response.status === 404) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 1000);
-        })
-      }
-      if (response.status === 406) {
         response.json().then((data) => {
           messageError.innerHTML = data.message
           window.setTimeout(function () {

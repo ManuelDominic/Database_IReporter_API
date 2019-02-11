@@ -39,6 +39,7 @@ function deleteIncident(id){
   })
 }
 
+
 function updateIncident(id){
 
   let myForm = document.getElementById('myForm');
@@ -125,14 +126,6 @@ function editIncident(id){
           }, 1000);
         })
       }
-      if (response.status === 406) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 1000);
-        })
-      }
       if (response.status === 200) {
         response.json().then((data) => {
           records = data.data
@@ -190,14 +183,6 @@ function viewIncident(id){
         })
       }
       if (response.status === 404) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 1000);
-        })
-      }
-      if (response.status === 406) {
         response.json().then((data) => {
           messageError.innerHTML = data.message
           window.setTimeout(function () {
@@ -266,14 +251,6 @@ function uploadImage(id){
           }, 1000);
         })
       }
-      if (response.status === 406) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 1000);
-        })
-      }
       if (response.status === 200) {
         response.json().then((data) => {
           sucessIntervention.innerHTML = data.message
@@ -309,14 +286,6 @@ function viewImage(id){
         })
       }
       if (response.status === 404) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 1000);
-        })
-      }
-      if (response.status === 406) {
         response.json().then((data) => {
           messageError.innerHTML = data.message
           window.setTimeout(function () {
@@ -390,14 +359,6 @@ function uploadVideo(id){
           }, 1000);
         })
       }
-      if (response.status === 406) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 1000);
-        })
-      }
       if (response.status === 200) {
         response.json().then((data) => {
           sucessIntervention.innerHTML = data.message
@@ -412,6 +373,7 @@ function uploadVideo(id){
 
 
 function viewVideo(id){
+  
   let messageError = document.getElementById("messageError");
   let sucessIntervention = document.getElementById("sucessIntervention");
   let myForm = document.getElementById('myForm');
@@ -432,14 +394,6 @@ function viewVideo(id){
         })
       }
       if (response.status === 404) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 1000);
-        })
-      }
-      if (response.status === 406) {
         response.json().then((data) => {
           messageError.innerHTML = data.message
           window.setTimeout(function () {
@@ -502,14 +456,6 @@ window.onload = function loadPage() {
         })
       }
       if (response.status === 404) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 1000);
-        })
-      }
-      if (response.status === 406) {
         response.json().then((data) => {
           messageError.innerHTML = data.message
           window.setTimeout(function () {
