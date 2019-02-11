@@ -79,3 +79,8 @@ def non_admin_required(func):
         return func(*args, **kwargs)
     return wrapper
 
+
+def encode_token_test(user_id):
+    token = jwt.encode({'userId': user_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24)},
+        'khgfdgfhgj')
+    return token

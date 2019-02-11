@@ -82,9 +82,9 @@ def verify_login_data(func):
                 response = func(*args , **kwargs)
             return response
         except KeyError:
-            error = jsonify({"message":invalid_key_msg}), 406
+            error = jsonify({"message":invalid_key_msg}), 400
         except ValueError:
-            error = jsonify({"message":valid_type}),406
+            error = jsonify({"message":valid_type}),400
         return error
     return wrapper
 
@@ -156,9 +156,9 @@ def verify_create_incident_data(func):
                 response = func(*args, **kwargs)
             return response
         except KeyError:
-            error = jsonify({"message":invalid_key_msg}), 406
+            error = jsonify({"message":invalid_key_msg}), 400
         except ValueError:
-            error = jsonify({"message":valid_type}),406
+            error = jsonify({"message":valid_type}),400
         return error
     return wrapper
 
@@ -183,7 +183,7 @@ def update_incident_data():
     return None
 
 
-def verify_upadte_data(func):
+def verify_update_data(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
         error = None
@@ -197,8 +197,8 @@ def verify_upadte_data(func):
                 response = func(*args, **kwargs)
             return response
         except KeyError:
-            error = jsonify({"message":invalid_key_msg}), 406
+            error = jsonify({"message":invalid_key_msg}), 400
         except ValueError:
-            error = jsonify({"message":valid_type}),406
+            error = jsonify({"message":valid_type}),400
         return error
     return wrapper

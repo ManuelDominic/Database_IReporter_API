@@ -40,7 +40,7 @@ def get_incidents_by_type_id_and_user(incident_type,incident_id):
             comment,status_,created_On,latitude,
             longtitude FROM incidents WHERE incident_Type='{}'
              AND incident_id='{}' AND created_by='{}';""".format(incident_type,
-                incident_id,1)#get_current_user()["userId"])
+                incident_id,get_current_user()["userId"])
     try:
         db.cursor.execute(sql_command)
     except psycopg2.ProgrammingError:
@@ -56,13 +56,13 @@ def get_incidents_by_status_and_user(incident_type,incId):
     sql_command="""SELECT incident_id,title,created_by,incident_Type,
             comment,status_,created_On,latitude,
             longtitude FROM incidents WHERE incident_Type='{}' AND status_='draft' AND 
-            incident_id='{}' AND created_by='{}';""".format(incident_type,incId,1)#get_current_user()["userId"])
+            incident_id='{}' AND created_by='{}';""".format(incident_type,incId,get_current_user()["userId"])
     db.cursor.execute(sql_command)
     incident_status=db.cursor.fetchone()
     if not incident:
         return jsonify({"status":404,"message": "Sorry, Incident Not Found"}),404
     elif not incident_status:
-        return jsonify({"status":404,"message": "Sorry, Update not Possible"}),404
+        return jsonify({"status":406,"message": "Sorry, Update not Possible"}),406
     elif not data:
         return jsonify({"status":404,"message":"Sorry, No input value is inserted"}),404
 
@@ -88,7 +88,7 @@ def update_incident_by_user(incident_type,incident_Id):
     sql_command="""UPDATE incidents SET latitude='{}',longtitude='{}',comment='{}'
                      WHERE incident_Type='{}' AND incident_id='{}' AND
                       created_By='{}' RETURNING incident_id;""".format(data['latitude'],
-                        data['longtitude'],data['comment'],incident_type,incident_Id,1)#get_current_user()["userId"])
+                        data['longtitude'],data['comment'],incident_type,incident_Id,get_current_user()["userId"])
     try:
         db.cursor.execute(sql_command)
     except psycopg2.IntegrityError:
