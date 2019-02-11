@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Write-form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../../css/style.css">
+	<link rel="icon" href="../../img/favicon.jpg" sizes="16x16 32x32" type="image/png">
+	<link rel="stylesheet" type="text/css" href="../../css/grid.css">
+	<script src="../../js/incidentform.js"></script>
+	<script src="../../js/session.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<h1><span style="color:rgb(124,252,0)">&#8465;&#8477;&#8455;</span>PORT<span style="color:rgb(124,252,0)">&#8455;&#8477;</span></h1>
+		</div>
+		<div class="nav-bar">
+			<nav>
+				<ul>
+					<li><a href="dash.html">Home</a></li>
+					<li><a href="redflag-form.html">Redflag-Form</a></li>
+					<li><a href="intervetion-form.html">Intervestion-Form</a></li>
+					<button onclick="logOut()" class="logout" style="float: right;">LogOut</button>
+				</ul>
+			</nav>
+		</div>
+		<div class="sidebar">
+			<h2>INTERVETION FORM</h2>
+		</div>
+		<div class="main">
+            <form  action="#" autocomplete="on" onsubmit="return false">
+          <div class="row">
+            <div class="col-50">
+              <h2><span style="color:darkgreen">form-number</span> 266</h2> 
+              <p id="sucessIntervention" style="color: green"></p>
+              <p id="messageError" style="color: red"></p>
+              <label for="title"><i class="fa fa-institution"></i> Title</label>
+              <input type="text" id="title" name="title" placeholder="Enter Title e.g, Road Contruction" required>
+              <p id="titleError" style="color: red"></p>
+              <label for="adr"><i class="fa fa-address-card-o"></i>Location</label>
+              <input type="text" id="long" name="long" placeholder="7.9808" required>
+              <p id="longtitudeError" style="color: red"></p>
+              <input type="text" id="lat" name="lat" placeholder="6.79808" required>
+              <p id="latitudeError" style="color: red"></p>
+              <label for="Comment"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
+               <input type="text" id="comment" name="comment" placeholder="Enter Comment" required>
+              <p id="commentError" style="color: red"></p>
+              </div>
+          </div> 
+              <br>
+            <button type="button" class="button" onclick="createIntervention()">Create</button>
+          </form>
+		</div>
+		<div class="footer">
+			<p>copyright @ManuelDominic <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+		</div>
+	</div>
+</body>
+</html>

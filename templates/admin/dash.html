@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+	<link rel="stylesheet" type="text/css" href="../../css/style.css">
+	<link rel="stylesheet" type="text/css" href="../../css/grid.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="icon" href="../../img/favicon.jpg" sizes="16x16 32x32" type="image/png">
+	<script src="../../js/script.js"></script>
+	<script src="../../js/link.js"></script>
+	<script src="../../js/session.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<h1><span style="color:rgb(124,252,0)">&#8465;&#8477;&#8455;</span>PORT<span style="color:rgb(124,252,0)">&#8455;&#8477;</span></h1>
+		</div>
+		<div class="nav-bar">
+			<nav>
+				<ul>
+					<li><a href="dash.html">Home</a></li>
+					<li><a href="location.html">View-Map</a></li>
+					<button class="logout" onclick="logOut()" style="float: right;">LogOut</button>
+				</ul>
+			</nav>
+		</div>
+		<div class="sidebar">
+			<h2>AD<span style="color:rgb(124,252,0)">MIN</span> Dashboard</h2>
+		</div>
+		<div class="main">
+			<table>
+				<td>
+					<div class="card">
+					  <img src="../../img/users.png" alt="Avatar" style="width:100%">
+					  <div class="card-container">
+					    <button class="dash" onclick="users()"><i class="fa fa-users" style="color: blue"></i><b style="color: white"> Users: 0</b></button>
+					  </div>
+					</div>
+				</td>
+				<td>
+					<div class="card">
+					  <img src="../../img/interven.png" alt="Avatar" style="width:100%">
+					  <div class="card-container">
+					  	<button class="dash" onclick="intervention()"><i class="fas fa-people-carry" style="color: green"></i><b style="color: white"> Intervention Records: 0</b></button>
+					  </div>
+					</div>
+				</td>
+				<td>
+					<div class="card">
+					  <img src="../../img/redflags.jpeg" alt="Avatar" style="width:100%; height: 150%;">
+					  <div class="card-container">
+					    <button class="dash" onclick="redflag()"><i class="fa fa-gavel" style="color: red"></i><b style="color: white"> Redflag Records: 0</b></button>
+					  </div>
+					</div>
+				</td>
+			</table>
+		</div>
+		<div class="footer">
+			<p>copyright @ManuelDominic <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+		</div>
+	</div>
+</body>
+</html>
