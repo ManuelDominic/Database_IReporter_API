@@ -107,20 +107,24 @@ def update_redflag_status(redflag_Id):
     return bad_request()
 
 
-@redflag_bp.route('/<int:redflag_Id>/Addimage', methods=['POST'])
+@redflag_bp.route('/red-flags/<int:redflag_Id>/addImage', methods=['PATCH'])
 @token_required
 @non_admin_required
 def redflag_upload_image(redflag_Id):
     file = upload_image(redflag_Id)
-    return "Image successfully uploaded"
+    if file:
+        return jsonify({"status":200,"message":"Image successfully uploaded"}), 200
+    return bad_request()
 
 
-@redflag_bp.route('/<int:redflag_Id>/Addvideo', methods=['POST'])
+@redflag_bp.route('/red-flags/<int:redflag_Id>/addVideo', methods=['PATCH'])
 @token_required
 @non_admin_required
 def redflag_upload_video(redflag_Id):
     file = upload_video(redflag_Id)
-    return "Video successfully uploaded"
+    if file:
+        return jsonify({"status":200,"message":"Video successfully uploaded"}), 200
+    return bad_request()
 
 
 def bad_request():
