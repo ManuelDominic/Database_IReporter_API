@@ -9,8 +9,8 @@ function updateStatus(id){
   let newStatus = {
     status:status
   }
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/red-flags/' + id + '/status', {
-  fetch('http://127.0.0.1:5000/api/v3/red-flags/' + id + '/status', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/red-flags/' + id + '/status', {
+  // fetch('http://127.0.0.1:5000/api/v3/red-flags/' + id + '/status', {
       method: 'PATCH',
         mode: "cors",
       headers:{
@@ -60,8 +60,8 @@ function editIncident(id){
   let messageError = document.getElementById("messageError");
   let sucessRedflag = document.getElementById("sucessRedflag");
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags/'+ id, {
-  fetch('http://127.0.0.1:5000/api/v3/admin/red-flags/'+ id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags/'+ id, {
+  // fetch('http://127.0.0.1:5000/api/v3/admin/red-flags/'+ id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -134,8 +134,8 @@ function viewIncident(id){
   let sucessRedflag = document.getElementById('sucessRedflag');
   let messageError = document.getElementById("messageError");
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags/' + id, {
-  fetch('http://127.0.0.1:5000/api/v3/admin/red-flags/' + id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags/' + id, {
+  // fetch('http://127.0.0.1:5000/api/v3/admin/red-flags/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -193,8 +193,8 @@ window.onload = function loadPage() {
   let messageError = document.getElementById("messageError");
   let sucessRedflag = document.getElementById("sucessRedflag");
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags', {
-  fetch('http://127.0.0.1:5000/api/v3/admin/red-flags', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags', {
+  // fetch('http://127.0.0.1:5000/api/v3/admin/red-flags', {
       method: 'GET',
         mode: "cors",
       headers:{
