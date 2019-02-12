@@ -47,7 +47,7 @@ function createIncident() {
             messageError.innerHTML = data.message
             window.setTimeout(function () {
               document.getElementById("messageError").style.display = "none";
-            }, 1000);
+            }, 3000);
           })
               
         }

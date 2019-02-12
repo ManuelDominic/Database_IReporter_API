@@ -30,7 +30,7 @@ function updateStatus(id){
           messageError.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("messageError").style.display = "none";
-          }, 1000);
+          }, 3000);
         })
       }
       if (response.status === 406) {
@@ -80,7 +80,7 @@ function editIncident(id){
           messageError.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("messageError").style.display = "none";
-          }, 1000);
+          }, 3000);
         })
       }
       if (response.status === 200) {
@@ -154,7 +154,7 @@ function viewIncident(id){
           messageError.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("messageError").style.display = "none";
-          }, 1000);
+          }, 3000);
         })
       }
       if (response.status === 200) {
@@ -213,7 +213,7 @@ window.onload = function loadPage() {
           messageError.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("messageError").style.display = "none";
-          }, 1000);
+          }, 3000);
         })
       }
       if (response.status === 200) {

@@ -117,12 +117,12 @@ function userSignup() {
       body: JSON.stringify(newSignup)
     })
     .then(function(response) {
-        if (response.status === 404) {
+        if (response.status === 400) {
           response.json().then((data) => {
             messageSignup.innerHTML = data.message
             window.setTimeout(function () {
               document.getElementById("messageSignup").style.display = "none";
-            }, 1000);
+            }, 3000);
           })
         }
         if (response.status === 406) {

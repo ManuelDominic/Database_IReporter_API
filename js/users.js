@@ -1,5 +1,6 @@
 function viewUesr(id) {
   let myForm = document.getElementById("myForm");
+  let sucessUser = document.getElementById('sucessUser');
   let messageError = document.getElementById("messageError");
 
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/users' + id, {
@@ -23,7 +24,7 @@ function viewUesr(id) {
           messageError.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("messageError").style.display = "none";
-          }, 1000);
+          }, 3000);
         })
       }
       if (response.status === 200) {
@@ -55,6 +56,7 @@ function viewUesr(id) {
 
 
 window.onload = function loadPage() {
+  let sucessUser = document.getElementById('sucessUser');
   let loading = document.getElementById('table');
   let messageError = document.getElementById("messageError");
 
@@ -79,7 +81,7 @@ window.onload = function loadPage() {
           messageError.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("messageError").style.display = "none";
-          }, 1000);
+          }, 3000);
         })
       }
       if (response.status === 200) {
@@ -98,6 +100,7 @@ window.onload = function loadPage() {
 	          <tbody>
 	          `
           users = data.data
+          console.log(users)
           for(user in users){
             output += `
             <tr>
@@ -105,7 +108,7 @@ window.onload = function loadPage() {
             <td>${users[user].user_name}</td>
             <td>${users[user].email}</td>
             <td>${users[user].joinning}</td>
-            <td><label onclick="(viewUesr(${users[user].user_id}))"><i class="fa fa-eye" style="color:green;"></i></label></td>
+            <td><label onclick="(viewUesr(${users[user].user_id})),openView()"><i class="fa fa-eye" style="color:green;"></i></label></td>
             </tr>
             `
           }
