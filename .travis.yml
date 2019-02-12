@@ -1,0 +1,17 @@
+language: python
+python:
+  - "3.6"
+services:
+  - postgresql
+before_script:
+# command to create database
+  - "psql -c 'create database ireporter_testing_db;' -U postgres"
+# command to install dependencies
+install:
+  - pip install -r requirements.txt
+script:
+# command to run tests
+  - pytest -v --cov
+
+after_success:
+  - coveralls
