@@ -4,8 +4,8 @@ function deleteIncident(id){
   let sucessIntervention = document.getElementById('sucessIntervention');
   let messageError = document.getElementById('messageError');
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id, {
-  fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id, {
+  // fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id, {
       method: 'DELETE',
       mode: "cors",
       headers:{
@@ -53,8 +53,8 @@ function updateIncident(id){
     latitude:latitude,
     longtitude:longtitude
   }
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/record', {
-  fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id +'/record', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/record', {
+  // fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id +'/record', {
       method: 'PATCH',
       mode: "cors",
       headers:{
@@ -102,8 +102,8 @@ function editIncident(id){
   let myForm = document.getElementById('myForm');
   let messageError = document.getElementById("messageError");
   let sucessIntervention = document.getElementById("sucessIntervention");
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
-  fetch('http://127.0.0.1:5000/api/v3/user/intervention/' + id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
+  // fetch('http://127.0.0.1:5000/api/v3/user/intervention/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -135,6 +135,7 @@ function editIncident(id){
                 <h2><span style="color:darkgreen">form-number</span> ${id}</h2> 
                 <p id="sucessIntervention" style="color: green"></p>
                 <p id="messageError" style="color: red"></p>
+                <p id="fieldsError" style="color: red"></p>
                 <h4>${records.status_}</h4>
                 <label for="title"><i class="fa fa-institution"></i> Title</label>
                 <output class="output">${records.title}</output>
@@ -143,12 +144,12 @@ function editIncident(id){
                 <p id="latitudeError" style="color: red"></p>
                 <label for="adr"><i class="fa fa-address-card-o"></i> Location</label>
                 <br>
-                <input type="location" id="longtitude" style="float:left;" placeholder="${records.longtitude}" required>
-                <input type="location" id="latitude" style="float:left;" placeholder="${records.latitude}" required>
+                <input type="location" id="longtitude" style="float:left;" value="${records.longtitude}">
+                <input type="location" id="latitude" style="float:left;" value="${records.latitude}">
                 <br>
                 <label for="Comment"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
                 <br>
-                 <textarea type="text" id="comment" name="comment" placeholder="${records.comment}" required></textarea>
+                 <textarea type="text" id="comment" name="comment">${records.comment}</textarea>
                 <p id="commentError" style="color: red"></p>
                 <br>
                 <button type="submit" onclick="updateIncident(${id})" class="btn">Update</button>
@@ -166,8 +167,8 @@ function viewIncident(id){
   let messageError = document.getElementById("messageError");
   let sucessIntervention = document.getElementById("sucessIntervention");
   let myForm = document.getElementById('myForm');
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
-  fetch('http://127.0.0.1:5000/api/v3/user/intervention/' + id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
+  // fetch('http://127.0.0.1:5000/api/v3/user/intervention/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -226,12 +227,11 @@ function uploadImage(id){
   let fileField = document.querySelector("input[type='file']");
   formData.append('file', fileField.files[0]);
   
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/record', {
-  fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id +'/addImage', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/addImage', {
+  // fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id +'/addImage', {
       method: 'PATCH',
       mode: "cors",
       headers:{
-        'content-type':'application/json',
         'token': sessionStorage.getItem("token")
       },
       body: formData
@@ -269,10 +269,10 @@ function viewImage(id){
   let sucessIntervention = document.getElementById("sucessIntervention");
   let myForm = document.getElementById('myForm');
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
-  fetch('http://127.0.0.1:5000/api/v3/user/intervention/'+ id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
+  // fetch('http://127.0.0.1:5000/api/v3/user/intervention/'+ id, {
       method: 'GET',
-        mode: "cors",
+      mode: "cors",
       headers:{
         'content-type':'application/json',
         'token': sessionStorage.getItem("token")
@@ -334,37 +334,36 @@ function uploadVideo(id){
   let fileField = document.querySelector("input[type='file']");
   formData.append('file', fileField.files[0]);
   
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/record', {
-  fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id +'/addVideo', {
-      method: 'PATCH',
-      mode: "cors",
-      headers:{
-        'content-type':'application/json',
-        'token': sessionStorage.getItem("token")
-      },
-      body: formData
-    }).then(function(response) {
-      if (response.status === 401) {
-        response.json().then((data) => {
-          window.setTimeout(function () {
-            window.location.replace("../../index.html");
-          }, 800);
-        })
-      }
-      if (response.status === 404) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 1000);
-        })
-      }
-      if (response.status === 200) {
-        response.json().then((data) => {
-          sucessIntervention.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("sucessIntervention").style.display = "none";
-          }, 800);
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/addVideo', {
+  // fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id +'/addVideo', {
+    method: 'PATCH',
+    mode: "cors",
+    headers:{
+      'token': sessionStorage.getItem("token")
+    },
+    body: formData
+  }).then(function(response) {
+    if (response.status === 401) {
+      response.json().then((data) => {
+        window.setTimeout(function () {
+          window.location.replace("../../index.html");
+        }, 800);
+      })
+    }
+    if (response.status === 404) {
+      response.json().then((data) => {
+        messageError.innerHTML = data.message
+        window.setTimeout(function () {
+          document.getElementById("messageError").style.display = "none";
+        }, 1000);
+      })
+    }
+    if (response.status === 200) {
+      response.json().then((data) => {
+        sucessIntervention.innerHTML = data.message
+        window.setTimeout(function () {
+          document.getElementById("sucessIntervention").style.display = "none";
+        }, 800);
      });
     }
   })
@@ -377,8 +376,8 @@ function viewVideo(id){
   let messageError = document.getElementById("messageError");
   let sucessIntervention = document.getElementById("sucessIntervention");
   let myForm = document.getElementById('myForm');
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
-  fetch('http://127.0.0.1:5000/api/v3/user/intervention/'+ id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
+  // fetch('http://127.0.0.1:5000/api/v3/user/intervention/'+ id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -439,8 +438,8 @@ window.onload = function loadPage() {
   let sucessIntervention = document.getElementById("sucessIntervention");
   let loading = document.getElementById('table');
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention', {
-  fetch('http://127.0.0.1:5000/api/v3/user/intervention', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention', {
+  // fetch('http://127.0.0.1:5000/api/v3/user/intervention', {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -484,7 +483,6 @@ window.onload = function loadPage() {
 	          <tbody>
 	          `
           records = data.data
-          console.log(records)
           for(record in records){
             output += `
             <tr>
