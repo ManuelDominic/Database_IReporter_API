@@ -1,4 +1,3 @@
-
 function updateStatus(id){
 
   let myForm = document.getElementById('myForm');
