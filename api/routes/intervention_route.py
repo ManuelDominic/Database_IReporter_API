@@ -66,8 +66,7 @@ def get_specific_intervention_by_user(intervention_Id):
 def create_intervention():
     incident=create_incident('intervention')
     if incident:
-        return  make_response(jsonify({"status":201,"data":incident,
-        "message": "Intervention Successfully created"}), 201)
+        return  jsonify({"status":201,"message": "Intervention Successfully created"}), 201
     return bad_request()
 
 
@@ -116,20 +115,24 @@ def update_intervention_status(intervention_Id):
 
 
 
-@intervention_bp.route('/<int:intervention_Id>/Addimage', methods=['POST'])
+@intervention_bp.route('/intervention/<int:intervention_Id>/addImage', methods=['PATCH'])
 @token_required
 @non_admin_required
 def redflag_upload_image(intervention_Id):
     file = upload_image(intervention_Id)
-    return "Image successfully uploaded"
+    if file:
+        return jsonify({"status":200,"message":"Image successfully uploaded"}), 200
+    return bad_request()
 
 
-@intervention_bp.route('/<int:intervention_Id>/Addvideo', methods=['POST'])
+@intervention_bp.route('/intervention/<int:intervention_Id>/addVideo', methods=['PATCH'])
 @token_required
 @non_admin_required
 def redflag_upload_video(intervention_Id):
     file = upload_video(intervention_Id)
-    return "Video successfully uploaded"
+    if file:
+        return jsonify({"status":200,"message":"Video successfully uploaded"}), 200
+    return bad_request()
 
 
 

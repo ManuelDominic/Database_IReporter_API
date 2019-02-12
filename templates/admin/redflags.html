@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+	<link rel="stylesheet" type="text/css" href="../../css/style.css">
+	<link rel="stylesheet" type="text/css" href="../../css/grid.css">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="icon" href="../../img/favicon.jpg" sizes="16x16 32x32" type="image/png">
+	<script src="../../js/script.js"></script>
+	<script src="../../js/session.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<h1><span style="color:rgb(124,252,0)">&#8465;&#8477;&#8455;</span>PORT<span style="color:rgb(124,252,0)">&#8455;&#8477;</span></h1>
+		</div>
+		<div class="nav-bar">
+			<nav>
+				<ul>
+					<li><a href="dash.html">DashBoard</a></li>
+					<li><a href="location.html">Location</a></li>
+					<button onclick="logOut()" class="logout" style="float: right;">LogOut</button>
+				</ul>
+			</nav>
+		</div>
+		<div class="sidebar">
+			<h2>User <span style="color:rgb(124,252,0)">Redflag</span> Records</h2>
+		</div>
+		<div class="main">
+			<div class="card form-popup" id="myForm"></div>
+			<div id="sucessRedflag" style="color: green"></div>
+			<div id="messageError" style="color: red"></div>
+			<div id="table"></div>
+			<script>
+				function openView() {
+				  document.getElementById("myForm").style.display = "block";
+				}
+				function openEdit() {
+				  document.getElementById("myForm").style.display = "block";
+				}
+				function closeForm() {
+				  document.getElementById("myForm").style.display = "none";
+				}
+			</script>
+		</div>
+		<div class="footer">
+			<p>copyright @ManuelDominic <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+		</div>
+	</div>
+</body>
+<script src="../../js/redflagadmin.js"></script>
+</html>

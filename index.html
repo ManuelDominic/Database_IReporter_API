@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Index</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/grid.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="icon" href="img/favicon.jpg" sizes="16x16 32x32" type="image/png">
+	<script src="js/index.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<h1><span style="color:rgb(124,252,0)">&#8465;&#8477;&#8455;</span>PORT<span style="color:rgb(124,252,0)">&#8455;&#8477;</span></h1>
+		</div>
+		<div class="nav-bar">
+			<nav>
+				<ul>
+					<li><a href="index.html">Index</a></li>
+					<li><a href="templates/user/about.html">About</a></li>
+				</ul>
+			</nav>
+		</div>
+		<div class="sidebar div">
+			<h2>Welcome To IReporter</h2>
+		</div>
+		<div class="main">
+			<p id="result" style="color: green;font-weight: bold;font-size: 32px;"></p>
+			<p id="goodlogin" style="color: green;"></p>
+			<p id="errorlogin" style="color: red;"></p>
+			<form class="user-login" id="Login" action="#" autocomplete="on" onsubmit="return false">
+			    <h1>Sign In</h1>
+			    <hr>
+
+			    <div class="imgcontainer">
+
+				   <img src="img/img_avatar.png" alt="Avatar" class="avatar">
+
+				</div>
+
+				<label><b>Email: </b><i class="fa fa-envelope" aria-hidden="true"></i></label>
+				<input type="email" id="loginemail" class="bt-input" placeholder="Enter Email" required>
+
+				<label><b>Password: </b><i class="fa fa-lock" aria-hidden="true"></i></label>
+				<input type="password" id="loginpassword" class="bt-input" placeholder="Enter Password" required>
+				<button type="submit" onclick="userLogin();" class="signupbtn">Login</button>
+				<br>
+				<br>
+				<br>
+				<button type="submit" onclick="register();" class="bt-input">Register</button>
+			</form>
+
+
+		</div>
+		<div class="footer">
+    		<p>copyright @ManuelDominic <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+		</div>
+	</div>
+</body>
+<script src="js/script.js"></script>
+</html>
+
+
+
+

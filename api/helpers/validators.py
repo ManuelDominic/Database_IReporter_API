@@ -166,8 +166,8 @@ def verify_create_incident_data(func):
 def update_incident_data():
     data = request.get_json(force=True)
     errors = {}
-    if not data["longtitude"] and not data["latitude"] or not data["comment"]:
-        errors["fields"] = get_update
+    # if not data["longtitude"] and not data["latitude"] or not data["comment"]:
+    #     errors["fields"] = get_update
 
     if not isinstance(data["longtitude"],str):# or data["longtitude"] != range(+180,-180):
         errors["longtitude"] = "longtitude must be a float in range of -180 to +180"

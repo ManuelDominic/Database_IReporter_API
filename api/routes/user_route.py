@@ -53,4 +53,4 @@ def bad_request():
     return jsonify({"status":400, "message": "Sorry, Bad request"}),400
 
 def not_found():
-    return jsonify({"status":200, "data": "Users Not Found"}),200
+    return jsonify({"status":404, "message": "Users Not Found"}),404
