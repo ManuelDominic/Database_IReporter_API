@@ -1,5 +1,6 @@
 import datetime
 from functools import wraps
+from os import environ
 import jwt
 from flask import request, jsonify
 from api.models.database_model import DatabaseConnection
