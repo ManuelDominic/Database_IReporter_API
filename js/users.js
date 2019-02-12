@@ -8,7 +8,7 @@ function viewUesr(id) {
       mode: "cors",
     headers:{
       'content-type':'application/json',
-      'token': sessionStorage.getItem("token");
+      'token': sessionStorage.getItem("token")
     }
   }).then(function(response) {
       if (response.status === 401) {
@@ -19,11 +19,12 @@ function viewUesr(id) {
         })
       }
       if (response.status === 404) {
-        response.json().then((data) => 
+        response.json().then((data) => {
           messageError.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("messageError").style.display = "none";
           }, 1000);
+        })
       }
       if (response.status === 200) {
         response.json().then((data) => {
@@ -63,7 +64,7 @@ window.onload = function loadPage() {
         mode: "cors",
       headers:{
         'content-type':'application/json',
-        'token': sessionStorage.getItem("token");
+        'token': sessionStorage.getItem("token")
       }
     }).then(function(response) {
       if (response.status === 401) {
@@ -74,11 +75,12 @@ window.onload = function loadPage() {
         })
       }
       if (response.status === 404) {
-        response.json().then((data) => 
+        response.json().then((data) => {
           messageError.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("messageError").style.display = "none";
           }, 1000);
+        })
       }
       if (response.status === 200) {
         response.json().then((data) => {
@@ -91,8 +93,6 @@ window.onload = function loadPage() {
 	          <th>email</th>
 	          <th>Joined</th>
 	          <th>View</th>
-	          <th>Edit</th>
-	          <th>Delete</th>
 	          </tr>
 	          </thead>
 	          <tbody>
@@ -101,7 +101,7 @@ window.onload = function loadPage() {
           for(user in users){
             output += `
             <tr>
-            <td>${users[user].user_id}</td>
+            <td class="count"></td>
             <td>${users[user].user_name}</td>
             <td>${users[user].email}</td>
             <td>${users[user].joinning}</td>
