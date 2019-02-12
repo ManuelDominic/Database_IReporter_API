@@ -6,7 +6,7 @@ from api.models.database_model import DatabaseConnection
 import psycopg2
 
 
-secret_key = "softwareDeveloper.Manuel@secret_key/mats.com"
+secret_key = environ.get("SECRET_KEY")
 
 db=DatabaseConnection()
 
