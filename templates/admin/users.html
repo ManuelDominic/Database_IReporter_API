@@ -30,7 +30,18 @@
 			<h2>AD<span style="color:rgb(124,252,0)">MIN</span> Dashboard</h2>
 		</div>
 		<div class="main">
+			<div class="card form-popup" id="myForm"></div>
+			<div id="sucessUser" style="color: green"></div>
+			<div id="messageError" style="color: red"></div>
 			<div id="table"></div>
+			<script>
+				function openView() {
+				  document.getElementById("myForm").style.display = "block";
+				}
+				function closeForm() {
+				  document.getElementById("myForm").style.display = "none";
+				}
+			</script>
 		</div>
 		<div class="footer">
 			<p>copyright @ManuelDominic <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>

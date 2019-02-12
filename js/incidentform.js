@@ -15,11 +15,11 @@ function createIncident() {
       longtitude:long
     }
     if (incidentType==='redflag'){
-      let url = 'https://ireporter-api-v3.herokuapp.com/api/v3/red-flags'
+      var url = 'https://ireporter-api-v3.herokuapp.com/api/v3/red-flags'
       // var url = 'http://127.0.0.1:5000/api/v3/red-flags'
     }
     else if (incidentType==='intervention'){
-      let url = 'https://ireporter-api-v3.herokuapp.com/api/v3/intervention'
+      var url = 'https://ireporter-api-v3.herokuapp.com/api/v3/intervention'
       // var url = 'http://127.0.0.1:5000/api/v3/intervention'
     }
 
@@ -47,7 +47,7 @@ function createIncident() {
             messageError.innerHTML = data.message
             window.setTimeout(function () {
               document.getElementById("messageError").style.display = "none";
-            }, 1000);
+            }, 3000);
           })
               
         }

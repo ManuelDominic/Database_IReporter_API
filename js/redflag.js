@@ -33,7 +33,7 @@ function updateIncident(id){
           messageError.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("messageError").style.display = "none";
-          }, 1000);
+          }, 3000);
         })
       }
       if (response.status === 406) {
@@ -85,7 +85,7 @@ function uploadVideo(id){
           messageError.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("messageError").style.display = "none";
-          }, 1000);
+          }, 3000);
         })
       }
       if (response.status === 200) {
@@ -125,7 +125,7 @@ function viewVideo(id){
           messageError.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("messageError").style.display = "none";
-          }, 1000);
+          }, 3000);
         })
       }
       if (response.status === 200) {
@@ -188,7 +188,7 @@ function uploadImage(id){
           messageError.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("messageError").style.display = "none";
-          }, 1000);
+          }, 3000);
         })
       }
       if (response.status === 200) {
@@ -229,7 +229,7 @@ function viewImage(id){
           messageError.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("messageError").style.display = "none";
-          }, 1000);
+          }, 3000);
         })
       }
       if (response.status === 200) {
@@ -292,7 +292,7 @@ function viewIncident(id){
           messageError.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("messageError").style.display = "none";
-          }, 1000);
+          }, 3000);
         })
       }
       if (response.status === 200) {
@@ -351,7 +351,7 @@ function editIncident(id){
           messageError.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("messageError").style.display = "none";
-          }, 1000);
+          }, 3000);
         })
       }
       if (response.status === 200) {
@@ -414,7 +414,7 @@ function deleteIncident(id){
           messageError.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("messageError").style.display = "none";
-          }, 1000);
+          }, 3000);
         })
       }
       if (response.status === 200) {
@@ -456,7 +456,7 @@ window.onload = function loadPage() {
           messageError.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("messageError").style.display = "none";
-          }, 1000);
+          }, 3000);
         })
       }
       if (response.status === 200) {
