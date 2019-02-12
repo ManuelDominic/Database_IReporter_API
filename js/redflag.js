@@ -11,10 +11,10 @@ function updateIncident(id){
     longtitude:longtitude,
   }
     
-   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/red-flags/' + id +'/record', {
-   // fetch('http://127.0.0.1:5000/api/v3/red-flags/' + id +'/record', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/red-flags/' + id +'/record', {
+  // fetch('http://127.0.0.1:5000/api/v3/red-flags/' + id +'/record', {
       method: 'PATCH',
-        mode: "cors",
+      mode: "cors",
       headers:{
         'content-type':'application/json',
         'token': sessionStorage.getItem("token")
@@ -58,7 +58,7 @@ function updateIncident(id){
 
 function uploadVideo(id){
 
-  let sucessIntervention = document.getElementById('sucessIntervention');
+  let sucessRedflag = document.getElementById('sucessRedflag');
   let messageError = document.getElementById('messageError');
   var formData = new FormData();
   let fileField = document.querySelector("input[type='file']");
@@ -69,7 +69,6 @@ function uploadVideo(id){
       method: 'PATCH',
       mode: "cors",
       headers:{
-        'content-type':'application/json',
         'token': sessionStorage.getItem("token")
       },
       body: formData
@@ -91,7 +90,7 @@ function uploadVideo(id){
       }
       if (response.status === 200) {
         response.json().then((data) => {
-          sucessIntervention.innerHTML = data.message
+          sucessRedflag.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("sucessIntervention").style.display = "none";
           }, 800);
@@ -169,16 +168,13 @@ function uploadImage(id){
   var formData = new FormData();
   let fileField = document.querySelector("input[type='file']");
   formData.append('file', fileField.files[0]);
-  
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/addImage', {
   // fetch('http://127.0.0.1:5000/api/v3/red-flags/'+ id +'/addImage', {
       method: 'PATCH',
       mode: "cors",
       headers:{
-        'content-type':'application/json',
         'token': sessionStorage.getItem("token")
-      },
-      body: formData
+      },body:formData
     }).then(function(response) {
       if (response.status === 401) {
         response.json().then((data) => {
@@ -374,11 +370,11 @@ function editIncident(id){
               <p id="latitudeError" style="color: red"></p>
               <label for="adr"><i class="fa fa-address-card-o"></i> Location</label>
               <br>
-              <input type="location" id="longtitude" style="float:left;" placeholder="${redflags.longtitude}" required>
-              <input type="location" id="latitude" style="float:left;" placeholder="${redflags.latitude}" required>
+              <input type="location" id="longtitude" style="float:left;" value="${redflags.longtitude}">
+              <input type="location" id="latitude" style="float:left;" value="${redflags.latitude}">
               <br>
               <label for="Comment"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
-               <textarea type="text" id="comment" name="comment" placeholder="${redflags.comment}" required></textarea>
+               <textarea type="text" id="comment" name="comment">${redflags.comment}</textarea>
               <p id="commentError" style="color: red"></p>
               <button type="submit" onclick="updateIncident(${id})" class="btn">Update</button>
               <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
