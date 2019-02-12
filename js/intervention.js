@@ -422,7 +422,7 @@ function viewVideo(id){
                     <br>
                     <input type="file" name="video" id="video">
                     <br>
-                    <button type="submit" onclick="uploadVideo(${id})">Add-Image</button>
+                    <button type="submit" onclick="uploadVideo(${id})">Add-Video</button>
                     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
                   </form>
               `
