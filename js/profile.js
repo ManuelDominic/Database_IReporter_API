@@ -5,8 +5,8 @@ function viewProfile() {
   let sucessUser = document.getElementById('sucessUser');
   let messageError = document.getElementById("messageError");
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/profile', {
-  fetch('http://127.0.0.1:5000/api/v3/profile', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/profile', {
+  // fetch('http://127.0.0.1:5000/api/v3/profile', {
     method: 'GET',
       mode: "cors",
     headers:{
