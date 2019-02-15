@@ -58,8 +58,7 @@ def get_specific_redflag_by_user(redflag_Id):
 def create_redflag():
     incident=create_incident('redflag')
     if incident:
-        return make_response(jsonify({"status":201,"data":incident,
-            "message": "Redflag Successfully created"}), 201)
+        return jsonify({"status":201,"message": "Redflag Successfully created"}), 201
     return bad_request()
 
 

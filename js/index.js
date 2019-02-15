@@ -24,7 +24,6 @@ function userLogin() {
 		method: 'POST',
 	    mode: "cors",
 		headers:{
-			'Accept':'application/json',
 			'content-type':'application/json'
 		},
 	  body: JSON.stringify(newLogin)
@@ -35,7 +34,7 @@ function userLogin() {
           messageLogin.innerHTML = data.message
           window.setTimeout(function () {
             document.getElementById("messageLogin").style.display = "none";
-          }, 1000);
+          }, 2000);
         })
       }      
       if (response.status === 406) {
@@ -46,19 +45,19 @@ function userLogin() {
                 messageLogin.innerHTML = data.error.fields;
                 window.setTimeout(function () {
                   document.getElementById("messageLogin").style.display = "none";
-                }, 1000);
+                }, 2000);
               }
             else if (loginemail === "") {
                 messageLogin.innerHTML = data.error.email;
                 window.setTimeout(function () {
                   document.getElementById("messageLogin").style.display = "none";
-                }, 1000);
+                }, 2000);
               }
             else if (loginpassword === ""){
                 messageLogin.innerHTML = data.error.password;
                 window.setTimeout(function () {
                   document.getElementById("messageLogin").style.display = "none";
-                }, 1000);
+                }, 2000);
               }
           }
         }
@@ -69,17 +68,17 @@ function userLogin() {
       	sucessLogin.innerHTML = data.message
         window.setTimeout(function () {
           document.getElementById("sucessLogin").style.display = "none";
-        }, 800);
+        }, 1000);
         sessionStorage.setItem("token", data.token);
       if (loginemail === "ireportermanueldominic@gmail.com") {
     	 window.setTimeout(function () {
         window.location.replace("templates/admin/dash.html");
-      }, 1000);
+      }, 800);
     }
       else {
        window.setTimeout(function () {
         window.location.replace("templates/user/dash.html");
-      }, 1000);
+      }, 800);
     }
   })
 }
@@ -111,7 +110,6 @@ function userSignup() {
       method: 'POST',
         mode: "cors",
       headers:{
-        'Accept':'application/json',
         'content-type':'application/json'
       },
       body: JSON.stringify(newSignup)
@@ -133,14 +131,14 @@ function userSignup() {
                   messageSignup.innerHTML = data.error.fields;
                   window.setTimeout(function () {
                     document.getElementById("messageSignup").style.display = "none";
-                  }, 1000);
+                  }, 3000);
                   break;
 
               }
               document.getElementById(key+"Error").innerHTML = data.error[key];
               window.setTimeout(function () {
                 document.getElementById(key+"Error").style.display = "none";
-              }, 1000);
+              }, 3000);
              }
             }
           });

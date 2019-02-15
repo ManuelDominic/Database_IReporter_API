@@ -10,17 +10,39 @@ db =DatabaseConnection()
 
 
 def get_incidents_by_type(incident_type):
-    sql_command="""SELECT incident_id,title,created_by,incident_Type,comment,
-                status_,created_On,latitude,longtitude FROM incidents WHERE incident_Type='{}';""".format(incident_type)
+    sql_command="""SELECT 
+            tbl_name.incident_Id,
+            tbl_name.title,
+            users.user_Name,
+            tbl_name.status_,
+            tbl_name.incident_Type,
+            tbl_name.comment,
+            tbl_name.longtitude,
+            tbl_name.latitude,
+            tbl_name.created_On
+        FROM incidents tbl_name 
+        LEFT JOIN users ON tbl_name.created_By=users.user_Id 
+        WHERE tbl_name.incident_Type='{}';""".format(incident_type)
     db.cursor.execute(sql_command)
     incident=db.cursor.fetchall()
     return incident
 
+
+
 def get_incidents_by_type_id(incident_type,incident_id):
-    sql_command="""SELECT incident_id,title,created_by,incident_Type,
-            comment,status_,created_On,latitude,
-            longtitude FROM incidents WHERE incident_Type='{}' AND
-             incident_id='{}';""".format(incident_type,incident_id)
+    sql_command="""SELECT 
+            tbl_name.incident_Id,
+            tbl_name.title,
+            users.user_Name,
+            tbl_name.status_,
+            tbl_name.incident_Type,
+            tbl_name.comment,
+            tbl_name.longtitude,
+            tbl_name.latitude,
+            tbl_name.created_On
+        FROM incidents tbl_name 
+        LEFT JOIN users ON tbl_name.created_By=users.user_Id 
+        WHERE tbl_name.incident_Type='{}' AND tbl_name.incident_id='{}';""".format(incident_type,incident_id)
     db.cursor.execute(sql_command)
     incident=db.cursor.fetchone()
     return incident

@@ -256,13 +256,6 @@ span.psw {
   width: 280px;
 }
 
-.form-popup {
-  display: none;
-  margin: auto;
-  border: 3px solid #f1f1f1;
-  z-index: 9;
-}
-
 .form-container {
   max-width: 300px;
   margin: auto;
@@ -306,7 +299,7 @@ a {
 }
 
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: auto rgba(0,0,0,0.2);
 }
 
 .card-container {

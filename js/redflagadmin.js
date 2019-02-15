@@ -86,9 +86,10 @@ function editIncident(id){
       if (response.status === 200) {
         response.json().then((data) => {
         redflags = data.data
-        for(redflag in redflags){
           let output = `
-            <form action="#" class="form-container">
+          <span onclick="document.getElementById('myForm').style.display='none'" class="close" title="Close Modal">&times;</span>
+          <div class="modal-content">
+             <form action="#" class="form-container">
               <h1>Upadte redflag</h1>
               <h2><span style="color:darkgreen">form-number</span> ${id}</h2> 
               <p id="sucessRedflag" style="color: green"></p>
@@ -99,28 +100,27 @@ function editIncident(id){
                 <option>Resolved</option>
                 <option>Under Investigation</option>
               </select>
-              <label class="output"><i class="fa fa-institution"></i> Title</label>
+              <label class="output"><i class="fa fa-institution"></i> CreatedBy</label>
+              <output>${redflags.user_name}</output>
               <br>
-              <output>${redflags[redflag].title}</output>
-              <p id="longtitudeError" style="color: red"></p>
-              <p id="latitudeError" style="color: red"></p>
+              <label class="output"><i class="fa fa-institution"></i> Title</label>
+              <output>${redflags.title}</output>
               <br>
               <label class="output"><i class="fa fa-address-card-o"></i> Location</label>
               <br>
-              <output>${redflags[redflag].longtitude},</output>
-              <output>${ redflags[redflag].latitude}</output>
+              <output>${redflags.longtitude},</output>
+              <output>${ redflags.latitude}</output>
               <br>
               <label class="output"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
               <br>
-              <output>${redflags[redflag].comment}</output>
+              <output>${redflags.comment}</output>
               <p id="commentError" style="color: red"></p>
               <br>
               <button type="submit" class="btn" onclick="updateStatus(${id})">Update</button>
-              <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
             </form>
+          </div>
           `
           myForm.innerHTML = output;
-        }
       });
     }
   })
@@ -160,27 +160,26 @@ function viewIncident(id){
       if (response.status === 200) {
         response.json().then((data) => {
         redflags = data.data
-        for(redflag in redflags){
           let output = `
+          <span onclick="document.getElementById('myForm').style.display='none'" class="close" title="Close Modal">&times;</span>
+          <div class="modal-content">
             <form action="#" class="form-container">
               <h2><span style="color:darkgreen">form-number</span> ${id}</h2>
-              <h4>${redflags[redflag].status_}</h4>
+              <h4>${redflags.status_}</h4>
               <label class="output"><i class="fa fa-institution"></i> Title</label>
-              <output>${redflags[redflag].title}</output>
+              <output>${redflags.title}</output>
               <br>
               <label class="output"><i class="fa fa-address-card-o"></i> Location</label>
-              <output>${redflags[redflag].longtitude},</output>
-              <output> ${redflags[redflag].latitude}</output>
+              <output>${redflags.longtitude},</output>
+              <output> ${redflags.latitude}</output>
               <br>
               <label class="output"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
               <br>
-              <output>${redflags[redflag].comment}</output>
-              <br>
-              <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+              <output>${redflags.comment}</output>
             </form>
+          </div>
           `
           myForm.innerHTML = output;
-        }
       });
     }
   })
@@ -224,7 +223,8 @@ window.onload = function loadPage() {
 	          <tr>
 	          <th>Id</th>
 	          <th>Title</th>
-            <th>IncidentType</th>
+            <th>Comment</th>
+            <th>CreatedBy</th>
 	          <th>Status</th>
 	          <th>CreatedOn</th>
 	          <th>View</th>
@@ -233,13 +233,14 @@ window.onload = function loadPage() {
 	          </thead>
 	          <tbody>
 	          `
-          redflags = data.data[0]
+          redflags = data.data
           for(redflag in redflags){
             output += `
               <tr>
               <td class="count"></td>
               <td>${redflags[redflag].title}</td>
-              <td>${redflags[redflag].incident_type}</td>
+              <td>${redflags[redflag].comment}</td>
+              <td>${redflags[redflag].user_name}</td>
               <td>${redflags[redflag].status_}</td>
               <td>${redflags[redflag].created_on}</td>
               <td><label onclick="(viewIncident(${redflags[redflag].incident_id})),openView()"><i class="fa fa-eye" style="color:green;"></i></label></td>
