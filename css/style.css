@@ -111,7 +111,7 @@ h1,h2,h3,h4{
 button[class=signupbtn] {
   color: white;
   padding: 14px 20px;
-  margin: 8px 0;
+  margin: 0 0 0 50px;
   align-content: center;
   border: none;
   cursor: pointer;
@@ -346,6 +346,7 @@ label {
 .bt-input {
   padding: 12px;
   margin: 10px 0;
+  margin:  10px 0 0 60px;
   width: 70%;
   border-radius: 3px;
 }
