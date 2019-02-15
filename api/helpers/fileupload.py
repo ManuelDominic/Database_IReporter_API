@@ -5,18 +5,18 @@ from werkzeug import secure_filename
 
 db=DatabaseConnection()
 
-UPLOAD_FOLDER = 'uploads'
+UPLOAD_FOLDER = 'uploads/'
 ALLOWED_IMAGE_EXTENSIONS = set(['pdf', 'png', 'jpg', 'jpeg', 'gif'])
-ALLOWED_VIDEO_EXTENSIONS = set(['mp4','mkv'])
+ALLOWED_VIDEO_EXTENSIONS = set(['wmv','Flv','mp4','mkv'])
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 def allowed_image(filename):
-    return filename[-3:].lower() in ALLOWED_IMAGE_EXTENSIONS
+    return filename.rsplit(".", 1)[1] in ALLOWED_IMAGE_EXTENSIONS
 
 def allowed_video(filename):
-    return filename[-3:].lower() in ALLOWED_VIDEO_EXTENSIONS
+    return filename.rsplit(".", 1)[1] in ALLOWED_VIDEO_EXTENSIONS
 
 
 def upload_image(incident_Id):

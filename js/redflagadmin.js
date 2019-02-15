@@ -8,10 +8,10 @@ function updateStatus(id){
   let newStatus = {
     status:status
   }
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/red-flags/' + id + '/status', {
-  // fetch('http://127.0.0.1:5000/api/v3/red-flags/' + id + '/status', {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/red-flags/' + id + '/status', {
+  fetch('http://127.0.0.1:5000/api/v3/red-flags/' + id + '/status', {
       method: 'PATCH',
-        mode: "cors",
+      mode: "cors",
       headers:{
         'content-type':'application/json',
         'token': sessionStorage.getItem("token")
@@ -59,8 +59,8 @@ function editIncident(id){
   let messageError = document.getElementById("messageError");
   let sucessRedflag = document.getElementById("sucessRedflag");
 
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags/'+ id, {
-  // fetch('http://127.0.0.1:5000/api/v3/admin/red-flags/'+ id, {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags/'+ id, {
+  fetch('http://127.0.0.1:5000/api/v3/admin/red-flags/'+ id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -99,20 +99,20 @@ function editIncident(id){
                 <option>Resolved</option>
                 <option>Under Investigation</option>
               </select>
-              <label for="title"><i class="fa fa-institution"></i> Title</label>
+              <label class="output"><i class="fa fa-institution"></i> Title</label>
               <br>
-              <output class="output">${redflags[redflag].title}</output>
+              <output>${redflags[redflag].title}</output>
               <p id="longtitudeError" style="color: red"></p>
               <p id="latitudeError" style="color: red"></p>
               <br>
-              <label for="adr"><i class="fa fa-address-card-o"></i> Location</label>
+              <label class="output"><i class="fa fa-address-card-o"></i> Location</label>
               <br>
-              <output class="output">${redflags[redflag].longtitude},</output>
-              <output class="output">${ redflags[redflag].latitude}</output>
+              <output>${redflags[redflag].longtitude},</output>
+              <output>${ redflags[redflag].latitude}</output>
               <br>
-              <label for="Comment"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
+              <label class="output"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
               <br>
-              <output class="output">${redflags[redflag].comment}</output>
+              <output>${redflags[redflag].comment}</output>
               <p id="commentError" style="color: red"></p>
               <br>
               <button type="submit" class="btn" onclick="updateStatus(${id})">Update</button>
@@ -133,8 +133,8 @@ function viewIncident(id){
   let sucessRedflag = document.getElementById('sucessRedflag');
   let messageError = document.getElementById("messageError");
 
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags/' + id, {
-  // fetch('http://127.0.0.1:5000/api/v3/admin/red-flags/' + id, {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags/' + id, {
+  fetch('http://127.0.0.1:5000/api/v3/admin/red-flags/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -192,8 +192,8 @@ window.onload = function loadPage() {
   let messageError = document.getElementById("messageError");
   let sucessRedflag = document.getElementById("sucessRedflag");
 
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags', {
-  // fetch('http://127.0.0.1:5000/api/v3/admin/red-flags', {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags', {
+  fetch('http://127.0.0.1:5000/api/v3/admin/red-flags', {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -256,6 +256,5 @@ window.onload = function loadPage() {
     }
   })
 }
-
 
 

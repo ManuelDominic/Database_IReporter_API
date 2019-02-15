@@ -116,8 +116,8 @@ def update_intervention_status(intervention_Id):
 
 
 @intervention_bp.route('/intervention/<int:intervention_Id>/addImage', methods=['PATCH'])
-@token_required
-@non_admin_required
+# @token_required
+# @non_admin_required
 def redflag_upload_image(intervention_Id):
     file = upload_image(intervention_Id)
     if file:
@@ -126,8 +126,8 @@ def redflag_upload_image(intervention_Id):
 
 
 @intervention_bp.route('/intervention/<int:intervention_Id>/addVideo', methods=['PATCH'])
-@token_required
-@non_admin_required
+# @token_required
+# @non_admin_required
 def redflag_upload_video(intervention_Id):
     file = upload_video(intervention_Id)
     if file:

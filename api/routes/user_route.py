@@ -3,7 +3,7 @@ from api.helpers.auth import encode_token, admin_required, token_required
 from api.helpers.validators import verify_login_data, verify_signup_data
 from api.models.database_model import DatabaseConnection
 from api.helpers.auth import admin_required,non_admin_required
-from api.controllers.user_controller import get_all_users,signup_user,store_token,login_user,logout_user
+from api.controllers.user_controller import get_all_users,get_profile_user,get_one_user,signup_user,store_token,login_user,logout_user
 from werkzeug.security import check_password_hash
 
 
@@ -15,10 +15,31 @@ db =DatabaseConnection()
 @user_bp.route("/users", methods=["GET"])
 @token_required
 @admin_required
-def get_users():
+def get_the_users():
     users=get_all_users()
     if users:
         return jsonify({"status": 200, "data": users[0:]}), 200
+    return not_found()
+
+
+@user_bp.route("/users/<int:user_Id>", methods=["GET"])
+@token_required
+@admin_required
+def get_a_user(user_Id):
+    user=get_one_user(user_Id)
+    if user:
+        return jsonify({"status": 200, "data": user}), 200
+    return not_found()
+
+
+
+@user_bp.route("/profile", methods=["GET"])
+@token_required
+@non_admin_required
+def get_user():
+    user=get_profile_user()
+    if user:
+        return jsonify({"status": 200, "data": user}), 200
     return not_found()
 
 

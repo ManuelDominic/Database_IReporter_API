@@ -1,10 +1,10 @@
-function viewUesr(id) {
+function viewUser(id) {
   let myForm = document.getElementById("myForm");
   let sucessUser = document.getElementById('sucessUser');
   let messageError = document.getElementById("messageError");
 
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/users' + id, {
-  // fetch('http://127.0.0.1:5000/api/v3/users' + id, {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/users/' + id, {
+  fetch('http://127.0.0.1:5000/api/v3/users/' + id, {
     method: 'GET',
       mode: "cors",
     headers:{
@@ -29,26 +29,23 @@ function viewUesr(id) {
       }
       if (response.status === 200) {
         response.json().then((data) => {
-          user = data.data
-          let  output = `
-                  <form>
-                    <img src="../../img/gent.jpeg" alt="John" style="width:100%">
-                    <h1>${user.user_name}</h1>
-                    <p class="title">Software Developer/Computer Engineer</p>
-                    <p>Andela  Uganda</p>
-                    <div style="margin: 24px 0;">
-                      <a href="#"><i class="far fa-dribbble"></i></a> 
-                      <a href="#"><i class="far fa-twitter"></i></a>  
-                      <a href="#"><i class="far fa-linkedin"></i></a>  
-                      <a href="#"><i class="far fa-facebook"></i></a> 
-                    </div>
-                    <p><button>${user.phone_number}</button></p>
-                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-                  </form>`
-            myForm.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("myForm").style.display = "none";
-          }, 1000);
+          user = data.data[0]
+            let output = `
+                    <form>
+                      <img src="../../img/gent.jpeg" alt="John" style="width:100%">
+                      <h1>${user.user_name}</h1>
+                      <p class="title">Software Developer/Computer Engineer</p>
+                      <p>Andela  Uganda</p>
+                      <div style="margin: 24px 0;">
+                        <a href="#"><i class="far fa-dribbble"></i></a> 
+                        <a href="#"><i class="far fa-twitter"></i></a>  
+                        <a href="#"><i class="far fa-linkedin"></i></a>  
+                        <a href="#"><i class="far fa-facebook"></i></a> 
+                      </div>
+                      <p><button>${user.phone_number}</button></p>
+                      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                    </form>`
+            myForm.innerHTML = output
       });
     }
   })
@@ -60,8 +57,8 @@ window.onload = function loadPage() {
   let loading = document.getElementById('table');
   let messageError = document.getElementById("messageError");
 
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/users', {
-  // fetch('http://127.0.0.1:5000/api/v3/users', {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/users', {
+  fetch('http://127.0.0.1:5000/api/v3/users', {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -100,7 +97,6 @@ window.onload = function loadPage() {
 	          <tbody>
 	          `
           users = data.data
-          console.log(users)
           for(user in users){
             output += `
             <tr>
@@ -108,7 +104,7 @@ window.onload = function loadPage() {
             <td>${users[user].user_name}</td>
             <td>${users[user].email}</td>
             <td>${users[user].joinning}</td>
-            <td><label onclick="(viewUesr(${users[user].user_id})),openView()"><i class="fa fa-eye" style="color:green;"></i></label></td>
+            <td><label onclick="(viewUser(${users[user].user_id})),openView()"><i class="fa fa-eye" style="color:green;"></i></label></td>
             </tr>
             `
           }
