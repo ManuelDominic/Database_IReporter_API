@@ -3,7 +3,7 @@
 
 	.container{
 		display: grid;
-		text-align: center;
+		/*text-align: center;*/
 		grid-template-columns: repeat(12,auto);
 		grid-template-rows: repeat(auto,10%);
 		grid-template-areas:
@@ -24,7 +24,7 @@
 
 	.main{
 		grid-area: main;
-		text-align: center;
+		/*text-align: center;*/
 		padding: auto;
 		min-height: 512px;
 		margin-bottom: 20px;
@@ -48,12 +48,14 @@
 	.header{
 		background-color: rgb(0,0,0,1);
 		color: white;
+		text-align: center;
 		padding-bottom: 8px;
 		grid-area: header;
 	}
 
 	.sidebar{
 		grid-area: sidebar;
+		text-align: center;
 	}
 
 }
@@ -63,7 +65,7 @@
 
     .container{
         display: grid;
-        text-align: center;
+        /*text-align: center;*/
         grid-template-columns: repeat(1,1fr);
         grid-template-rows: repeat(auto,11%);
         grid-template-areas: "header"
@@ -90,6 +92,7 @@
 
 	.nav-bar{
 		grid-area: nav-bar;
+		text-align: center;
 	}
 
 
@@ -106,14 +109,12 @@
 		color: white;
 		padding-bottom: 8px;
 		grid-area: header;
+		text-align: center;
 	}
 
 	.sidebar{
 		grid-area: sidebar;
-	}
-
-	.signup{
-	  width: 100%;
+		text-align: center;
 	}
 
 }

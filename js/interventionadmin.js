@@ -7,10 +7,10 @@ function updateStatus(id){
   let newStatus = {
     status:status
   }
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/' + id +'/status', {
-  // fetch('http://127.0.0.1:5000/api/v3/intervention/' + id +'/status', {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/' + id +'/status', {
+  fetch('http://127.0.0.1:5000/api/v3/intervention/' + id +'/status', {
       method: 'PATCH',
-        mode: "cors",
+      mode: "cors",
       headers:{
         'content-type':'application/json',
         'token': sessionStorage.getItem("token")
@@ -58,8 +58,8 @@ function editIncident(id){
   let sucessIntervention = document.getElementById("sucessIntervention");
   let messageError = document.getElementById('messageError');
 
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention/' + id, {
-  // fetch('http://127.0.0.1:5000/api/v3/admin/intervention/' + id, {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention/' + id, {
+  fetch('http://127.0.0.1:5000/api/v3/admin/intervention/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -98,18 +98,18 @@ function editIncident(id){
                   <option>Resolved</option>
                   <option>Under Investigation</option>
                 </select>
-                <label for="title"><i class="fa fa-institution"></i> Title</label>
+                <label class="output"><i class="fa fa-institution"></i> Title</label>
                 <br>
-                <output class="output">${records[record].title}</output>
+                <output>${records[record].title}</output>
                 <br>
-                <label for="adr"><i class="fa fa-address-card-o"></i> Location</label>
+                <label class="output"><i class="fa fa-address-card-o"></i> Location</label>
                 <br>
-                <output class="output">${records[record].longtitude}</output>
-                <output class="output">${records[record].latitude}</output>
+                <output>${records[record].longtitude}</output>
+                <output>${records[record].latitude}</output>
                 <br>
-                <label for="Comment"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
+                <label class="output"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
                 <br>
-                <output class="output">${records[record].comment}</output>
+                <output>${records[record].comment}</output>
                 <br>
                 <button type="submit" class="btn" onclick="updateStatus(${id})">Update</button>
                 <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
@@ -128,8 +128,8 @@ function viewIncident(id){
   let messageError = document.getElementById("messageError");
   let sucessIntervention = document.getElementById("sucessIntervention");
 
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention/' + id, {
-  // fetch('http://127.0.0.1:5000/api/v3/admin/intervention/' + id, {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention/' + id, {
+  fetch('http://127.0.0.1:5000/api/v3/admin/intervention/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -189,8 +189,8 @@ window.onload = function loadPage() {
   let messageError = document.getElementById("messageError");
   let sucessIntervention = document.getElementById("sucessIntervention");
 
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention', {
-  // fetch('http://127.0.0.1:5000/api/v3/admin/intervention', {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention', {
+  fetch('http://127.0.0.1:5000/api/v3/admin/intervention', {
       method: 'GET',
       mode: "cors",
       headers:{

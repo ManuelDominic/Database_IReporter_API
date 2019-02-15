@@ -20,7 +20,7 @@
 		<div class="nav-bar">
 			<nav>
 				<ul>
-					<li><a href="dash.html">DashBoard</a></li>
+					<li><a href="dash.html">Home</a></li>
 					<li><a href="incident-form.html">Create Incident</a></li>
 					<button onclick="logOut()" class="logout" style="float: right;">LogOut</button>
 				</ul>
@@ -30,25 +30,65 @@
 			<h2>User <span style="color:rgb(124,252,0)">Intervention</span> Records</h2>
 		</div>
 		<div class="main">
-			<div class="card form-popup" id="myForm"></div>
+			<div class="modal" id="myForm">
+			</div>
 			<div id="sucessIntervention" style="color: green"></div>
 			<div id="messageError" style="color: red"></div>
 			<div id="table"></div>
 			<script>
-				function openView() {
+				function profile() {
 				  document.getElementById("myForm").style.display = "block";
+
+					var modal = document.getElementById('myForm');
+					window.onclick = function(event) {
+					  if (event.target == modal) {
+					    modal.style.display = "none";
+					  }
+					}
+				}
+				function openView() {
+				  // document.getElementById("myForm").style.display = "block";
+				  document.getElementById("myForm").style.display = "block";
+
+					var modal = document.getElementById('myForm');
+					window.onclick = function(event) {
+					  if (event.target == modal) {
+					    modal.style.display = "none";
+					  }
+					}
 				}
 				function openEdit() {
+				  // document.getElementById("myForm").style.display = "block";
 				  document.getElementById("myForm").style.display = "block";
+
+					var modal = document.getElementById('myForm');
+					window.onclick = function(event) {
+					  if (event.target == modal) {
+					    modal.style.display = "none";
+					  }
+					}
 				}
 				function openImage() {
+				  // document.getElementById("myForm").style.display = "block";
 				  document.getElementById("myForm").style.display = "block";
+
+					var modal = document.getElementById('myForm');
+					window.onclick = function(event) {
+					  if (event.target == modal) {
+					    modal.style.display = "none";
+					  }
+					}
 				}
 				function openVideo() {
+				  // document.getElementById("myForm").style.display = "block";
 				  document.getElementById("myForm").style.display = "block";
-				}
-				function closeForm() {
-				  document.getElementById("myForm").style.display = "none";
+
+					var modal = document.getElementById('myForm');
+					window.onclick = function(event) {
+					  if (event.target == modal) {
+					    modal.style.display = "none";
+					  }
+					}
 				}
 			</script>
 		</div>

@@ -4,6 +4,8 @@
 	<title>Write-form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
 	<link rel="stylesheet" type="text/css" href="../../css/style.css">
 	<link rel="icon" href="../../img/favicon.jpg" sizes="16x16 32x32" type="image/png">
 	<link rel="stylesheet" type="text/css" href="../../css/grid.css">
@@ -28,32 +30,54 @@
 			<h2>INCIDENT FORM</h2>
 		</div>
 		<div class="main">
-            <form  action="#" autocomplete="on" onsubmit="return false">
-          <div class="row">
-            <div class="col-50">
-              <h2><span style="color:darkgreen">form-number</span> 266</h2>
-              <select id="incident">
-                <option>redflag</option>
-                <option>intervention</option>
-              </select>
-              <p id="sucessIncident" style="color: green"></p>
-              <p id="messageError" style="color: red"></p>
-              <label for="title"><i class="fa fa-institution"></i> Title</label>
-              <input type="text" id="title" name="title" placeholder="Enter Title e.g, Road Contruction" required>
-              <p id="titleError" style="color: red"></p>
-              <label for="adr"><i class="fa fa-address-card-o"></i>Location</label>
-              <input type="text" id="long" name="long" placeholder="7.9808" required>
-              <p id="longtitudeError" style="color: red"></p>
-              <input type="text" id="lat" name="lat" placeholder="6.79808" required>
-              <p id="latitudeError" style="color: red"></p>
-              <label for="Comment"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
-               <input type="text" id="comment" name="comment" placeholder="Enter Comment" required>
-              <p id="commentError" style="color: red"></p>
-              </div>
-          </div> 
-              <br>
-            <button type="button" class="button" onclick="createIncident()">Create</button>
-          </form>
+          <form  action="#" autocomplete="on" onsubmit="return false">
+	<div class="row">
+	  	<div class="col-50">
+		  	<h2><span style="color:darkgreen">form-number</span> 266</h2>
+		  	<select id="incident">
+		  	  <option>redflag</option>
+		  	  <option>intervention</option>
+		  	</select>
+		  	<p id="sucessIncident" style="color: green"></p>
+		  	<p id="messageError" style="color: red"></p>
+		  	<label for="title"><i class="fa fa-institution"></i> Title</label>
+		  	<input type="text" id="title" name="title" placeholder="Enter Title e.g, Road Contruction" required>
+		  	<p id="titleError" style="color: red"></p>
+		  	<label for="adr"><i class="fa fa-address-card-o"></i>Location</label>
+		  	<input type="text" id="long" name="long" required>
+		  	<p id="longtitudeError" style="color: red"></p>
+		  	<input type="text" id="lat" name="lat" required>
+		  	<p id="latitudeError" style="color: red"></p>
+		  	<pre id='info'></pre>
+		  	<div id='map'></div>
+		  	<div>
+		  	<label for="Comment"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
+		  	<input type="text" id="comment" name="comment" placeholder="Enter Comment" required>
+		  	<p id="commentError" style="color: red"></p>
+		  	<br>
+		  	<button type="button" class="button" onclick="createIncident()">Create</button>
+	  	</div>
+  	</div>
+</form>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoibWFudWVsZG9taW5pYyIsImEiOiJjanMzZWo1cGYwZmp6NGF0OXY3NW42b2YwIn0.y3wxPCbMm_svJBcOcMaumQ';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v9',
+    center: [32.57505249978601,0.3206802144422909],
+    zoom: 9 
+});
+var marker = new mapboxgl.Marker()
+.setLngLat([0, 0])
+.addTo(map);
+
+map.on('click', function (e) {
+     document.getElementById('info').innerHTML = 'copyright@ManuelDominic';
+     document.getElementById('long').value = JSON.stringify(e.lngLat['lng']);
+     document.getElementById('lat').value = JSON.stringify(e.lngLat['lat']);
+      marker.setLngLat(e.lngLat);
+    });
+</script>
 		</div>
 		<div class="footer">
 			<p>copyright @ManuelDominic <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>

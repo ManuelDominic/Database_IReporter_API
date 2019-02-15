@@ -4,10 +4,11 @@
 	<title>Home</title>
 	<link rel="stylesheet" type="text/css" href="../../css/style.css">
 	<link rel="stylesheet" type="text/css" href="../../css/grid.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="icon" href="../../img/favicon.jpg" sizes="16x16 32x32" type="image/png">
 	<script src="../../js/script.js"></script>
 	<script src="../../js/link.js"></script>
+	<script src="../../js/profile.js"></script>
 	<script src="../../js/session.js"></script>
 </head>
 <body>
@@ -28,12 +29,30 @@
 			<h2>U<span style="color:rgb(124,252,0)">SER</span> Dashboard</h2>
 		</div>
 		<div class="main">
+			<div id="myForm" class="modal">
+			  <span onclick="document.getElementById('myForm').style.display='none'" class="close" title="Close Modal">&times;</span>
+			  <div class="modal-content">
+				  <form class="modal-form" action="#">
+			        <img src="../../img/gent.jpeg" alt="John" style="width:35%">
+			        <h1 id="user_name"></h1>
+			        <p class="title">Software Developer/Computer Engineer</p>
+			        <p>Andela  Uganda</p>
+			        <div style="margin: 24px 0;">
+			          <a href="#"><i class="fa fa-instagram"></i></a> 
+			          <a href="#"><i class="fa fa-twitter-square"></i></a>  
+			          <a href="#"><i class="fa fa-linkedin-square"></i></a>  
+			          <a href="#"><i class="fa fa-facebook-f"></i></a> 
+			        </div>
+			        <p><button href="#" id="phone_number"></button></p>
+				  </form>
+			  </div>
+			</div>
 			<table>
 				<td>
 					<div class="card">
 					  <img src="../../img/user.png" alt="Avatar" style="width:100%">
 					  <div class="card-container">
-					    <button class="dash open-button" onclick="profile()"><i class="fa fa-user" style="color: blue"></i><b style="color: white"> Profile</b></button>
+					    <button class="dash open-button" onclick="viewProfile(),profile()"><i class="fa fa-user" style="color: blue"></i><b style="color: white"> Profile</b></button>
 					  </div>
 					</div>
 				</td>
@@ -58,10 +77,13 @@
 			<script>
 				function profile() {
 				  document.getElementById("myForm").style.display = "block";
-				}
 
-				function closeForm() {
-				  document.getElementById("myForm").style.display = "none";
+					var modal = document.getElementById('myForm');
+					window.onclick = function(event) {
+					  if (event.target == modal) {
+					    modal.style.display = "none";
+					  }
+					}
 				}
 			</script>
 		</div>

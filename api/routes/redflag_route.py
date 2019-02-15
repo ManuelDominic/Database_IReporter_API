@@ -108,8 +108,8 @@ def update_redflag_status(redflag_Id):
 
 
 @redflag_bp.route('/red-flags/<int:redflag_Id>/addImage', methods=['PATCH'])
-@token_required
-@non_admin_required
+# @token_required
+# @non_admin_required
 def redflag_upload_image(redflag_Id):
     file = upload_image(redflag_Id)
     if file:
@@ -118,8 +118,8 @@ def redflag_upload_image(redflag_Id):
 
 
 @redflag_bp.route('/red-flags/<int:redflag_Id>/addVideo', methods=['PATCH'])
-@token_required
-@non_admin_required
+# @token_required
+# @non_admin_required
 def redflag_upload_video(redflag_Id):
     file = upload_video(redflag_Id)
     if file:
