@@ -115,7 +115,7 @@ def update_incident_status(incident_type,incident_Id):
     return incident
 
 
-def mailme(incident_type,myid):
+def status_email(incident_type,myid):
     sql_command="""SELECT 
             users.user_Name,
             users.email,
@@ -125,7 +125,7 @@ def mailme(incident_type,myid):
         LEFT JOIN users ON tbl_name.created_By=users.user_Id
         WHERE tbl_name.incident_Type='{}' AND tbl_name.incident_Id='{}';""".format(incident_type,myid)
     db.cursor.execute(sql_command)
-    me = db.cursor.fetchone()
-    hello=status_emailing(me["email"],me["user_name"],me["incident_id"],me["status_"])
+    email = db.cursor.fetchone()
+    hello = status_emailing(email["email"],email["user_name"],email["incident_id"],email["status_"])
     return hello
 

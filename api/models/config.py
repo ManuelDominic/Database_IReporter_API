@@ -2,9 +2,7 @@ from os import environ
 
 
 class Config(object):
-    """
-    Common configurations
-    """
+    """Common configurations"""
     DATABASE_URL = environ.get("DATABASE_URL")
     MAIL_PASSWORD = environ.get("MAIL_PASSWORD")
     MAIL_USERNAME = environ.get("MAIL_USERNAME")
@@ -12,23 +10,17 @@ class Config(object):
 
 
 class DevelopmentConfig(Config):
-    """
-    Development configurations
-    """
+    """Development configurations"""
     DEBUG = True
 
 
 class ProductionConfig(Config):
-    """
-    Production configurations
-    """
+    """Production configurations"""
     DEBUG = False
 
 
 class TestingConfig(Config):
-    """
-    Testing configurations
-    """
+    """Testing configurations"""
     DEBUG = True
 
 
