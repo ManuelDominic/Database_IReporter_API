@@ -51,17 +51,17 @@ def more_user_data():
     
     if not str(data["email"]).strip():
         errors["email"] = "Email address feild is required."
-    elif not re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", data["email"]) or len(data["email"])<12:
+    elif not re.match(r"(^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+$)", data["email"]) or len(data["email"])<12:
         errors["email"] = "You have entered an invalid email address.Please try again." 
     
     if not data["password"]:
         errors["password"] = "Password feilds are required."
-    elif not data["password"].isalnum() or len(data["password"]) < 6:
+    elif not isinstance(data["password"],str) or len(data["password"]) < 6:
         errors["password"] = "Password must have atleast six alphanumeric characters"
     
     if not data["phoneNumber"]:
         errors["phoneNumber"] = "phoneNumber feild is required."
-    elif not isinstance(data["phoneNumber"],str) or len(str(data["phoneNumber"])) != 10:
+    elif not re.match(r"(^[0-9]+$)",data["phoneNumber"]) or len(str(data["phoneNumber"])) != 10:
         errors["phoneNumber"] = "Please enter valid phoneNumber"
     
     if errors:
@@ -119,22 +119,22 @@ def more_incident_data():
     
     if not data["title"]:
         errors["title"] = "title feild is required"
-    elif not data["title"].isalpha():
-        errors["title"] = "title feild should have only alphabets"
+    elif not isinstance(data["title"],str) and len(data["title"]) < 4:
+        errors["title"] = "title feild should have atleast 4 character strings"
    
     if not data["longtitude"]:
         errors["longtitude"] = "longtitude feild is required"
-    elif not isinstance(data["longtitude"],str):# or data["longtitude"] != range(+180,-180):
+    elif not isinstance(data["longtitude"],str):
         errors["longtitude"] = "longtitude must be a float in range of -180 to +180"
    
     if not data["latitude"]:
         errors["latitude"] = "latitude feild is required"
-    elif not isinstance(data["latitude"],str):# or data["latitude"] != range(-90,+90):
+    elif not isinstance(data["latitude"],str):
         errors["latitude"] = "latitude must be a float in range of -90 to +90"
    
     if not data["comment"]:
         errors["comment"] = "comment feild is required"
-    elif not isinstance(data["comment"],str) or len(data["comment"])<10:
+    elif not isinstance(data["comment"],str) and len(data["comment"]) < 10:
         errors["comment"] = "comment field must have atleast 10 character strings"
 
     if errors:
@@ -166,8 +166,6 @@ def verify_create_incident_data(func):
 def update_incident_data():
     data = request.get_json(force=True)
     errors = {}
-    # if not data["longtitude"] and not data["latitude"] or not data["comment"]:
-    #     errors["fields"] = get_update
 
     if not isinstance(data["longtitude"],str):# or data["longtitude"] != range(+180,-180):
         errors["longtitude"] = "longtitude must be a float in range of -180 to +180"

@@ -1,6 +1,7 @@
 from flask import jsonify,request
 import datetime
 from werkzeug.security import generate_password_hash,check_password_hash
+from api.helpers.auth import get_current_user
 import psycopg2
 import psycopg2.extras
 from api.models.database_model import DatabaseConnection
@@ -15,6 +16,20 @@ def get_all_users():
     db.cursor.execute(sql_command)
     users=db.cursor.fetchall()
     return users
+
+def get_one_user(user_Id):
+    """docstring function that return all users detials"""
+    sql_command="""SELECT * FROM users WHERE isAdmin=False AND user_id='{}'""".format(user_Id)
+    db.cursor.execute(sql_command)
+    user=db.cursor.fetchall()
+    return user
+
+def get_profile_user():
+    """docstring function that return all users detials"""
+    sql_command="""SELECT * FROM users WHERE isAdmin=False AND user_id='{}'""".format(get_current_user()["userId"])
+    db.cursor.execute(sql_command)
+    user=db.cursor.fetchall()
+    return user
 
 
 def signup_user():
