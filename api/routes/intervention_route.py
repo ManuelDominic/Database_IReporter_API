@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request,make_response
 from api.helpers.auth import token_required, admin_required, non_admin_required,get_current_user
-from api.controllers.incident_controller import mailme,get_incidents_by_status_and_user,get_incidents_by_type_id_and_user,get_incidents_by_type_given_user,get_incidents_by_type,get_incidents_by_type_id,create_incident,update_incident_by_user,update_incident_status,delete_incident
+from api.controllers.incident_controller import status_email,get_incidents_by_status_and_user,get_incidents_by_type_id_and_user,get_incidents_by_type_given_user,get_incidents_by_type,get_incidents_by_type_id,create_incident,update_incident_by_user,update_incident_status,delete_incident
 from api.helpers.validators import verify_create_incident_data,verify_update_data
 from api.helpers.fileupload import upload_image,upload_video
 from api.models.database_model import DatabaseConnection
@@ -108,16 +108,16 @@ def update_intervention_status(intervention_Id):
     if not incident:
         return not_found()
     elif incident_status:
-        #mail=mailme("intervention",int(incident_status["incident_id"]))
+        mail=status_email('intervention',int(incident_status["incident_id"]))
         return jsonify({"status":200,"data":incident_status,
-            "message": "Intervention status successfully Updated"}), 200 #,"Email":mail}), 200   
+            "message": "Intervention status successfully Updated","Email":mail}), 200   
     return bad_request()
 
 
 
 @intervention_bp.route('/intervention/<int:intervention_Id>/addImage', methods=['PATCH'])
-# @token_required
-# @non_admin_required
+@token_required
+@non_admin_required
 def redflag_upload_image(intervention_Id):
     file = upload_image(intervention_Id)
     if file:
@@ -126,8 +126,8 @@ def redflag_upload_image(intervention_Id):
 
 
 @intervention_bp.route('/intervention/<int:intervention_Id>/addVideo', methods=['PATCH'])
-# @token_required
-# @non_admin_required
+@token_required
+@non_admin_required
 def redflag_upload_video(intervention_Id):
     file = upload_video(intervention_Id)
     if file:
