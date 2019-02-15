@@ -1,15 +1,6 @@
 INSERT INTO users (
    user_Id,first_Name,last_Name,email,
    user_Name,phone_Number,passwd,isAdmin,joinning)
- VALUES (1,'Admin','Adminlast_Name',
-   'ireportermanueldominic@gmail.com','admin','0788084708',
-   'pbkdf2:sha256:50000$pBGAhyZb$d0405efaf8d3bc9287e36cfd1594789b85193ddf07739886cc69b71a7e509032',
-   TRUE,'Thu, 10 Jan 2019 04:01:14 GMT');
-
-
-INSERT INTO users (
-   user_Id,first_Name,last_Name,email,
-   user_Name,phone_Number,passwd,isAdmin,joinning)
  VALUES (2,'manuel','manuellast_Name',
    'ematembu2@gmail.com','manuel',256700701616,
    'pbkdf2:sha256:50000$kEBD7Z97$97db32267f5d0956994c5db567ffda9f45cd6f136a7e2d0f9029f3d68b882b1c',
