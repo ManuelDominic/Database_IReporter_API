@@ -31,7 +31,9 @@ function viewUser(id) {
         response.json().then((data) => {
           user = data.data[0]
             let output = `
-                    <form>
+                  <span onclick="document.getElementById('myForm').style.display='none'" class="close" title="Close Modal">&times;</span>
+                  <div class="modal-content">
+                    <form action="#" class="form-container">
                       <img src="../../img/gent.jpeg" alt="John" style="width:100%">
                       <h1>${user.user_name}</h1>
                       <p class="title">Software Developer/Computer Engineer</p>
@@ -43,8 +45,9 @@ function viewUser(id) {
                         <a href="#"><i class="far fa-facebook"></i></a> 
                       </div>
                       <p><button>${user.phone_number}</button></p>
-                      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-                    </form>`
+                    </form>
+                  </div>
+                    `
             myForm.innerHTML = output
       });
     }
