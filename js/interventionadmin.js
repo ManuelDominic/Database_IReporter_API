@@ -7,8 +7,8 @@ function updateStatus(id){
   let newStatus = {
     status:status
   }
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/' + id +'/status', {
-  // fetch('http://127.0.0.1:5000/api/v3/intervention/' + id +'/status', {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/' + id +'/status', {
+  fetch('http://127.0.0.1:5000/api/v3/intervention/' + id +'/status', {
       method: 'PATCH',
       mode: "cors",
       headers:{
@@ -58,8 +58,8 @@ function editIncident(id){
   let sucessIntervention = document.getElementById("sucessIntervention");
   let messageError = document.getElementById('messageError');
 
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention/' + id, {
-  // fetch('http://127.0.0.1:5000/api/v3/admin/intervention/' + id, {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention/' + id, {
+  fetch('http://127.0.0.1:5000/api/v3/admin/intervention/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -85,8 +85,9 @@ function editIncident(id){
       if (response.status === 200) {
         response.json().then((data) => {
           records = data.data
-          for(record in records){
             let output =  `
+            <span onclick="document.getElementById('myForm').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <div class="modal-content">
               <form action="#" class="form-container">
                 <h1>Upadte Record</h1>
                 <h2><span style="color:darkgreen">form-number</span> ${id}</h2> 
@@ -98,25 +99,27 @@ function editIncident(id){
                   <option>Resolved</option>
                   <option>Under Investigation</option>
                 </select>
+                <label class="output"><i class="fa fa-institution"></i> CreatedBy</label>
+                <output>${records.user_name}</output>
+                <br>
                 <label class="output"><i class="fa fa-institution"></i> Title</label>
                 <br>
-                <output>${records[record].title}</output>
+                <output>${records.title}</output>
                 <br>
                 <label class="output"><i class="fa fa-address-card-o"></i> Location</label>
                 <br>
-                <output>${records[record].longtitude}</output>
-                <output>${records[record].latitude}</output>
+                <output>${records.longtitude}</output>
+                <output>${records.latitude}</output>
                 <br>
                 <label class="output"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
                 <br>
-                <output>${records[record].comment}</output>
+                <output>${records.comment}</output>
                 <br>
                 <button type="submit" class="btn" onclick="updateStatus(${id})">Update</button>
-                <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
               </form>
+            </div>
           `
           myForm.innerHTML = output;
-        }
       });
     }
   })
@@ -128,8 +131,8 @@ function viewIncident(id){
   let messageError = document.getElementById("messageError");
   let sucessIntervention = document.getElementById("sucessIntervention");
 
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention/' + id, {
-  // fetch('http://127.0.0.1:5000/api/v3/admin/intervention/' + id, {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention/' + id, {
+  fetch('http://127.0.0.1:5000/api/v3/admin/intervention/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -155,29 +158,26 @@ function viewIncident(id){
       if (response.status === 200) {
         response.json().then((data) => {
           records = data.data
-          for(record in records){
           let output =  `
-            <form action="#" class="form-container">
+            <span onclick="document.getElementById('myForm').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <div class="modal-content">
+              <form action="#" class="form-container">
               <h2><span style="color:darkgreen">form-number</span> ${id}</h2>
-              <h4>${records[record].status_}</h4>
+              <h4>${records.status_}</h4>
               <label class="output"><i class="fa fa-institution"></i> Title</label>
-              <br>
-              <output>${records[record].title}</output>
+              <output>${records.title}</output>
               <br>
               <label class="output"><i class="fa fa-address-card-o"></i> Location</label>
-              <br>
-              <output>${records[record].longtitude},</output>
-              <output>${ records[record].latitude}</output>
+              <output>${records.longtitude},</output>
+              <output>${ records.latitude}</output>
               <br>
               <label class="output"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
               <br>
-              <output>${records[record].comment}</output>
-              <br>
-              <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+              <output>${records.comment}</output>
             </form>
+          </div>
         `
         myForm.innerHTML = output;
-      }
       });
     }
   })
@@ -189,8 +189,8 @@ window.onload = function loadPage() {
   let messageError = document.getElementById("messageError");
   let sucessIntervention = document.getElementById("sucessIntervention");
 
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention', {
-  // fetch('http://127.0.0.1:5000/api/v3/admin/intervention', {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention', {
+  fetch('http://127.0.0.1:5000/api/v3/admin/intervention', {
       method: 'GET',
       mode: "cors",
       headers:{
@@ -221,8 +221,9 @@ window.onload = function loadPage() {
 	          <tr>
 	          <th>Id</th>
 	          <th>Title</th>
-            <th>IncidentType</th>
-	          <th>status</th>
+            <th>Comment</th>
+            <th>CreatedBy</th>
+	          <th>Status</th>
 	          <th>CreatedOn</th>
 	          <th>View</th>
 	          <th>Edit</th>
@@ -230,13 +231,14 @@ window.onload = function loadPage() {
 	          </thead>
 	          <tbody>
 	          `
-          records = data.data[0]
-          for(record in records){
+          records = data.data
+          for (record in records){
             output += `
             <tr>
             <td class="count"></td>
             <td>${records[record].title}</td>
-            <td>${records[record].incident_type}</td>
+            <td>${records[record].comment}</td>
+            <td>${records[record].user_name}</td>
             <td>${records[record].status_}</td>
             <td>${records[record].created_on}</td>
             <td><label onclick="(viewIncident(${records[record].incident_id})),openView()"><i class="fa fa-eye" style="color:green;"></i></label></td>

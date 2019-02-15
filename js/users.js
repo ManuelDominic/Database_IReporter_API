@@ -3,8 +3,8 @@ function viewUser(id) {
   let sucessUser = document.getElementById('sucessUser');
   let messageError = document.getElementById("messageError");
 
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/users/' + id, {
-  // fetch('http://127.0.0.1:5000/api/v3/users/' + id, {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/users/' + id, {
+  fetch('http://127.0.0.1:5000/api/v3/users/' + id, {
     method: 'GET',
       mode: "cors",
     headers:{
@@ -31,7 +31,9 @@ function viewUser(id) {
         response.json().then((data) => {
           user = data.data[0]
             let output = `
-                    <form>
+                  <span onclick="document.getElementById('myForm').style.display='none'" class="close" title="Close Modal">&times;</span>
+                  <div class="modal-content">
+                    <form action="#" class="form-container">
                       <img src="../../img/gent.jpeg" alt="John" style="width:100%">
                       <h1>${user.user_name}</h1>
                       <p class="title">Software Developer/Computer Engineer</p>
@@ -43,8 +45,9 @@ function viewUser(id) {
                         <a href="#"><i class="far fa-facebook"></i></a> 
                       </div>
                       <p><button>${user.phone_number}</button></p>
-                      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-                    </form>`
+                    </form>
+                  </div>
+                    `
             myForm.innerHTML = output
       });
     }
@@ -57,8 +60,8 @@ window.onload = function loadPage() {
   let loading = document.getElementById('table');
   let messageError = document.getElementById("messageError");
 
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/users', {
-  // fetch('http://127.0.0.1:5000/api/v3/users', {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/users', {
+  fetch('http://127.0.0.1:5000/api/v3/users', {
       method: 'GET',
         mode: "cors",
       headers:{
