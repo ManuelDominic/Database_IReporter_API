@@ -1,11 +1,11 @@
-
+// 
 window.onload = function loadPage() {
   
   let sucessIntervention = document.getElementById("intervention-user");
   let sucessRedflag = document.getElementById("redflag-user");
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/record/number', {
-  fetch('http://127.0.0.1:5000/api/v3/user/record/number', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/record/number', {
+  // fetch('http://127.0.0.1:5000/api/v3/user/record/number', {
       method: 'GET',
       mode: 'cors',
       headers:{

@@ -1,12 +1,13 @@
 function viewUser(id) {
+  
   let myForm = document.getElementById("myForm");
   let sucessUser = document.getElementById('sucessUser');
   let messageError = document.getElementById("messageError");
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/users/' + id, {
-  fetch('http://127.0.0.1:5000/api/v3/users/' + id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/users/' + id, {
+  // fetch('http://127.0.0.1:5000/api/v3/users/' + id, {
     method: 'GET',
-      mode: "cors",
+    mode: "cors",
     headers:{
       'content-type':'application/json',
       'token': sessionStorage.getItem("token")
@@ -17,14 +18,6 @@ function viewUser(id) {
           window.setTimeout(function () {
             window.location.replace("../../index.html");
           }, 800);
-        })
-      }
-      if (response.status === 404) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 3000);
         })
       }
       if (response.status === 200) {
@@ -60,10 +53,10 @@ window.onload = function loadPage() {
   let loading = document.getElementById('table');
   let messageError = document.getElementById("messageError");
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/users', {
-  fetch('http://127.0.0.1:5000/api/v3/users', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/users', {
+  // fetch('http://127.0.0.1:5000/api/v3/users', {
       method: 'GET',
-        mode: "cors",
+      mode: "cors",
       headers:{
         'content-type':'application/json',
         'token': sessionStorage.getItem("token")
