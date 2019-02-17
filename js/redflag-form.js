@@ -4,8 +4,8 @@ function viewIncident(id){
   let messageError = document.getElementById("messageError");
   let sucessRedflag = document.getElementById("sucessRedflag");
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/red-flags/' + id, {
-  fetch('http://127.0.0.1:5000/api/v3/user/red-flags/' + id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/red-flags/' + id, {
+  // fetch('http://127.0.0.1:5000/api/v3/user/red-flags/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -23,12 +23,6 @@ function viewIncident(id){
       if (response.status === 200) {
         response.json().then((data) => {
           redflags = data.data
-          // for (image in redflags.imagename){
-
-          // }
-          // for (video in redflags.videoname){
-            
-          // }
           let output = `
           <span onclick="document.getElementById('myForm').style.display='none'" class="close" title="Close Modal">&times;</span>
           <div class="modal-content">
@@ -39,7 +33,7 @@ function viewIncident(id){
               <output class="output">${redflags.title}</output>
               <br>
               <label class="label"><i class="fa fa-address-card-o"></i> Location</label>
-              <output class="output">${redflags.longtitude}, ${redflags.latitude}</output>
+              <output class="output">${redflags.latitude}, ${redflags.longtitude}</output>
               <br>
               <label class="label"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
               <output class="output">${redflags.comment}</output>
@@ -62,8 +56,8 @@ function editIncident(id){
   let messageError = document.getElementById("messageError");
   let sucessRedflag = document.getElementById("sucessRedflags");
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/red-flags/' + id, {
-  fetch('http://127.0.0.1:5000/api/v3/user/red-flags/' + id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/red-flags/' + id, {
+  // fetch('http://127.0.0.1:5000/api/v3/user/red-flags/' + id, {
       method: 'GET',
       mode: "cors",
       headers:{
@@ -97,8 +91,8 @@ function editIncident(id){
                 <p id="longtitudeError" style="color: red"></p>
                 <p id="latitudeError" style="color: red"></p>
                 <label class="label"><i class="fa fa-address-card-o"></i> Location</label>
-                <input type="location" class="output" id="long" style="float:left;" value="${redflags.longtitude}">
                 <input type="location" class="output" id="lat" style="float:left;" value="${redflags.latitude}">
+                <input type="location" class="output" id="long" style="float:left;" value="${redflags.longtitude}">
                 <h4>click on the map to find location</h4>
                 <pre id='info'></pre>
                 <div id='map'></div>
@@ -125,8 +119,8 @@ function deleteIncident(id){
   let sucessIntervention = document.getElementById('sucessIntervention');
   let messageError = document.getElementById('messageError');
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/red-flags/'+ id, {
-  fetch('http://127.0.0.1:5000/api/v3/red-flags/'+ id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/red-flags/'+ id, {
+  // fetch('http://127.0.0.1:5000/api/v3/red-flags/'+ id, {
       method: 'DELETE',
       mode: "cors",
       headers:{
@@ -145,7 +139,7 @@ function deleteIncident(id){
         response.json().then((data) => {
           sucessIntervention.innerHTML = data.message
           window.setTimeout(function () {
-            document.getElementById("sucessIntervention").style.display = "none";
+            document.location.reload()
           }, 800);
      });
     }
@@ -159,8 +153,8 @@ window.onload = function loadPage() {
   let messageError = document.getElementById("messageError");
   let sucessRedflag = document.getElementById("sucessRedflag");
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/red-flags', {
-  fetch('http://127.0.0.1:5000/api/v3/user/red-flags', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/red-flags', {
+  // fetch('http://127.0.0.1:5000/api/v3/user/red-flags', {
       method: 'GET',
       mode: "cors",
       headers:{

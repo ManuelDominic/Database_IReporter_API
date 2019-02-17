@@ -4,8 +4,8 @@ function viewIncident(id){
   let sucessIntervention = document.getElementById("sucessIntervention");
   let myForm = document.getElementById('myForm');
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
-  fetch('http://127.0.0.1:5000/api/v3/user/intervention/' + id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
+  // fetch('http://127.0.0.1:5000/api/v3/user/intervention/' + id, {
       method: 'GET',
       mode: 'cors',
       headers:{
@@ -33,7 +33,7 @@ function viewIncident(id){
                     <output class="output">${record.title}</output>
                     <br>
                     <label class="label"><i class="fa fa-address-card-o"></i> Location</label>
-                    <output class="output">${record.longtitude}, ${record.latitude}</output>
+                    <output class="output">${record.latitude}, ${record.longtitude}</output>
                     <br>
                     <label class="label"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
                     <output class="output">${record.comment}</output>
@@ -59,8 +59,8 @@ function uploadVideo(id){
   let fileField = document.querySelector("input[type='file']");
   formData.append('file', fileField.files[0]);
   
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/addVideo', {
-  fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id +'/addVideo', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/addVideo', {
+  // fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id +'/addVideo', {
     method: 'PATCH',
     mode: "cors",
     headers:{
@@ -100,8 +100,8 @@ function viewVideo(id){
   let messageError = document.getElementById("messageError");
   let sucessIntervention = document.getElementById("sucessIntervention");
   let myForm = document.getElementById('myForm');
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
-  fetch('http://127.0.0.1:5000/api/v3/user/intervention/'+ id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
+  // fetch('http://127.0.0.1:5000/api/v3/user/intervention/'+ id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -114,14 +114,6 @@ function viewVideo(id){
           window.setTimeout(function () {
             window.location.replace("../../index.html");
           }, 800);
-        })
-      }
-      if (response.status === 404) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 3000);
         })
       }
       if (response.status === 200) {
@@ -139,7 +131,7 @@ function viewVideo(id){
                     <output class="output">${record.title}</output>
                     <br>
                     <label class="label"><i class="fa fa-address-card-o"></i> Location</label>
-                    <output class="output">${record.longtitude}, ${record.latitude}</output>
+                    <output class="output">${record.latitude}, ${record.longtitude}</output>
                     <br>
                     <label class="label"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
                     <output class="output">${record.comment}</output>
@@ -164,8 +156,8 @@ window.onload = function loadPage() {
   let sucessIntervention = document.getElementById("sucessIntervention");
   let loading = document.getElementById('table');
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention', {
-  fetch('http://127.0.0.1:5000/api/v3/user/intervention', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention', {
+  // fetch('http://127.0.0.1:5000/api/v3/user/intervention', {
       method: 'GET',
       mode: 'cors',
       headers:{

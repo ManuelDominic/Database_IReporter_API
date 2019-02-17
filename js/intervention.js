@@ -11,8 +11,8 @@ function updateIncident(id){
     latitude:latitude,
     longtitude:longtitude
   }
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/record', {
-  fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id +'/record', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/record', {
+  // fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id +'/record', {
       method: 'PATCH',
       mode: "cors",
       headers:{
@@ -52,8 +52,8 @@ function editIncident(id){
   let myForm = document.getElementById('myForm');
   let messageError = document.getElementById("messageError");
   let sucessIntervention = document.getElementById("sucessIntervention");
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
-  fetch('http://127.0.0.1:5000/api/v3/user/intervention/' + id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
+  // fetch('http://127.0.0.1:5000/api/v3/user/intervention/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -86,8 +86,8 @@ function editIncident(id){
                 <p id="longtitudeError" style="color: red"></p>
                 <p id="latitudeError" style="color: red"></p>
                 <label class="label"><i class="fa fa-address-card-o"></i> Location</label>
-                <input type="location" class="output" id="long" style="float:left;" value="${records.longtitude}">
                 <input type="location" class="output" id="lat" style="float:left;" value="${records.latitude}">
+                <input type="location" class="output" id="long" style="float:left;" value="${records.longtitude}">
                 <h4>click on the map to find location</h4>
                 <pre id='info'></pre>
                 <div id='map'></div>
@@ -116,8 +116,8 @@ function uploadImage(id){
   let fileField = document.getElementById('image');
   formData.append('file', fileField.files[0]);
   
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/addImage', {
-  fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id +'/addImage', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/addImage', {
+  // fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id +'/addImage', {
       method: 'PATCH',
       mode: "nor-cors",
       headers:{
@@ -156,8 +156,8 @@ function viewImage(id){
   let sucessIntervention = document.getElementById("sucessIntervention");
   let myForm = document.getElementById('myForm');
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
-  fetch('http://127.0.0.1:5000/api/v3/user/intervention/'+ id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
+  // fetch('http://127.0.0.1:5000/api/v3/user/intervention/'+ id, {
       method: 'GET',
       mode: "cors",
       headers:{
@@ -187,7 +187,7 @@ function viewImage(id){
                       <output class="output">${record.title}</output>
                       <br>
                       <label class="label"><i class="fa fa-address-card-o"></i> Location</label>
-                      <output class="output">${record.longtitude}, ${record.latitude}</output>
+                      <output class="output">${record.latitude}, ${record.longtitude}</output>
                       <br>
                       <label class="label"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
                       <output class="output">${record.comment}</output>
@@ -214,8 +214,8 @@ function deleteIncident(id){
   let sucessIntervention = document.getElementById('sucessIntervention');
   let messageError = document.getElementById('messageError');
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id, {
-  fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id, {
+  // fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id, {
       method: 'DELETE',
       mode: "cors",
       headers:{
@@ -232,9 +232,9 @@ function deleteIncident(id){
       }
       if (response.status === 200) {
         response.json().then((data) => {
-          alert(data.message)
+          sucessIntervention.innerHTML = data.message
           window.setTimeout(function () {
-            document.getElementById("sucessIntervention").style.display = "none";
+            document.location.reload()
           }, 800);
      });
     }
