@@ -60,7 +60,7 @@
 					<div class="card">
 					  <img src="../../img/interven.png" alt="Avatar" style="width:80%">
 					  <div class="card-container">
-					  	<button class="dash" onclick="intervention()"><i class="fas fa-people-carry" style="color: green"></i><b style="color: white"> Intervention Records: 0</b></button>
+					  	<button class="dash" onclick="intervention()"><i class="fas fa-people-carry" style="color: green"></i><b style="color: white"> Intervention Records: <b id="intervention-user">0</b></b></button>
 					  </div>
 					</div>
 				</td>
@@ -68,7 +68,7 @@
 					<div class="card">
 					  <img src="../../img/redflags.jpeg" alt="Avatar" style="width:85%; height: 150%;">
 					  <div class="card-container">
-					    <button class="dash" onclick="redflag()"><i class="fa fa-gavel" style="color: red"></i><b style="color: white"> Redflag Records: 0</b></button>
+					    <button class="dash" onclick="redflag()"><i class="fa fa-gavel" style="color: red"></i><b style="color: white"> Redflag Records: <b id="redflag-user">0</b></b></button>
 					  </div>
 					</div>
 				</td>
@@ -80,5 +80,7 @@
 		</div>
 	</div>
 </body>
+<!-- <script src="../../js/intervention-user.js"></script> -->
+<script src="../../js/record-user.js"></script>
 <script src="../../js/table.js"></script>
 </html>

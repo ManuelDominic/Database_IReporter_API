@@ -22,7 +22,7 @@ def allowed_video(filename):
 def upload_image(incident_Id):
     file = request.files['file']
     if file and allowed_image(file.filename):
-        sql_command = """INSERT INTO files (filename,incident_Id) VALUES ('{}','{}');""".format(file.filename,incident_Id)
+        sql_command = """INSERT INTO images (imagename,incident_Id) VALUES ('{}','{}');""".format(file.filename,incident_Id)
         db.cursor.execute(sql_command)
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
@@ -32,7 +32,7 @@ def upload_image(incident_Id):
 def upload_video(incident_Id):
     file = request.files['file']
     if file and allowed_video(file.filename):
-        sql_command = """INSERT INTO files (filename,incident_Id) VALUES ('{}','{}');""".format(file.filename,incident_Id)
+        sql_command = """INSERT INTO videos (videoname,incident_Id) VALUES ('{}','{}');""".format(file.filename,incident_Id)
         db.cursor.execute(sql_command)
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))

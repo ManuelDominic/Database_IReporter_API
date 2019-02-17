@@ -8,8 +8,8 @@ function updateStatus(id){
   let newStatus = {
     status:status
   }
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/red-flags/' + id + '/status', {
-  // fetch('http://127.0.0.1:5000/api/v3/red-flags/' + id + '/status', {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/red-flags/' + id + '/status', {
+  fetch('http://127.0.0.1:5000/api/v3/red-flags/' + id + '/status', {
       method: 'PATCH',
       mode: "cors",
       headers:{
@@ -59,8 +59,8 @@ function editIncident(id){
   let messageError = document.getElementById("messageError");
   let sucessRedflag = document.getElementById("sucessRedflag");
 
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags/'+ id, {
-  // fetch('http://127.0.0.1:5000/api/v3/admin/red-flags/'+ id, {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags/'+ id, {
+  fetch('http://127.0.0.1:5000/api/v3/admin/red-flags/'+ id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -88,36 +88,29 @@ function editIncident(id){
         redflags = data.data
           let output = `
           <span onclick="document.getElementById('myForm').style.display='none'" class="close" title="Close Modal">&times;</span>
-          <div class="modal-content">
-             <form action="#" class="form-container">
-              <h1>Upadte redflag</h1>
-              <h2><span style="color:darkgreen">form-number</span> ${id}</h2> 
-              <p id="sucessRedflag" style="color: green"></p>
+          <div class="modal-content form">
+            <form action="#" class="form-container">
+              <h1>Upadte Record</h1>
+              <h2><span style="color:darkgreen">Record-Number</span> ${id}</h2> 
+              <p id="sucessIntervention" style="color: green"></p>
               <p id="messageError" style="color: red"></p>
-              <select id="status">
+              <select class="output" id="status">
                 <option>Update-Status</option>
                 <option>Rejected</option>
                 <option>Resolved</option>
                 <option>Under Investigation</option>
               </select>
-              <label class="output"><i class="fa fa-institution"></i> CreatedBy</label>
-              <output>${redflags.user_name}</output>
+              <label class="label"><i class="fa fa-institution"></i> Title</label>
+              <output class="output">${redflags.title}</output>
               <br>
-              <label class="output"><i class="fa fa-institution"></i> Title</label>
-              <output>${redflags.title}</output>
+              <label class="label"><i class="fa fa-address-card-o"></i> Location</label>
+              <output class="output">${redflags.longtitude}, ${redflags.latitude}</output>
+              <label class="label"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
+              <output class="output">${redflags.comment}</output>
+              <button type="submit" onclick="updateStatus(${id})" class="btn">Update</button>
               <br>
-              <label class="output"><i class="fa fa-address-card-o"></i> Location</label>
-              <br>
-              <output>${redflags.longtitude},</output>
-              <output>${ redflags.latitude}</output>
-              <br>
-              <label class="output"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
-              <br>
-              <output>${redflags.comment}</output>
-              <p id="commentError" style="color: red"></p>
-              <br>
-              <button type="submit" class="btn" onclick="updateStatus(${id})">Update</button>
             </form>
+            <script src="../../js/incidentform.js"></script>
           </div>
           `
           myForm.innerHTML = output;
@@ -133,8 +126,8 @@ function viewIncident(id){
   let sucessRedflag = document.getElementById('sucessRedflag');
   let messageError = document.getElementById("messageError");
 
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags/' + id, {
-  // fetch('http://127.0.0.1:5000/api/v3/admin/red-flags/' + id, {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags/' + id, {
+  fetch('http://127.0.0.1:5000/api/v3/admin/red-flags/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -164,18 +157,20 @@ function viewIncident(id){
           <span onclick="document.getElementById('myForm').style.display='none'" class="close" title="Close Modal">&times;</span>
           <div class="modal-content">
             <form action="#" class="form-container">
-              <h2><span style="color:darkgreen">form-number</span> ${id}</h2>
+              <h2><span style="color:darkgreen">Record-Number</span> ${id}</h2>
               <h4>${redflags.status_}</h4>
-              <label class="output"><i class="fa fa-institution"></i> Title</label>
-              <output>${redflags.title}</output>
+              <label class="label"><i class="fa fa-institution"></i> Title</label>
+              <output class="output">${redflags.title}</output>
               <br>
-              <label class="output"><i class="fa fa-address-card-o"></i> Location</label>
-              <output>${redflags.longtitude},</output>
-              <output> ${redflags.latitude}</output>
+              <label class="label"><i class="fa fa-address-card-o"></i> Location</label>
+              <output class="output">${redflags.longtitude}, ${redflags.latitude}</output>
               <br>
-              <label class="output"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
+              <label class="label"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
+              <output class="output">${redflags.comment}</output>
               <br>
-              <output>${redflags.comment}</output>
+              <img class="output" src="../../uploads/${redflags.imagename}" style="width:20%">
+              <video class="output" src="../../uploads/${redflags.videoname}" style="width:50%" controls></video>
+              <br>
             </form>
           </div>
           `
@@ -191,8 +186,8 @@ window.onload = function loadPage() {
   let messageError = document.getElementById("messageError");
   let sucessRedflag = document.getElementById("sucessRedflag");
 
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags', {
-  // fetch('http://127.0.0.1:5000/api/v3/admin/red-flags', {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags', {
+  fetch('http://127.0.0.1:5000/api/v3/admin/red-flags', {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -209,10 +204,7 @@ window.onload = function loadPage() {
       }
       if (response.status === 404) {
         response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 3000);
+          sucessRedflag.innerHTML = data.message;
         })
       }
       if (response.status === 200) {

@@ -94,8 +94,7 @@ class TestIncindent(TestBase):
                                   data=json.dumps(new_record))
         self.assertEqual(response.status_code, 200)
         data = response.data.decode()
-        message = {"status": 200, "data": {"incident_id": 7},
-                    "message": "Intervention record successfully Updated"}
+        message = {"status": 200,"message": "Intervention record successfully Updated"}
         self.assertEqual(json.loads(data), message)
 
     def test_update_redflag_record(self):
@@ -103,9 +102,7 @@ class TestIncindent(TestBase):
                                   data=json.dumps(new_record))
         self.assertEqual(response.status_code, 200)
         data = response.data.decode()
-        message = {"data": {"incident_id": 2},
-                    "message": "Redflag record successfully Updated",
-                   "status": 200}
+        message = {"message": "Redflag record successfully Updated","status": 200}
         self.assertEqual(json.loads(data), message)
 
 

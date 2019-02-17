@@ -126,5 +126,10 @@ class TestIncidenterrors(TestBase):
         self.assertEqual(json.loads(data), message)
 
 
-# if __name__ == '__main__':
-#     unittest.main()
+    def test_z_drop_tables(self):
+        self.app = app.test_client()
+        self.db = DatabaseConnection()
+        self.db.cursor.execute(open('drop.sql', 'r').read())
+
+if __name__ == '__main__':
+    unittest.main()
