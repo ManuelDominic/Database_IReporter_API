@@ -8,8 +8,8 @@ function updateStatus(id){
   let newStatus = {
     status:status
   }
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/red-flags/' + id + '/status', {
-  fetch('http://127.0.0.1:5000/api/v3/red-flags/' + id + '/status', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/red-flags/' + id + '/status', {
+  // fetch('http://127.0.0.1:5000/api/v3/red-flags/' + id + '/status', {
       method: 'PATCH',
       mode: "cors",
       headers:{
@@ -23,14 +23,6 @@ function updateStatus(id){
           window.setTimeout(function () {
             window.location.replace("../../index.html");
           }, 800);
-        })
-      }
-      if (response.status === 404) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 3000);
         })
       }
       if (response.status === 406) {
@@ -59,8 +51,8 @@ function editIncident(id){
   let messageError = document.getElementById("messageError");
   let sucessRedflag = document.getElementById("sucessRedflag");
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags/'+ id, {
-  fetch('http://127.0.0.1:5000/api/v3/admin/red-flags/'+ id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags/'+ id, {
+  // fetch('http://127.0.0.1:5000/api/v3/admin/red-flags/'+ id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -73,14 +65,6 @@ function editIncident(id){
           window.setTimeout(function () {
             window.location.replace("../../index.html");
           }, 800);
-        })
-      }
-      if (response.status === 404) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 3000);
         })
       }
       if (response.status === 200) {
@@ -104,7 +88,7 @@ function editIncident(id){
               <output class="output">${redflags.title}</output>
               <br>
               <label class="label"><i class="fa fa-address-card-o"></i> Location</label>
-              <output class="output">${redflags.longtitude}, ${redflags.latitude}</output>
+              <output class="output">${redflags.latitude}, ${redflags.longtitude}</output>
               <label class="label"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
               <output class="output">${redflags.comment}</output>
               <button type="submit" onclick="updateStatus(${id})" class="btn">Update</button>
@@ -126,8 +110,8 @@ function viewIncident(id){
   let sucessRedflag = document.getElementById('sucessRedflag');
   let messageError = document.getElementById("messageError");
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags/' + id, {
-  fetch('http://127.0.0.1:5000/api/v3/admin/red-flags/' + id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags/' + id, {
+  // fetch('http://127.0.0.1:5000/api/v3/admin/red-flags/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -140,14 +124,6 @@ function viewIncident(id){
           window.setTimeout(function () {
             window.location.replace("../../index.html");
           }, 800);
-        })
-      }
-      if (response.status === 404) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 3000);
         })
       }
       if (response.status === 200) {
@@ -163,7 +139,7 @@ function viewIncident(id){
               <output class="output">${redflags.title}</output>
               <br>
               <label class="label"><i class="fa fa-address-card-o"></i> Location</label>
-              <output class="output">${redflags.longtitude}, ${redflags.latitude}</output>
+              <output class="output">${redflags.latitude}, ${redflags.longtitude}</output>
               <br>
               <label class="label"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
               <output class="output">${redflags.comment}</output>
@@ -186,8 +162,8 @@ window.onload = function loadPage() {
   let messageError = document.getElementById("messageError");
   let sucessRedflag = document.getElementById("sucessRedflag");
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags', {
-  fetch('http://127.0.0.1:5000/api/v3/admin/red-flags', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags', {
+  // fetch('http://127.0.0.1:5000/api/v3/admin/red-flags', {
       method: 'GET',
         mode: "cors",
       headers:{

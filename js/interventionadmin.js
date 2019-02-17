@@ -7,8 +7,8 @@ function updateStatus(id){
   let newStatus = {
     status:status
   }
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/' + id +'/status', {
-  fetch('http://127.0.0.1:5000/api/v3/intervention/' + id +'/status', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/' + id +'/status', {
+  // fetch('http://127.0.0.1:5000/api/v3/intervention/' + id +'/status', {
       method: 'PATCH',
       mode: "cors",
       headers:{
@@ -22,14 +22,6 @@ function updateStatus(id){
           window.setTimeout(function () {
             window.location.replace("../../index.html");
           }, 800);
-        })
-      }
-      if (response.status === 404) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 3000);
         })
       }
       if (response.status === 406) {
@@ -58,8 +50,8 @@ function editIncident(id){
   let sucessIntervention = document.getElementById("sucessIntervention");
   let messageError = document.getElementById('messageError');
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention/' + id, {
-  fetch('http://127.0.0.1:5000/api/v3/admin/intervention/' + id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention/' + id, {
+  // fetch('http://127.0.0.1:5000/api/v3/admin/intervention/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -72,14 +64,6 @@ function editIncident(id){
           window.setTimeout(function () {
             window.location.replace("../../index.html");
           }, 800);
-        })
-      }
-      if (response.status === 404) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 3000);
         })
       }
       if (response.status === 200) {
@@ -106,7 +90,7 @@ function editIncident(id){
                 <output class="output">${records.title}</output>
                 <br>
                 <label class="label"><i class="fa fa-address-card-o"></i> Location</label>
-                <output class="output">${records.longtitude}, ${records.latitude}</output>
+                <output class="output">${records.latitude}, ${records.longtitude}</output>
                 <br>
                 <label class="label"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
                 <output class="output">${records.comment}</output>
@@ -127,8 +111,8 @@ function viewIncident(id){
   let messageError = document.getElementById("messageError");
   let sucessIntervention = document.getElementById("sucessIntervention");
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention/' + id, {
-  fetch('http://127.0.0.1:5000/api/v3/admin/intervention/' + id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention/' + id, {
+  // fetch('http://127.0.0.1:5000/api/v3/admin/intervention/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -141,14 +125,6 @@ function viewIncident(id){
           window.setTimeout(function () {
             window.location.replace("../../index.html");
           }, 800);
-        })
-      }
-      if (response.status === 404) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 3000);
         })
       }
       if (response.status === 200) {
@@ -164,7 +140,7 @@ function viewIncident(id){
                 <output class="output">${record.title}</output>
                 <br>
                 <label class="label"><i class="fa fa-address-card-o"></i> Location</label>
-                <output class="output">${record.longtitude}, ${record.latitude}</output>
+                <output class="output">${record.latitude}, ${record.longtitude}</output>
                 <br>
                 <label class="label"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
                 <output class="output">${record.comment}</output>
@@ -188,8 +164,8 @@ window.onload = function loadPage() {
   let messageError = document.getElementById("messageError");
   let sucessIntervention = document.getElementById("sucessIntervention");
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention', {
-  fetch('http://127.0.0.1:5000/api/v3/admin/intervention', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention', {
+  // fetch('http://127.0.0.1:5000/api/v3/admin/intervention', {
       method: 'GET',
       mode: "cors",
       headers:{
