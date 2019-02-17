@@ -4,8 +4,6 @@ from os import environ
 class Config(object):
     """Common configurations"""
     DATABASE_URL = environ.get("DATABASE_URL")
-    MAIL_PASSWORD = environ.get("MAIL_PASSWORD")
-    MAIL_USERNAME = environ.get("MAIL_USERNAME")
     SECRET_KEY = environ.get("SECRET_KEY")
 
 

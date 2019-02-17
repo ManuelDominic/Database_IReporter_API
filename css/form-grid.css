@@ -1,0 +1,27 @@
+.form-container{
+	display: grid;
+	grid-template-columns:.2fr auto .5fr;
+	grid-template-areas: "label output output"
+						 ". mid .";
+}
+
+
+.label{
+	grid-area: label;
+	grid-row: auto;
+}
+
+.output{
+	grid-area: output;
+	grid-row: auto;
+}
+
+.form-container p,
+.form-container h1,
+.form-container h2,
+.form-container h4,
+.form-container h2 span,
+.form-container button{
+	grid-area: mid;
+	grid-row: auto;
+}
