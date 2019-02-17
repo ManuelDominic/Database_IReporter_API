@@ -22,6 +22,7 @@ def get_the_users():
     return not_found()
 
 
+
 @user_bp.route("/users/<int:user_Id>", methods=["GET"])
 @token_required
 @admin_required

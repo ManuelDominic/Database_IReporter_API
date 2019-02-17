@@ -14,14 +14,18 @@ def get_incidents_by_type(incident_type):
             tbl_name.incident_Id,
             tbl_name.title,
             users.user_Name,
+            images.imagename,
+            videos.videoname,
             tbl_name.status_,
             tbl_name.incident_Type,
             tbl_name.comment,
             tbl_name.longtitude,
             tbl_name.latitude,
-            tbl_name.created_On
+            tbl_name.created_On 
         FROM incidents tbl_name 
         LEFT JOIN users ON tbl_name.created_By=users.user_Id 
+        LEFT JOIN images ON tbl_name.incident_Id=images.incident_Id  
+        LEFT JOIN videos ON tbl_name.incident_Id=videos.incident_Id 
         WHERE tbl_name.incident_Type='{}';""".format(incident_type)
     db.cursor.execute(sql_command)
     incident=db.cursor.fetchall()
@@ -34,34 +38,64 @@ def get_incidents_by_type_id(incident_type,incident_id):
             tbl_name.incident_Id,
             tbl_name.title,
             users.user_Name,
+            images.imagename,
+            videos.videoname,
             tbl_name.status_,
             tbl_name.incident_Type,
             tbl_name.comment,
             tbl_name.longtitude,
             tbl_name.latitude,
-            tbl_name.created_On
+            tbl_name.created_On 
         FROM incidents tbl_name 
         LEFT JOIN users ON tbl_name.created_By=users.user_Id 
-        WHERE tbl_name.incident_Type='{}' AND tbl_name.incident_id='{}';""".format(incident_type,incident_id)
+        LEFT JOIN images ON tbl_name.incident_Id=images.incident_Id  
+        LEFT JOIN videos ON tbl_name.incident_Id=videos.incident_Id 
+        WHERE tbl_name.incident_Type='{}' AND tbl_name.incident_Id='{}';""".format(incident_type,incident_id)
     db.cursor.execute(sql_command)
     incident=db.cursor.fetchone()
     return incident
 
+
 def get_incidents_by_type_given_user(incident_type):
-    sql_command="""SELECT incident_id,title,created_by,incident_Type,
-            comment,status_,created_On,latitude,
-            longtitude FROM incidents WHERE incident_Type='{}' AND
-             created_by='{}';""".format(incident_type,get_current_user()["userId"])
+    sql_command="""SELECT 
+            tbl_name.incident_Id,
+            tbl_name.title,
+            users.user_Name,
+            images.imagename,
+            videos.videoname,
+            tbl_name.status_,
+            tbl_name.incident_Type,
+            tbl_name.comment,
+            tbl_name.longtitude,
+            tbl_name.latitude,
+            tbl_name.created_On 
+        FROM incidents tbl_name 
+        LEFT JOIN users ON tbl_name.created_By=users.user_Id 
+        LEFT JOIN images ON tbl_name.incident_Id=images.incident_Id  
+        LEFT JOIN videos ON tbl_name.incident_Id=videos.incident_Id 
+        WHERE tbl_name.incident_Type='{}' AND tbl_name.created_by='{}';""".format(incident_type,get_current_user()["userId"])
     db.cursor.execute(sql_command)
     incident=db.cursor.fetchall()
     return incident
 
 def get_incidents_by_type_id_and_user(incident_type,incident_id):
-    sql_command="""SELECT incident_id,title,created_by,incident_Type,
-            comment,status_,created_On,latitude,
-            longtitude FROM incidents WHERE incident_Type='{}'
-             AND incident_id='{}' AND created_by='{}';""".format(incident_type,
-                incident_id,get_current_user()["userId"])
+    sql_command="""SELECT 
+            tbl_name.incident_Id,
+            tbl_name.title,
+            users.user_Name,
+            images.imagename,
+            videos.videoname,
+            tbl_name.status_,
+            tbl_name.incident_Type,
+            tbl_name.comment,
+            tbl_name.longtitude,
+            tbl_name.latitude,
+            tbl_name.created_On 
+        FROM incidents tbl_name 
+        LEFT JOIN users ON tbl_name.created_By=users.user_Id 
+        LEFT JOIN images ON tbl_name.incident_Id=images.incident_Id  
+        LEFT JOIN videos ON tbl_name.incident_Id=videos.incident_Id 
+        WHERE tbl_name.incident_Type='{}' AND tbl_name.incident_Id='{}' AND tbl_name.created_by='{}';""".format(incident_type,incident_id,get_current_user()["userId"])
     try:
         db.cursor.execute(sql_command)
     except psycopg2.ProgrammingError:

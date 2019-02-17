@@ -41,6 +41,17 @@ def get_all_redflags_by_user():
     return not_found()
 
 
+@redflag_bp.route('/user/record/number', methods=['GET'])
+@token_required
+@non_admin_required
+def get_redflags_number_by_user():
+    redflag=get_incidents_by_type_given_user('redflag')
+    intervention=get_incidents_by_type_given_user('intervention')
+    if redflag or intervention:
+        return jsonify({"redflag":len(redflag),"intervention":len(intervention)}), 200
+    return not_found()
+
+
 @redflag_bp.route('/user/red-flags/<int:redflag_Id>', methods=['GET'])
 @token_required
 @non_admin_required
@@ -72,8 +83,7 @@ def update_redflag_record(redflag_Id):
     if not_incident_status:
         return not_incident_status
     elif incident:
-        return jsonify({"status":200,"data":incident,
-            "message": "Redflag record successfully Updated"}), 200
+        return jsonify({"status":200,"message": "Redflag record successfully Updated"}), 200
     return bad_request()
 
 

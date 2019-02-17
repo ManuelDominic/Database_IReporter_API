@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request,make_response
 from api.helpers.auth import token_required, admin_required, non_admin_required,get_current_user
 from api.controllers.incident_controller import status_email,get_incidents_by_status_and_user,get_incidents_by_type_id_and_user,get_incidents_by_type_given_user,get_incidents_by_type,get_incidents_by_type_id,create_incident,update_incident_by_user,update_incident_status,delete_incident
+from api.controllers.user_controller import get_all_users
 from api.helpers.validators import verify_create_incident_data,verify_update_data
 from api.helpers.fileupload import upload_image,upload_video
 from api.models.database_model import DatabaseConnection
@@ -28,6 +29,19 @@ def get_intervention_by_admin():
     return not_found()
 
 
+
+@intervention_bp.route('/admin/record/number', methods=['GET'])
+@token_required
+@admin_required
+def get_intervention_number_by_admin():
+    intervention=get_incidents_by_type('intervention')
+    redflag=get_incidents_by_type('redflag')
+    user=get_all_users()
+    if intervention or redflag or user:
+        return jsonify({"user":len(user[0:]), "redflag":len(redflag), "intervention":len(intervention)}), 200
+    return not_found()
+
+
 @intervention_bp.route('/admin/intervention/<int:intervention_Id>', methods=['GET'])
 @token_required
 @admin_required
@@ -46,6 +60,7 @@ def get_intervention_by_user():
     if intervention:
         return jsonify({"status": 200, "data":intervention}), 200
     return not_found()
+
 
 
 @intervention_bp.route('/user/intervention/<int:intervention_Id>', methods=['GET'])
@@ -80,8 +95,7 @@ def update_intervention_record(intervention_Id):
     if can_not_edit:
         return can_not_edit
     elif incident:
-        return jsonify({"status":200,"data":incident,
-            "message": "Intervention record successfully Updated"}), 200
+        return jsonify({"status":200,"message": "Intervention record successfully Updated"}), 200
     return bad_request()  
 
 
