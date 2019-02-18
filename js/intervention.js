@@ -11,8 +11,8 @@ function updateIncident(id){
     latitude:latitude,
     longtitude:longtitude
   }
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/record', {
-  // fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id +'/record', {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/record', {
+  fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id +'/record', {
       method: 'PATCH',
       mode: "cors",
       headers:{
@@ -52,8 +52,8 @@ function editIncident(id){
   let myForm = document.getElementById('myForm');
   let messageError = document.getElementById("messageError");
   let sucessIntervention = document.getElementById("sucessIntervention");
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
-  // fetch('http://127.0.0.1:5000/api/v3/user/intervention/' + id, {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
+  fetch('http://127.0.0.1:5000/api/v3/user/intervention/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -90,7 +90,7 @@ function editIncident(id){
                 <input type="location" class="output" id="long" style="float:left;" value="${records.longtitude}">
                 <h4>click on the map to find location</h4>
                 <pre id='info'></pre>
-                <div id='map'></div>
+                <div class="output" id='map'></div>
                 <label class="label"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
                  <textarea type="text" id="comment" class="output">${records.comment}</textarea>
                 <p id="commentError" style="color: red"></p>
@@ -116,8 +116,8 @@ function uploadImage(id){
   let fileField = document.getElementById('image');
   formData.append('file', fileField.files[0]);
   
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/addImage', {
-  // fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id +'/addImage', {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/addImage', {
+  fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id +'/addImage', {
       method: 'PATCH',
       mode: "nor-cors",
       headers:{
@@ -156,8 +156,8 @@ function viewImage(id){
   let sucessIntervention = document.getElementById("sucessIntervention");
   let myForm = document.getElementById('myForm');
 
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
-  // fetch('http://127.0.0.1:5000/api/v3/user/intervention/'+ id, {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
+  fetch('http://127.0.0.1:5000/api/v3/user/intervention/'+ id, {
       method: 'GET',
       mode: "cors",
       headers:{
@@ -214,8 +214,8 @@ function deleteIncident(id){
   let sucessIntervention = document.getElementById('sucessIntervention');
   let messageError = document.getElementById('messageError');
 
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id, {
-  // fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id, {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id, {
+  fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id, {
       method: 'DELETE',
       mode: "cors",
       headers:{
