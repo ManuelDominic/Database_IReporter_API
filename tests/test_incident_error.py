@@ -8,6 +8,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/..")
 from .test_base import TestBase, invalid_key_msg, error, example_create_data, \
     new_status, new_bad_intervention, new_error_intervention, \
     new_error_redflag, token_header, new_bad_redflag, new_record
+from api.models.database_model import DatabaseConnection
 from api.helpers.auth import encode_token
 
 
@@ -37,14 +38,14 @@ class TestIncidenterrors(TestBase):
         self.assertEqual(json.loads(data), error)
 
 
-    def test_update_intervention_record_with_error_id(self):
+    def test_intervention_update_record_with_error_id(self):
         response = self.app.patch('/api/v3/intervention/25/record', headers=token_header(encode_token(2)),
                                   data=json.dumps(new_record))
         self.assertEqual(response.status_code, 404)
         data = response.data.decode()
         self.assertEqual(json.loads(data), error)
 
-    def test_update_redflag_record_with_error_id(self):
+    def test_redflag_update_record_with_error_id(self):
         response = self.app.patch('/api/v3/red-flags/12/record', headers=token_header(encode_token(2)),
                                   data=json.dumps(new_record))
         self.assertEqual(response.status_code, 404)
@@ -103,21 +104,21 @@ class TestIncidenterrors(TestBase):
         message = {"messsage": "Login as a user to can access this route"}
         self.assertEqual(json.loads(data), message)
 
-    def test_update_intervention_status_with_error_id(self):
+    def test_intervention_update_status_with_error_id(self):
         response = self.app.patch('/api/v3/intervention/12/status', headers=token_header(encode_token(1)),
                                   data=json.dumps(new_status))
         self.assertEqual(response.status_code, 404)
         data = response.data.decode()
         self.assertEqual(json.loads(data), error)
 
-    def test_update_redflag_status_with_error_id(self):
+    def test_redflag_update_status_with_error_id(self):
         response = self.app.patch('/api/v3/red-flags/10/status', headers=token_header(encode_token(1)),
                                   data=json.dumps(new_status))
         self.assertEqual(response.status_code, 404)
         data = response.data.decode()
         self.assertEqual(json.loads(data), error)
 
-    def test_update_not_possible_record(self):
+    def test_record_update_not_possible(self):
         response = self.app.patch('/api/v3/red-flags/4/record', headers=token_header(encode_token(2)),
                                   data=json.dumps(new_record))
         self.assertEqual(response.status_code, 406)
@@ -126,8 +127,7 @@ class TestIncidenterrors(TestBase):
         self.assertEqual(json.loads(data), message)
 
 
-    def test_z_drop_tables(self):
-        self.app = app.test_client()
+    def test_teardown(self):
         self.db = DatabaseConnection()
         self.db.cursor.execute(open('drop.sql', 'r').read())
 
