@@ -28,9 +28,9 @@ function viewUser(id) {
                   <div class="modal-content">
                     <form class="modal-form" action="#">
                       <img src="../../img/gent.jpeg" alt="John" style="width:35%">
-                      <h1>${user.user_name}</h1>
-                      <p class="title">Software Developer/Computer Engineer</p>
-                      <p>Andela  Uganda</p>
+                      <h1>${user.first_name} ${user.last_name}</h1>
+                      <p class="title">${user.user_name}</p>
+                      <p>${user.email}</p>
                       <div style="margin: 24px 0;">
                         <a href="#"><i class="far fa-dribbble"></i></a> 
                         <a href="#"><i class="far fa-twitter"></i></a>  
