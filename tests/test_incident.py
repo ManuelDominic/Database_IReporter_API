@@ -89,7 +89,7 @@ class TestIncindent(TestBase):
 
 
 
-    def test_update_intervention_record(self):
+    def test_intervention_update_record(self):
         response = self.app.patch('/api/v3/intervention/7/record', headers=token_header(encode_token(2)),
                                   data=json.dumps(new_record))
         self.assertEqual(response.status_code, 200)
@@ -97,7 +97,7 @@ class TestIncindent(TestBase):
         message = {"status": 200,"message": "Intervention record successfully Updated"}
         self.assertEqual(json.loads(data), message)
 
-    def test_update_redflag_record(self):
+    def test_redflag_update_record(self):
         response = self.app.patch('/api/v3/red-flags/2/record', headers=token_header(encode_token(2)),
                                   data=json.dumps(new_record))
         self.assertEqual(response.status_code, 200)
