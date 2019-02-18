@@ -4,8 +4,8 @@ function viewIncident(id){
   let sucessIntervention = document.getElementById("sucessIntervention");
   let myForm = document.getElementById('myForm');
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
-  fetch('http://127.0.0.1:5000/api/v3/user/intervention/' + id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
+  // fetch('http://127.0.0.1:5000/api/v3/user/intervention/' + id, {
       method: 'GET',
       mode: 'cors',
       headers:{
@@ -59,8 +59,8 @@ function uploadVideo(id){
   let fileField = document.querySelector("input[type='file']");
   formData.append('file', fileField.files[0]);
   
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/addVideo', {
-  fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id +'/addVideo', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/addVideo', {
+  // fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id +'/addVideo', {
     method: 'PATCH',
     mode: "cors",
     headers:{
@@ -100,8 +100,8 @@ function viewVideo(id){
   let messageError = document.getElementById("messageError");
   let sucessIntervention = document.getElementById("sucessIntervention");
   let myForm = document.getElementById('myForm');
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
-  fetch('http://127.0.0.1:5000/api/v3/user/intervention/'+ id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
+  // fetch('http://127.0.0.1:5000/api/v3/user/intervention/'+ id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -156,8 +156,8 @@ window.onload = function loadPage() {
   let sucessIntervention = document.getElementById("sucessIntervention");
   let loading = document.getElementById('table');
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention', {
-  fetch('http://127.0.0.1:5000/api/v3/user/intervention', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention', {
+  // fetch('http://127.0.0.1:5000/api/v3/user/intervention', {
       method: 'GET',
       mode: 'cors',
       headers:{

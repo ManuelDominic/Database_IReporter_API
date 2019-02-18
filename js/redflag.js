@@ -11,8 +11,8 @@ function updateIncident(id){
     longtitude:longtitude,
   }
     
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/red-flags/' + id +'/record', {
-  fetch('http://127.0.0.1:5000/api/v3/red-flags/' + id +'/record', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/red-flags/' + id +'/record', {
+  // fetch('http://127.0.0.1:5000/api/v3/red-flags/' + id +'/record', {
       method: 'PATCH',
       mode: "cors",
       headers:{
@@ -56,8 +56,8 @@ function uploadVideo(id){
   let fileField = document.querySelector("input[type='file']");
   formData.append('file', fileField.files[0]);
   
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/red-flags/'+ id +'/addVideo', {
-  fetch('http://127.0.0.1:5000/api/v3/red-flags/'+ id +'/addVideo', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/red-flags/'+ id +'/addVideo', {
+  // fetch('http://127.0.0.1:5000/api/v3/red-flags/'+ id +'/addVideo', {
       method: 'PATCH',
       mode: "cors",
       headers:{
@@ -89,8 +89,8 @@ function viewVideo(id){
   let messageError = document.getElementById("messageError");
   let sucessRedflag = document.getElementById("sucessRedflag");
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/red-flags/' + id, {
-  fetch('http://127.0.0.1:5000/api/v3/user/red-flags/' + id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/red-flags/' + id, {
+  // fetch('http://127.0.0.1:5000/api/v3/user/red-flags/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -148,8 +148,8 @@ function uploadImage(id){
   let fileField = document.querySelector("input[type='file']");
   formData.append('file', fileField.files[0]);
   
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/addImage', {
-  fetch('http://127.0.0.1:5000/api/v3/red-flags/'+ id +'/addImage', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/addImage', {
+  // fetch('http://127.0.0.1:5000/api/v3/red-flags/'+ id +'/addImage', {
       method: 'PATCH',
       mode: "cors",
       headers:{
@@ -180,8 +180,8 @@ function viewImage(id){
   let messageError = document.getElementById("messageError");
   let sucessRedflag = document.getElementById("sucessRedflag");
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/red-flags/' + id, {
-  fetch('http://127.0.0.1:5000/api/v3/user/red-flags/' + id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/red-flags/' + id, {
+  // fetch('http://127.0.0.1:5000/api/v3/user/red-flags/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
