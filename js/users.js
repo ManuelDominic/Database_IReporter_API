@@ -110,7 +110,7 @@ window.onload = function loadPage() {
           </tbody>
           </table>`
 
-          document.getElementById('table').innerHTML = output;
+          loading.innerHTML = output;
      });
     }
   })

@@ -28,7 +28,7 @@ function updateStatus(id){
         response.json().then((data) => {
           messageError.innerHTML = data.message
           window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
+            messageError.style.display = "none";
           }, 1000);
         })
       }
@@ -36,7 +36,7 @@ function updateStatus(id){
         response.json().then((data) => {
           sucessIntervention.innerHTML = data.message;
           window.setTimeout(function () {
-            document.getElementById("sucessIntervention").style.display = "none";
+            sucessIntervention.style.display = "none";
           }, 800);
       });
     }

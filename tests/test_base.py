@@ -106,17 +106,6 @@ new_redflag_response["data"][1] = {"message": "Redflag Successfully created"}
 get_all_redflags = {
     "data": [
         {
-            "comment": "Arnold stole hassan phone and laptop from his car",
-            "created_by": 2,
-            "created_on": "Thu, 10 Jan 2019 04:01:14 GMT",
-            "incident_id": 1,
-            "incident_type": "redflag",
-            "latitude": 5.38974,
-            "longtitude": 0.33737,
-            "status_": "draft",
-            "title": "Theift"
-        },
-        {
             "comment": "Every night at malamba boarders, people smuggle kenya rice into the country",
             "created_by": 2,
             "created_on": "Thu, 10 Jan 2019 04:01:14 GMT",
@@ -126,6 +115,17 @@ get_all_redflags = {
             "longtitude": 0.33737,
             "status_": "draft",
             "title": "Smuggling"
+        },
+        {
+            "comment": "Arnold stole hassan phone and laptop from his car",
+            "created_by": 2,
+            "created_on": "Thu, 10 Jan 2019 04:01:14 GMT",
+            "incident_id": 1,
+            "incident_type": "redflag",
+            "latitude": 5.38974,
+            "longtitude": 0.33737,
+            "status_": "draft",
+            "title": "Theift"
         },
         {
             "comment": "Timothy raped Jane last night at 11pm after breaking into her apartment",
