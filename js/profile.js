@@ -25,7 +25,7 @@ function viewProfile() {
         response.json().then((data) => {
           messageError.innerHTML = data.message
           window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
+            messageError.style.display = "none";
           }, 3000);
         })
       }
