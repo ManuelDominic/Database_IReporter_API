@@ -21,20 +21,34 @@ def allowed_video(filename):
 
 def upload_image(incident_Id):
     file = request.files['file']
+    form = allowed_image(file.filename)
+    if not file:
+        return jsonify({"status":406,"message":"No selected file"}), 406
+    if not form:
+        return jsonify({"status":406,"message":"Image format not allowed"}), 406
     if file and allowed_image(file.filename):
         sql_command = """INSERT INTO images (imagename,incident_Id) VALUES ('{}','{}');""".format(file.filename,incident_Id)
         db.cursor.execute(sql_command)
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return filename
+        return redirect(url_for('uploaded_file',filename=filename))
 
 
 def upload_video(incident_Id):
     file = request.files['file']
+    form = allowed_video(file.filename)
+    if not file:
+        return jsonify({"status":406,"message":"No selected file"}), 406
+    if not form:
+        return jsonify({"status":406,"message":"Video format not allowed"}), 406
     if file and allowed_video(file.filename):
         sql_command = """INSERT INTO videos (videoname,incident_Id) VALUES ('{}','{}');""".format(file.filename,incident_Id)
         db.cursor.execute(sql_command)
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        # return redirect(url_for('uploaded_file',filename=filename))
         return filename
 
+
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'],filename)
