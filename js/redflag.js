@@ -32,7 +32,7 @@ function updateIncident(id){
         response.json().then((data) => {
           messageError.innerHTML = data.message
           window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
+            messageError.style.display = "none";
           }, 1000);
         })
       }
@@ -40,7 +40,7 @@ function updateIncident(id){
         response.json().then((data) => {
           sucessRedflag.innerHTML = data.message
           window.setTimeout(function () {
-            document.getElementById("sucessRedflag").style.display = "none";
+            sucessRedflag.style.display = "none";
           }, 1000);
     });
     }
@@ -167,7 +167,7 @@ function uploadImage(id){
         response.json().then((data) => {
           sucessIntervention.innerHTML = data.message
           window.setTimeout(function () {
-            document.getElementById("sucessIntervention").style.display = "none";
+            sucessIntervention.style.display = "none";
           }, 800);
      });
     }
