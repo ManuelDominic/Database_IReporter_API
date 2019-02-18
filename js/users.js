@@ -4,8 +4,8 @@ function viewUser(id) {
   let sucessUser = document.getElementById('sucessUser');
   let messageError = document.getElementById("messageError");
 
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/users/' + id, {
-  // fetch('http://127.0.0.1:5000/api/v3/users/' + id, {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/users/' + id, {
+  fetch('http://127.0.0.1:5000/api/v3/users/' + id, {
     method: 'GET',
     mode: "cors",
     headers:{
@@ -53,8 +53,8 @@ window.onload = function loadPage() {
   let loading = document.getElementById('table');
   let messageError = document.getElementById("messageError");
 
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/users', {
-  // fetch('http://127.0.0.1:5000/api/v3/users', {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/users', {
+  fetch('http://127.0.0.1:5000/api/v3/users', {
       method: 'GET',
       mode: "cors",
       headers:{
@@ -77,7 +77,12 @@ window.onload = function loadPage() {
       if (response.status === 200) {
         response.json().then((data) => {
           let output = `
-	          <table>
+            <div class="search-container">
+              <form action="#" onsubmit="return false">
+                <input type="text" id="myInput" onkeyup="mySearch()" placeholder="Search by username.." name="search">
+              </form>
+            </div>
+            <table id="myTable">
 	          <thead>
 	          <tr>
 	          <th>userId</th>
