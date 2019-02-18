@@ -1,4 +1,5 @@
 function viewUser(id) {
+  
   let myForm = document.getElementById("myForm");
   let sucessUser = document.getElementById('sucessUser');
   let messageError = document.getElementById("messageError");
@@ -6,7 +7,7 @@ function viewUser(id) {
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/users/' + id, {
   // fetch('http://127.0.0.1:5000/api/v3/users/' + id, {
     method: 'GET',
-      mode: "cors",
+    mode: "cors",
     headers:{
       'content-type':'application/json',
       'token': sessionStorage.getItem("token")
@@ -19,22 +20,14 @@ function viewUser(id) {
           }, 800);
         })
       }
-      if (response.status === 404) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 3000);
-        })
-      }
       if (response.status === 200) {
         response.json().then((data) => {
           user = data.data[0]
             let output = `
                   <span onclick="document.getElementById('myForm').style.display='none'" class="close" title="Close Modal">&times;</span>
                   <div class="modal-content">
-                    <form action="#" class="form-container">
-                      <img src="../../img/gent.jpeg" alt="John" style="width:100%">
+                    <form class="modal-form" action="#">
+                      <img src="../../img/gent.jpeg" alt="John" style="width:35%">
                       <h1>${user.user_name}</h1>
                       <p class="title">Software Developer/Computer Engineer</p>
                       <p>Andela  Uganda</p>
@@ -63,7 +56,7 @@ window.onload = function loadPage() {
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/users', {
   // fetch('http://127.0.0.1:5000/api/v3/users', {
       method: 'GET',
-        mode: "cors",
+      mode: "cors",
       headers:{
         'content-type':'application/json',
         'token': sessionStorage.getItem("token")
@@ -78,10 +71,7 @@ window.onload = function loadPage() {
       }
       if (response.status === 404) {
         response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 3000);
+          sucessUser.innerHTML = data.message;
         })
       }
       if (response.status === 200) {

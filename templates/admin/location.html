@@ -4,10 +4,12 @@
 	<title>Admin</title>
 	<link rel="stylesheet" type="text/css" href="../../css/style.css">
 	<link rel="stylesheet" type="text/css" href="../../css/grid.css">
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
-	<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
     <link rel="icon" href="favicon.jpg" sizes="16x16 32x32" type="image/png">
 	<script src="../../js/script.js"></script>
+	<script src="../../js/session.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -27,16 +29,18 @@
 			<h2>MAP-LOCATOR</h2>
 		</div>
 		<div class="main">
-			<h4>click on the map to find location</h4>
-            <input id="lat" type="text" placeholder="Latitude">
-            <input id="long" type="text" placeholder=Longitude>
-			<div id="myMap"></div>
+			<h4>Paste the co-ordinates below to find location</h4>
+		  	<p id="locationError" style="color: red"></p>
+			<label for="adr"><i class="fa fa-address-card-o"></i>Location</label>
+		  	<input type="text" id="lnglat" required>
+			<button onclick="find()" class="logout">Find</button>
+		  	<pre id='info'></pre>
+		  	<div id='map'></div>
 		</div>
 		<div class="footer">
 			 <p>copyright @ManuelDominic <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
 		</div>
 	</div>
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
 </body>
-<script src="../../js/map.js"></script>
+<script src="../../js/find.js"></script>
 </html>

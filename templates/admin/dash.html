@@ -18,8 +18,8 @@
 		<div class="nav-bar">
 			<nav>
 				<ul>
-					<li><a href="dash.html">Home</a></li>
-					<li><a href="location.html">View-Map</a></li>
+					<li><a href="dash.html">DashBoard</a></li>
+					<li><a href="location.html">Location</a></li>
 					<button class="logout" onclick="logOut()" style="float: right;">LogOut</button>
 				</ul>
 			</nav>
@@ -27,13 +27,13 @@
 		<div class="sidebar">
 			<h2>AD<span style="color:rgb(124,252,0)">MIN</span> Dashboard</h2>
 		</div>
-		<div class="main">
+		<div class="main" style="text-align: center;">
 			<table>
 				<td>
 					<div class="card">
 					  <img src="../../img/users.png" alt="Avatar" style="width:100%">
 					  <div class="card-container">
-					    <button class="dash" onclick="users()"><i class="fa fa-users" style="color: blue"></i><b style="color: white"> Users: 0</b></button>
+					    <button class="dash" onclick="users()"><i class="fa fa-users" style="color: blue"></i><b style="color: white"> Users: <b id="users-admin">0</b></b></button>
 					  </div>
 					</div>
 				</td>
@@ -41,7 +41,7 @@
 					<div class="card">
 					  <img src="../../img/interven.png" alt="Avatar" style="width:100%">
 					  <div class="card-container">
-					  	<button class="dash" onclick="intervention()"><i class="fas fa-people-carry" style="color: green"></i><b style="color: white"> Intervention Records: 0</b></button>
+					  	<button class="dash" onclick="intervention()"><i class="fas fa-people-carry" style="color: green"></i><b style="color: white"> Intervention Records: <b id="intervention-admin">0</b></b></button>
 					  </div>
 					</div>
 				</td>
@@ -49,7 +49,7 @@
 					<div class="card">
 					  <img src="../../img/redflags.jpeg" alt="Avatar" style="width:100%; height: 150%;">
 					  <div class="card-container">
-					    <button class="dash" onclick="redflag()"><i class="fa fa-gavel" style="color: red"></i><b style="color: white"> Redflag Records: 0</b></button>
+					    <button class="dash" onclick="redflag()"><i class="fa fa-gavel" style="color: red"></i><b style="color: white"> Redflag Records: <b id="redflag-admin">0</b></b></button>
 					  </div>
 					</div>
 				</td>
@@ -60,4 +60,7 @@
 		</div>
 	</div>
 </body>
+<!-- <script src="../../js/recordsAdminnumber.js"></script> -->
+<script src="../../js/record-admin.js"></script>
+<!-- <script src="../../js/redflag-admin.js"></script> -->
 </html>

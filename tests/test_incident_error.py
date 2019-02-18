@@ -8,6 +8,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/..")
 from .test_base import TestBase, invalid_key_msg, error, example_create_data, \
     new_status, new_bad_intervention, new_error_intervention, \
     new_error_redflag, token_header, new_bad_redflag, new_record
+from api.models.database_model import DatabaseConnection
 from api.helpers.auth import encode_token
 
 
@@ -126,5 +127,9 @@ class TestIncidenterrors(TestBase):
         self.assertEqual(json.loads(data), message)
 
 
-# if __name__ == '__main__':
-#     unittest.main()
+    def test_z_drop_tables(self):
+        self.db = DatabaseConnection()
+        self.db.cursor.execute(open('drop.sql', 'r').read())
+
+if __name__ == '__main__':
+    unittest.main()

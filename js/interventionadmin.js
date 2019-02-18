@@ -24,14 +24,6 @@ function updateStatus(id){
           }, 800);
         })
       }
-      if (response.status === 404) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 3000);
-        })
-      }
       if (response.status === 406) {
         response.json().then((data) => {
           messageError.innerHTML = data.message
@@ -74,14 +66,6 @@ function editIncident(id){
           }, 800);
         })
       }
-      if (response.status === 404) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 3000);
-        })
-      }
       if (response.status === 200) {
         response.json().then((data) => {
           records = data.data
@@ -90,30 +74,26 @@ function editIncident(id){
             <div class="modal-content">
               <form action="#" class="form-container">
                 <h1>Upadte Record</h1>
-                <h2><span style="color:darkgreen">form-number</span> ${id}</h2> 
+                <h2><span style="color:darkgreen">Record-Number</span> ${id}</h2> 
                 <p id="sucessIntervention" style="color: green"></p>
                 <p id="messageError" style="color: red"></p>
-                <select id="status">
+                <select class="output" id="status">
                   <option>Update-Status</option>
                   <option>Rejected</option>
                   <option>Resolved</option>
                   <option>Under Investigation</option>
                 </select>
-                <label class="output"><i class="fa fa-institution"></i> CreatedBy</label>
-                <output>${records.user_name}</output>
+                <label class="label"><i class="fa fa-institution"></i> CreatedBy</label>
+                <output class="output">${records.user_name}</output>
                 <br>
-                <label class="output"><i class="fa fa-institution"></i> Title</label>
+                <label class="label"><i class="fa fa-institution"></i> Title</label>
+                <output class="output">${records.title}</output>
                 <br>
-                <output>${records.title}</output>
+                <label class="label"><i class="fa fa-address-card-o"></i> Location</label>
+                <output class="output">${records.latitude}, ${records.longtitude}</output>
                 <br>
-                <label class="output"><i class="fa fa-address-card-o"></i> Location</label>
-                <br>
-                <output>${records.longtitude}</output>
-                <output>${records.latitude}</output>
-                <br>
-                <label class="output"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
-                <br>
-                <output>${records.comment}</output>
+                <label class="label"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
+                <output class="output">${records.comment}</output>
                 <br>
                 <button type="submit" class="btn" onclick="updateStatus(${id})">Update</button>
               </form>
@@ -147,35 +127,29 @@ function viewIncident(id){
           }, 800);
         })
       }
-      if (response.status === 404) {
-        response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 3000);
-        })
-      }
       if (response.status === 200) {
         response.json().then((data) => {
-          records = data.data
+          record = data.data
           let output =  `
             <span onclick="document.getElementById('myForm').style.display='none'" class="close" title="Close Modal">&times;</span>
             <div class="modal-content">
               <form action="#" class="form-container">
-              <h2><span style="color:darkgreen">form-number</span> ${id}</h2>
-              <h4>${records.status_}</h4>
-              <label class="output"><i class="fa fa-institution"></i> Title</label>
-              <output>${records.title}</output>
-              <br>
-              <label class="output"><i class="fa fa-address-card-o"></i> Location</label>
-              <output>${records.longtitude},</output>
-              <output>${ records.latitude}</output>
-              <br>
-              <label class="output"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
-              <br>
-              <output>${records.comment}</output>
-            </form>
-          </div>
+                <h2><span style="color:darkgreen">Record-Number</span> ${id}</h2>
+                <h4>${record.status_}</h4>
+                <label class="label"><i class="fa fa-institution"></i> Title</label>
+                <output class="output">${record.title}</output>
+                <br>
+                <label class="label"><i class="fa fa-address-card-o"></i> Location</label>
+                <output class="output">${record.latitude}, ${record.longtitude}</output>
+                <br>
+                <label class="label"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
+                <output class="output">${record.comment}</output>
+                <br>
+                <img class="output" src="../../uploads/${record.imagename}" style="width:20%">
+                <video class="output" src="../../uploads/${record.videoname}" style="width:50%" controls></video>
+                <br>
+              </form>
+            </div>
         `
         myForm.innerHTML = output;
       });
@@ -185,6 +159,7 @@ function viewIncident(id){
 
 
 window.onload = function loadPage() {
+
   let loading = document.getElementById('table');
   let messageError = document.getElementById("messageError");
   let sucessIntervention = document.getElementById("sucessIntervention");
@@ -207,10 +182,7 @@ window.onload = function loadPage() {
       }
       if (response.status === 404) {
         response.json().then((data) => {
-          messageError.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
-          }, 3000);
+          sucessIntervention.innerHTML = data.message;
         })
       }
       if (response.status === 200) {

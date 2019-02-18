@@ -49,12 +49,23 @@ CREATE TABLE IF NOT EXISTS "incidents" (
 TRUNCATE TABLE incidents CASCADE;
 
 
-CREATE TABLE IF NOT EXISTS "files" (
+CREATE TABLE IF NOT EXISTS "images" (
    Id BIGSERIAL  PRIMARY KEY  NOT NULL,
    incident_Id BIGSERIAL  NOT NULL,
-   filename VARCHAR (255)   NOT NULL,
+   imagename VARCHAR (255)   NOT NULL,
    FOREIGN KEY (incident_Id) REFERENCES incidents (incident_Id) ON DELETE CASCADE,
    FOREIGN KEY (incident_Id) REFERENCES incidents (incident_Id) ON UPDATE CASCADE
 );
 
-TRUNCATE TABLE files CASCADE;
+TRUNCATE TABLE images CASCADE;
+
+
+CREATE TABLE IF NOT EXISTS "videos" (
+   Id BIGSERIAL  PRIMARY KEY  NOT NULL,
+   incident_Id BIGSERIAL  NOT NULL,
+   videoname VARCHAR (255)   NOT NULL,
+   FOREIGN KEY (incident_Id) REFERENCES incidents (incident_Id) ON DELETE CASCADE,
+   FOREIGN KEY (incident_Id) REFERENCES incidents (incident_Id) ON UPDATE CASCADE
+);
+
+TRUNCATE TABLE videos CASCADE;
