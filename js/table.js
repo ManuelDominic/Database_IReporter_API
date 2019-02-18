@@ -8,6 +8,7 @@ function profile() {
 	  }
 	}
 }
+
 function openView() {
   document.getElementById("myForm").style.display = "block";
 
@@ -18,6 +19,7 @@ function openView() {
 	  }
 	}
 }
+
 function openEdit() {
   document.getElementById("myForm").style.display = "block";
 
@@ -28,6 +30,7 @@ function openEdit() {
 	  }
 	}
 }
+
 function openImage() {
   document.getElementById("myForm").style.display = "block";
 
@@ -38,6 +41,7 @@ function openImage() {
 	  }
 	}
 }
+
 function openVideo() {
   document.getElementById("myForm").style.display = "block";
 

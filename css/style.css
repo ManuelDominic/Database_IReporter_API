@@ -70,6 +70,23 @@ input[type=text], input[type=password],input[type=email],input[type=date],input[
   box-sizing: border-box;
 }
 
+
+.search-container {
+  float: right;
+}
+
+input[id=myInput] {
+  background-image: url('../img/searchicon.png');
+  background-position: right 12px top 10px;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+
+
 input[type=location] {
   width: 35%;
   padding: 10px;

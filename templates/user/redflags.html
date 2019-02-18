@@ -5,9 +5,8 @@
 	<link rel="stylesheet" type="text/css" href="../../css/style.css">
 	<link rel="stylesheet" type="text/css" href="../../css/form-grid.css">
 	<link rel="stylesheet" type="text/css" href="../../css/grid.css">
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="icon" href="../../img/favicon.jpg" sizes="16x16 32x32" type="image/png">
 	<script src="../../js/script.js"></script>
@@ -30,7 +29,7 @@
 		<div class="sidebar">
 			<h2>User <span style="color:rgb(124,252,0)">Redflag</span> Records</h2>
 		</div>
-		<div class="main" style="text-align: center;">
+		<div class="main">
 			<div class="modal" id="myForm">
 			</div>
 			<div id="sucessRedflag" style="color: green"></div>
@@ -43,6 +42,8 @@
 	</div>
 </body>
 <script src="../../js/table.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/map.js"></script>
 <script src="../../js/redflag.js"></script>
 <script src="../../js/redflag-form.js"></script>
 </html>
