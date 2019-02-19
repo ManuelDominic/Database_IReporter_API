@@ -1,3 +1,4 @@
+
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -84,6 +85,41 @@ input[id=myInput] {
   margin-top: 8px;
   font-size: 17px;
   border: none;
+}
+
+.row-image {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+
+.column-image {
+  flex: 25%;
+  width: 50%;
+  padding: 0 4px;
+}
+
+.column-image div {
+  margin-top: 8px;
+  vertical-align: middle;
+}
+
+
+@media screen and (max-width: 800px) {
+  .column-image {
+    flex: 50%;
+    width: 50%;
+    height: 200px;
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .column-image {
+    flex: 100%;
+    max-width: 100%;
+  }
 }
 
 
