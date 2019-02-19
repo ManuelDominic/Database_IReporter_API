@@ -7,8 +7,7 @@ function updateStatus(id){
   let newStatus = {
     status:status
   }
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/' + id +'/status', {
-  fetch('http://127.0.0.1:5000/api/v3/intervention/' + id +'/status', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/' + id +'/status', {
       method: 'PATCH',
       mode: "cors",
       headers:{
@@ -47,8 +46,7 @@ function editIncident(id){
   let sucessIntervention = document.getElementById("sucessIntervention");
   let messageError = document.getElementById('messageError');
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention/' + id, {
-  fetch('http://127.0.0.1:5000/api/v3/admin/intervention/' + id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -108,8 +106,7 @@ function viewIncident(id){
   let messageError = document.getElementById("messageError");
   let sucessIntervention = document.getElementById("sucessIntervention");
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention/' + id, {
-  fetch('http://127.0.0.1:5000/api/v3/admin/intervention/' + id, {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -165,8 +162,7 @@ window.onload = function loadPage() {
   let messageError = document.getElementById("messageError");
   let sucessIntervention = document.getElementById("sucessIntervention");
 
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention', {
-  fetch('http://127.0.0.1:5000/api/v3/admin/intervention', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention', {
       method: 'GET',
       mode: "cors",
       headers:{
