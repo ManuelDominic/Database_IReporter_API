@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS "incidents" (
 CREATE TABLE IF NOT EXISTS "images" (
    Id BIGSERIAL  PRIMARY KEY  NOT NULL,
    incident_Id BIGSERIAL  NOT NULL,
-   imagename VARCHAR (255)   NOT NULL,
+   imagename VARCHAR (255) UNIQUE NOT NULL,
    FOREIGN KEY (incident_Id) REFERENCES incidents (incident_Id) ON DELETE CASCADE,
    FOREIGN KEY (incident_Id) REFERENCES incidents (incident_Id) ON UPDATE CASCADE
 );
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS "images" (
 CREATE TABLE IF NOT EXISTS "videos" (
    Id BIGSERIAL  PRIMARY KEY  NOT NULL,
    incident_Id BIGSERIAL  NOT NULL,
-   videoname VARCHAR (255)   NOT NULL,
+   videoname VARCHAR (255) UNIQUE NOT NULL,
    FOREIGN KEY (incident_Id) REFERENCES incidents (incident_Id) ON DELETE CASCADE,
    FOREIGN KEY (incident_Id) REFERENCES incidents (incident_Id) ON UPDATE CASCADE
 );
