@@ -5,7 +5,6 @@ function viewUser(id) {
   let messageError = document.getElementById("messageError");
 
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/users/' + id, {
-  // fetch('http://127.0.0.1:5000/api/v3/users/' + id, {
     method: 'GET',
     mode: "cors",
     headers:{
@@ -28,9 +27,9 @@ function viewUser(id) {
                   <div class="modal-content">
                     <form class="modal-form" action="#">
                       <img src="../../img/gent.jpeg" alt="John" style="width:35%">
-                      <h1>${user.user_name}</h1>
-                      <p class="title">Software Developer/Computer Engineer</p>
-                      <p>Andela  Uganda</p>
+                      <h1>${user.first_name} ${user.last_name}</h1>
+                      <p class="title">${user.user_name}</p>
+                      <p>${user.email}</p>
                       <div style="margin: 24px 0;">
                         <a href="#"><i class="far fa-dribbble"></i></a> 
                         <a href="#"><i class="far fa-twitter"></i></a>  
@@ -54,7 +53,6 @@ window.onload = function loadPage() {
   let messageError = document.getElementById("messageError");
 
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/users', {
-  // fetch('http://127.0.0.1:5000/api/v3/users', {
       method: 'GET',
       mode: "cors",
       headers:{

@@ -1,12 +1,13 @@
 function viewProfile() {
   let myForm = document.getElementById("myForm");
   let user_name = document.getElementById("user_name");
+  let user_email = document.getElementById("user_email");
+  let full_name = document.getElementById("full_name");
   let phone_number = document.getElementById("phone_number");
   let sucessUser = document.getElementById('sucessUser');
   let messageError = document.getElementById("messageError");
 
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/profile', {
-  // fetch('http://127.0.0.1:5000/api/v3/profile', {
     method: 'GET',
       mode: "cors",
     headers:{
@@ -33,6 +34,8 @@ function viewProfile() {
         response.json().then((data) => {
           user = data.data[0]
           user_name.innerHTML = user.user_name
+          user_email.innerHTML = user.email
+          full_name.innerHTML = user.first_name + ' ' + user.last_name
           phone_number.innerHTML = user.phone_number
       });
     }
