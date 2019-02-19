@@ -33,7 +33,7 @@ function userLogin() {
         response.json().then((data) => {
           messageLogin.innerHTML = data.message
           window.setTimeout(function () {
-            document.getElementById("messageLogin").style.display = "none";
+            messageLogin.style.display = "none";
           }, 2000);
         })
       }      
@@ -67,7 +67,7 @@ function userLogin() {
     	response.json().then((data) => {
       	sucessLogin.innerHTML = data.message
         window.setTimeout(function () {
-          document.getElementById("sucessLogin").style.display = "none";
+          sucessLogin.style.display = "none";
         }, 1000);
         sessionStorage.setItem("token", data.token);
       if (loginemail === "ireportermanueldominic@gmail.com") {

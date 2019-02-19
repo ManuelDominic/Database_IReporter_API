@@ -25,6 +25,7 @@ function viewIncident(id){
           record = data.data
             let output = `                
                 <span onclick="document.getElementById('myForm').style.display='none'" class="close" title="Close Modal">&times;</span>
+                <script src="../../js/media.js"></script>
                 <div class="modal-content">
                   <form action="#" class="form-container">
                     <h2><span style="color:darkgreen">Record-Number</span> ${id}</h2>
@@ -38,9 +39,13 @@ function viewIncident(id){
                     <label class="label"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
                     <output class="output">${record.comment}</output>
                     <br>
-                    <img class="output" src="../../uploads/${record.imagename}" style="width:20%">
-                    <video class="output" src="../../uploads/${record.videoname}" style="width:50%" controls></video>
-                    <br>
+                    <div class="row-image"> 
+                      <div class="column-image">
+                        <img src="../../uploads/${record.imagename}" style="width:50%; height=50px;">
+                        <video src="../../uploads/${record.videoname}" style="width:50%; height=50px;">
+                      </div>
+                    </div>
+                   <br>
                   </form>
                 </div>
               `
@@ -59,8 +64,8 @@ function uploadVideo(id){
   let fileField = document.querySelector("input[type='file']");
   formData.append('file', fileField.files[0]);
   
-  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/addVideo', {
-  fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id +'/addVideo', {
+  // fetch('https://ireporter-api-v3.herokuapp.com/api/v3/incident/'+ id +'/addVideo', {
+  fetch('http://127.0.0.1:5000/api/v3/incident/'+ id +'/addVideo', {
     method: 'PATCH',
     mode: "cors",
     headers:{
@@ -85,10 +90,7 @@ function uploadVideo(id){
     }
     if (response.status === 200) {
       response.json().then((data) => {
-        sucessIntervention.innerHTML = data.message
-        window.setTimeout(function () {
-          document.getElementById("sucessIntervention").style.display = "none";
-        }, 800);
+        alert(data.message)
      });
     }
   })

@@ -1,4 +1,4 @@
-// 
+ 
 window.onload = function loadPage() {
   
   let sucessIntervention = document.getElementById("intervention-user");

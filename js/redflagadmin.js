@@ -29,16 +29,13 @@ function updateStatus(id){
         response.json().then((data) => {
           messageError.innerHTML = data.message
           window.setTimeout(function () {
-            document.getElementById("messageError").style.display = "none";
+            messageError.style.display = "none";
           }, 1000);
         })
       }
       if (response.status === 200) {
         response.json().then((data) => {
-         sucessRedflag.innerHTML = data.message;
-         window.setTimeout(function () {
-            document.getElementById("sucessRedflag").style.display = "none";
-          }, 1000);
+         alert(data.message)
       });
     }
   })
@@ -131,6 +128,7 @@ function viewIncident(id){
         redflags = data.data
           let output = `
           <span onclick="document.getElementById('myForm').style.display='none'" class="close" title="Close Modal">&times;</span>
+          <script src="../../js/media.js"></script>
           <div class="modal-content">
             <form action="#" class="form-container">
               <h2><span style="color:darkgreen">Record-Number</span> ${id}</h2>
@@ -144,9 +142,12 @@ function viewIncident(id){
               <label class="label"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
               <output class="output">${redflags.comment}</output>
               <br>
-              <img class="output" src="../../uploads/${redflags.imagename}" style="width:20%">
-              <video class="output" src="../../uploads/${redflags.videoname}" style="width:50%" controls></video>
-              <br>
+              <div class="row-image"> 
+                <div class="column-image">
+                  <img src="../../uploads/${redflags.imagename}" style="width:50%; height=50px;">
+                  <video src="../../uploads/${redflags.videoname}" style="width:50%; height=50px;">
+                </div>
+              </div><br>
             </form>
           </div>
           `
