@@ -20,7 +20,7 @@ def status_emailing(user_email,user_name,incident_Id,incident_status):
 	return "Email sent"
 
 
-app.route('/emma', method='GET')
-def sms_email():
-	mess = status_emailing('ematembu2@gmail.com','Manuel','5','Resolved')
-	return mess
+# app.route('/emma', method='GET')
+# def sms_email():
+# 	mess = status_emailing('ematembu2@gmail.com','Manuel','5','Resolved')
+# 	return mess

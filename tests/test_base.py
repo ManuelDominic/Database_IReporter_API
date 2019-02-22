@@ -28,6 +28,75 @@ new_user = {
 
 new_user_response = {"status": 201, "message": "Successfully registered"}
 
+new_user_no_fields = {
+    "email": "",
+    "firstName": "",
+    "lastName": "",
+    "password": "",
+    "phoneNumber": "",
+    "userName": ""
+}
+new_user_no_mail = {
+    "email": "",
+    "firstName": "Emmanuel",
+    "lastName": "Matembu",
+    "password": "manuel123",
+    "phoneNumber": "0700701616",
+    "userName": "Manuel"
+}
+new_user_no_firstname = {
+    "email": "ematembu3@gmail.com",
+    "firstName": "",
+    "lastName": "Matembu",
+    "password": "manuel123",
+    "phoneNumber": "0700701616",
+    "userName": "Manuel"
+}
+new_user_no_lastname = {
+    "email": "ematembu3@gmail.com",
+    "firstName": "Emmanuel",
+    "lastName": "",
+    "password": "manuel123",
+    "phoneNumber": "0700701616",
+    "userName": "Manuel"
+}
+new_user_no_username = {
+    "email": "ematembu3@gmail.com",
+    "firstName": "Emmanuel",
+    "lastName": "Matembu",
+    "password": "manuel123",
+    "phoneNumber": "0700701616",
+    "userName": ""
+}
+new_user_no_password = {
+    "email": "ematembu3@gmail.com",
+    "firstName": "Emmanuel",
+    "lastName": "Matembu",
+    "password": "",
+    "phoneNumber": "0700701616",
+    "userName": "Manuel"
+}
+new_user_no_phonenumber = {
+    "email": "ematembu3@gmail.com",
+    "firstName": "Emmanuel",
+    "lastName": "Matembu",
+    "password": "manuel123",
+    "phoneNumber": "",
+    "userName": "Manuel"
+}
+user_no_mail = {
+    "email": "",
+    "password": "admin123"
+}
+user_no_password = {
+    "email": "ireportermanueldominic@gmail.com",
+    "password": ""
+}
+user_no_fields = {
+    "email": "",
+    "password": ""
+}
+
 login_user = {
     "email": "ireportermanueldominic@gmail.com",
     "password": "admin123"
@@ -64,6 +133,90 @@ new_intervention = {
     "longtitude": "6.66666",
     "latitude": "7.7777"
 }
+
+new_incident_no_title = {
+    "title": "",
+    "comment": "Jinja bridge needs construction",
+    "createdBy": 2,
+    "incident_type": "redflag",
+    "created_On": "Thu, 10 Jan 2019 04:01:14 GMT",
+    "longtitude": "6.66666",
+    "latitude": "7.7777"
+}
+new_incident_no_comment = {
+    "title": "intervention",
+    "comment": "",
+    "createdBy": 2,
+    "incident_type": "intervention",
+    "created_On": "Thu, 10 Jan 2019 04:01:14 GMT",
+    "longtitude": "6.66666",
+    "latitude": "7.7777"
+}
+new_incident_no_latitude = {
+    "title": "redflag",
+    "comment": "Jinja bridge needs construction",
+    "createdBy": 2,
+    "incident_type": "redflag",
+    "created_On": "Thu, 10 Jan 2019 04:01:14 GMT",
+    "longtitude": "6.66666",
+    "latitude": ""
+}
+new_incident_no_longtitude = {
+    "title": "intervention",
+    "comment": "Jinja bridge needs construction",
+    "createdBy": 2,
+    "incident_type": "intervention",
+    "created_On": "Thu, 10 Jan 2019 04:01:14 GMT",
+    "longtitude": "",
+    "latitude": "7.7777"
+}
+new_incident_no_fields = {
+    "title": "",
+    "comment": "",
+    "createdBy": 2,
+    "incident_type": "redflag",
+    "created_On": "Thu, 10 Jan 2019 04:01:14 GMT",
+    "longtitude": "",
+    "latitude": ""
+}
+
+new_incident_invalid_title = {
+    "title": "hj",
+    "comment": "Jinja bridge needs construction",
+    "createdBy": 2,
+    "incident_type": "redflag",
+    "created_On": "Thu, 10 Jan 2019 04:01:14 GMT",
+    "longtitude": "6.66666",
+    "latitude": "7.7777"
+}
+new_incident_invalid_comment = {
+    "title": "intervention",
+    "comment": "hjk",
+    "createdBy": 2,
+    "incident_type": "intervention",
+    "created_On": "Thu, 10 Jan 2019 04:01:14 GMT",
+    "longtitude": "6.66666",
+    "latitude": "7.7777"
+}
+new_incident_invalid_latitude = {
+    "title": "redflag",
+    "comment": "Jinja bridge needs construction",
+    "createdBy": 2,
+    "incident_type": "redflag",
+    "created_On": "Thu, 10 Jan 2019 04:01:14 GMT",
+    "longtitude": "6.66666",
+    "latitude": "kj"
+}
+new_incident_invalid_longtitude = {
+    "title": "intervention",
+    "comment": "Jinja bridge needs construction",
+    "createdBy": 2,
+    "incident_type": "intervention",
+    "created_On": "Thu, 10 Jan 2019 04:01:14 GMT",
+    "longtitude": "hj",
+    "latitude": "7.7777"
+}
+
 
 new_intervention_response = {
     "data": [

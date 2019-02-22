@@ -110,9 +110,9 @@ def update_redflag_status(redflag_Id):
     if not not_incident_id:
         return not_found()
     if incident:
-        mail=status_email("redflag",int(incident["incident_id"]))
+        # mail=status_email("redflag",int(incident["incident_id"]))
         return jsonify({"status":200,"data":incident,
-            "message": "Redflag status successfully Updated","Email":mail}), 200
+            "message": "Redflag status successfully Updated"}),200#,"Email":mail}), 200
     return bad_request()
 
 

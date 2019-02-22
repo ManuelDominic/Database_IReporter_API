@@ -55,7 +55,7 @@ def more_user_data():
         errors["email"] = "You have entered an invalid email address.Please try again." 
     
     if not data["password"]:
-        errors["password"] = "Password feilds are required."
+        errors["password"] = "Password feild is required."
     elif not data["password"].isalnum() or len(data["password"]) < 6:
         errors["password"] = "Password must have atleast six alphanumeric characters"
     
@@ -167,10 +167,10 @@ def update_incident_data():
     data = request.get_json(force=True)
     errors = {}
 
-    if not isinstance(data["longtitude"],str):# or data["longtitude"] != range(+180,-180):
+    if not isinstance(data["longtitude"],str):
         errors["longtitude"] = "longtitude must be a float in range of -180 to +180"
    
-    if not isinstance(data["latitude"],str):# or data["latitude"] != range(-90,+90):
+    if not isinstance(data["latitude"],str):
         errors["latitude"] = "latitude must be a float in range of -90 to +90"
    
     if not isinstance(data["comment"],str) or len(data["comment"])<10:

@@ -20,8 +20,8 @@ def index():
 
 
 @intervention_bp.route('/admin/intervention', methods=['GET'])
-# @token_required
-# @admin_required
+@token_required
+@admin_required
 def get_intervention_by_admin():
     intervention=get_incidents_by_type('intervention')
     if intervention:
@@ -122,9 +122,9 @@ def update_intervention_status(intervention_Id):
     if not incident:
         return not_found()
     elif incident_status:
-        mail=status_email('intervention',int(incident_status["incident_id"]))
+        # mail=status_email('intervention',int(incident_status["incident_id"]))
         return jsonify({"status":200,"data":incident_status,
-            "message": "Intervention status successfully Updated","Email":mail}), 200   
+            "message": "Intervention status successfully Updated"}),200#,"Email":mail}), 200   
     return bad_request()
 
 
