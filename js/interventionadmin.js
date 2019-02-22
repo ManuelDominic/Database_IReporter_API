@@ -8,6 +8,7 @@ function updateStatus(id){
     status:status
   }
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/' + id +'/status', {
+
       method: 'PATCH',
       mode: "cors",
       headers:{
@@ -47,8 +48,9 @@ function editIncident(id){
   let messageError = document.getElementById('messageError');
 
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention/' + id, {
+
       method: 'GET',
-        mode: "cors",
+      mode: "cors",
       headers:{
         'content-type':'application/json',
         'token': sessionStorage.getItem("token")
@@ -107,6 +109,7 @@ function viewIncident(id){
   let sucessIntervention = document.getElementById("sucessIntervention");
 
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention/' + id, {
+
       method: 'GET',
         mode: "cors",
       headers:{
@@ -143,7 +146,7 @@ function viewIncident(id){
                 <div class="row-image"> 
                   <div class="column-image">
                     <img src="../../uploads/${record.imagename}" style="width:50%; height=50px;">
-                    <video src="../../uploads/${record.videoname}" style="width:50%; height=50px;">
+                    <video class="output" src="../../uploads/${record.videoname}" style="width:50%" controls></video>
                   </div>
                 </div><br>
               </form>
@@ -163,6 +166,7 @@ window.onload = function loadPage() {
   let sucessIntervention = document.getElementById("sucessIntervention");
 
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention', {
+
       method: 'GET',
       mode: "cors",
       headers:{

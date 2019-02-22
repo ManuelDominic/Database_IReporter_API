@@ -5,6 +5,7 @@ window.onload = function loadPage() {
   let sucessRedflag = document.getElementById("redflag-user");
 
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/record/number', {
+
       method: 'GET',
       mode: 'cors',
       headers:{
