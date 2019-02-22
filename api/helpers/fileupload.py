@@ -11,8 +11,8 @@ ALLOWED_IMAGE_EXTENSIONS = set(['pdf', 'png', 'jpg', 'jpeg', 'gif'])
 ALLOWED_VIDEO_EXTENSIONS = set(['wmv','Flv','mp4','mkv'])
 
 app = Flask(__name__)
-
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 
 def allowed_image(filename):
     return filename.rsplit(".", 1)[1] in ALLOWED_IMAGE_EXTENSIONS
@@ -51,10 +51,10 @@ def upload_video(incident_Id):
         filename = secure_filename(file.filename)
         extention = filename.rsplit(".", 1)[1]
         new_name = str(uuid.uuid1()) + '.' + str(extention)
-        new_name = str(new_name).replace("-", "")
+        new_name = str(new_name).replace("-", "")        
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], new_name))
         sql_command = """INSERT INTO videos (videoname,incident_Id) VALUES ('{}','{}');""".format(new_name,incident_Id)
         db.cursor.execute(sql_command)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], new_name))
         return jsonify({"file":new_name,"message":"Video successfully uploaded"}), 200
 
 

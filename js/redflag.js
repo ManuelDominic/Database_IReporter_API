@@ -12,6 +12,7 @@ function updateIncident(id){
   }
     
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/red-flags/' + id +'/record', {
+
       method: 'PATCH',
       mode: "cors",
       headers:{
@@ -53,6 +54,7 @@ function uploadVideo(id){
   formData.append('file', fileField.files[0]);
   
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/incident/'+ id +'/addVideo', {
+
       method: 'PATCH',
       mode: "cors",
       headers:{
@@ -82,8 +84,9 @@ function viewVideo(id){
   let sucessRedflag = document.getElementById("sucessRedflag");
 
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/red-flags/' + id, {
+
       method: 'GET',
-        mode: "cors",
+      mode: "cors",
       headers:{
         'content-type':'application/json',
         'token': sessionStorage.getItem("token")
@@ -139,6 +142,7 @@ function uploadImage(id){
   formData.append('file', fileField.files[0]);
   
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/incident/'+ id +'/addImage', {
+
       method: 'PATCH',
       mode: "cors",
       headers:{
@@ -167,8 +171,9 @@ function viewImage(id){
   let sucessRedflag = document.getElementById("sucessRedflag");
 
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/red-flags/' + id, {
+
       method: 'GET',
-        mode: "cors",
+      mode: "cors",
       headers:{
         'content-type':'application/json',
         'token': sessionStorage.getItem("token")

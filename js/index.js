@@ -20,6 +20,7 @@ function userLogin() {
 	let newLogin = {email: loginemail, password: loginpassword}
 
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/auth/login', {
+
 		method: 'POST',
 	    mode: "cors",
 		headers:{
@@ -105,6 +106,7 @@ function userSignup() {
     }
 
     fetch('https://ireporter-api-v3.herokuapp.com/api/v3/auth/signup', {
+
       method: 'POST',
         mode: "cors",
       headers:{

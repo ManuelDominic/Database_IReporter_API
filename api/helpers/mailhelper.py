@@ -15,7 +15,12 @@ app.config['MAIL_USE_SSL'] = True
 
 def status_emailing(user_email,user_name,incident_Id,incident_status):
 	msg = Message('Hello', sender = 'ireportermanueldominic@gmail.com', recipients = [user_email])
-	msg.body = "Hello {}, Incidents {} is {}. Thank you please.".format(user_name,incident_Id,incident_status)
+	msg.body = "Hello '{}', Incidents '{}' is '{}'. Thank you please.".format(user_name,incident_Id,incident_status)
 	mail.send(msg)
-	return  "Email sent"
+	return "Email sent"
 
+
+app.route('/emma', method='GET')
+def sms_email():
+	mess = status_emailing('ematembu2@gmail.com','Manuel','5','Resolved')
+	return mess

@@ -5,6 +5,7 @@ window.onload = function viewMedia(filename) {
   var media = document.getElementById("media");
 
 	fetch('https://ireporter-api-v3.herokuapp.com/api/v3/incident/'+ filename +'/media', {
+
       method: 'GET',
       mode: 'cors',
       headers:{

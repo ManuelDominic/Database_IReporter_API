@@ -12,6 +12,7 @@ function updateIncident(id){
     longtitude:longtitude
   }
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/record', {
+
       method: 'PATCH',
       mode: "cors",
       headers:{
@@ -49,6 +50,7 @@ function editIncident(id){
   let messageError = document.getElementById("messageError");
   let sucessIntervention = document.getElementById("sucessIntervention");
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
+
       method: 'GET',
         mode: "cors",
       headers:{
@@ -112,6 +114,7 @@ function uploadImage(id){
   formData.append('file', fileField.files[0]);
   
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/incident/'+ id +'/addImage', {
+
       method: 'PATCH',
       mode: "nor-cors",
       headers:{
@@ -148,6 +151,7 @@ function viewImage(id){
   let myForm = document.getElementById('myForm');
 
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
+
       method: 'GET',
       mode: "cors",
       headers:{
@@ -204,6 +208,7 @@ function deleteIncident(id){
   let messageError = document.getElementById('messageError');
 
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id, {
+
       method: 'DELETE',
       mode: "cors",
       headers:{

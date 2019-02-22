@@ -61,10 +61,12 @@ function createIncident() {
                   break;
 
               }
+              else{
                 document.getElementById(key+"Error").innerHTML = data.error[key];
                 window.setTimeout(function () {
                 document.getElementById(key+"Error").style.display = "none";
               }, 3000);
+              }
              }
             }
           });

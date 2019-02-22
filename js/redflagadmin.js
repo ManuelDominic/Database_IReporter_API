@@ -9,6 +9,7 @@ function updateStatus(id){
     status:status
   }
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/red-flags/' + id + '/status', {
+
       method: 'PATCH',
       mode: "cors",
       headers:{
@@ -48,6 +49,7 @@ function editIncident(id){
   let sucessRedflag = document.getElementById("sucessRedflag");
 
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags/'+ id, {
+
       method: 'GET',
         mode: "cors",
       headers:{
@@ -106,6 +108,7 @@ function viewIncident(id){
   let messageError = document.getElementById("messageError");
 
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags/' + id, {
+
       method: 'GET',
         mode: "cors",
       headers:{
@@ -142,7 +145,7 @@ function viewIncident(id){
               <div class="row-image"> 
                 <div class="column-image">
                   <img src="../../uploads/${redflags.imagename}" style="width:50%; height=50px;">
-                  <video src="../../uploads/${redflags.videoname}" style="width:50%; height=50px;">
+                  <video class="output" src="../../uploads/${redflags.videoname}" style="width:50%" controls></video>
                 </div>
               </div><br>
             </form>
@@ -161,6 +164,7 @@ window.onload = function loadPage() {
   let sucessRedflag = document.getElementById("sucessRedflag");
 
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/red-flags', {
+
       method: 'GET',
         mode: "cors",
       headers:{

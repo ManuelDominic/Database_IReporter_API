@@ -8,9 +8,8 @@ let lat = document.getElementById('lat');
 var letters = /^[A-Za-z]+$/
 
   
-titleCtr.onkeyup = function(){
+titleCtr.onblur = function(){
   if (title.length < 4 && !title.match(letters)){
-
     document.getElementById('titleError').style.display = 'block';
     document.getElementById('titleError').innerHTML = 'title feild should have atleast 4 character strings';
     window.setTimeout(function () {
@@ -19,7 +18,7 @@ titleCtr.onkeyup = function(){
   }
 }
 
-commentCtr.onkeyup = function(){
+commentCtr.onblur = function(){
   if (comment.length < 10 && typeof comment != 'string') {
     document.getElementById('commentError').style.display = 'block';
     document.getElementById('commentError').innerHTML = 'comment field must have atleast 10 character strings';
@@ -29,7 +28,7 @@ commentCtr.onkeyup = function(){
   }
 }
 
-long.onkeyup = function(){
+long.onblur = function(){
   document.getElementById('longtitudeError').style.display = 'block';
   document.getElementById('longtitudeError').innerHTML = 'Please find location from the map';
   window.setTimeout(function () {
@@ -37,7 +36,7 @@ long.onkeyup = function(){
   }, 3000);
 }
 
-lat.onkeyup = function(){
+lat.onblur = function(){
   document.getElementById('latitudeError').style.display = 'block';
   document.getElementById('latitudeError').innerHTML = 'Please find location from the map';
   window.setTimeout(function () {
