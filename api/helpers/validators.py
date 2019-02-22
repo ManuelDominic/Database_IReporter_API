@@ -56,7 +56,7 @@ def more_user_data():
     
     if not data["password"]:
         errors["password"] = "Password feilds are required."
-    elif not isinstance(data["password"],str) or len(data["password"]) < 6:
+    elif not data["password"].isalnum() or len(data["password"]) < 6:
         errors["password"] = "Password must have atleast six alphanumeric characters"
     
     if not data["phoneNumber"]:
