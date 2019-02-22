@@ -3,7 +3,7 @@ from api.helpers.auth import token_required, admin_required, non_admin_required,
 from api.controllers.incident_controller import status_email,get_incidents_by_status_and_user,get_incidents_by_type_id_and_user,get_incidents_by_type_given_user,get_incidents_by_type,get_incidents_by_type_id,create_incident,update_incident_by_user,update_incident_status,delete_incident
 from api.controllers.user_controller import get_all_users
 from api.helpers.validators import verify_create_incident_data,verify_update_data
-from api.helpers.fileupload import upload_image,upload_video
+from api.helpers.fileupload import upload_image,upload_video, get_media
 from api.models.database_model import DatabaseConnection
 
 
@@ -20,8 +20,8 @@ def index():
 
 
 @intervention_bp.route('/admin/intervention', methods=['GET'])
-@token_required
-@admin_required
+# @token_required
+# @admin_required
 def get_intervention_by_admin():
     intervention=get_incidents_by_type('intervention')
     if intervention:
@@ -129,24 +129,20 @@ def update_intervention_status(intervention_Id):
 
 
 
-@intervention_bp.route('/intervention/<int:intervention_Id>/addImage', methods=['PATCH'])
+@intervention_bp.route('/incident/<int:incident_Id>/addImage', methods=['PATCH'])
 @token_required
 @non_admin_required
-def redflag_upload_image(intervention_Id):
-    file = upload_image(intervention_Id)
+def incident_upload_image(incident_Id):
+    file = upload_image(incident_Id)
     if file:
-        return jsonify({"status":200,"message":"Image successfully uploaded"}), 200
-    return bad_request()
+        return file
 
 
-@intervention_bp.route('/intervention/<int:intervention_Id>/addVideo', methods=['PATCH'])
+@intervention_bp.route('/incident/<filename>/media', methods=['GET'])
 @token_required
-@non_admin_required
-def redflag_upload_video(intervention_Id):
-    file = upload_video(intervention_Id)
-    if file:
-        return jsonify({"status":200,"message":"Video successfully uploaded"}), 200
-    return bad_request()
+def get_images(filename):
+    return get_media('image',filename) , 200
+
 
 
 

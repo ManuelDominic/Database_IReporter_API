@@ -12,7 +12,6 @@ function updateIncident(id){
   }
     
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/red-flags/' + id +'/record', {
-  // fetch('http://127.0.0.1:5000/api/v3/red-flags/' + id +'/record', {
       method: 'PATCH',
       mode: "cors",
       headers:{
@@ -38,10 +37,7 @@ function updateIncident(id){
       }
       if (response.status === 200) {
         response.json().then((data) => {
-          sucessRedflag.innerHTML = data.message
-          window.setTimeout(function () {
-            sucessRedflag.style.display = "none";
-          }, 1000);
+          alert(data.message)
     });
     }
   })
@@ -56,8 +52,7 @@ function uploadVideo(id){
   let fileField = document.querySelector("input[type='file']");
   formData.append('file', fileField.files[0]);
   
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/red-flags/'+ id +'/addVideo', {
-  // fetch('http://127.0.0.1:5000/api/v3/red-flags/'+ id +'/addVideo', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/incident/'+ id +'/addVideo', {
       method: 'PATCH',
       mode: "cors",
       headers:{
@@ -74,10 +69,7 @@ function uploadVideo(id){
       }
       if (response.status === 200) {
         response.json().then((data) => {
-          sucessRedflag.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("sucessIntervention").style.display = "none";
-          }, 800);
+          alert(data.message)
      });
     }
   })
@@ -90,7 +82,6 @@ function viewVideo(id){
   let sucessRedflag = document.getElementById("sucessRedflag");
 
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/red-flags/' + id, {
-  // fetch('http://127.0.0.1:5000/api/v3/user/red-flags/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -128,7 +119,6 @@ function viewVideo(id){
               <input type="file" class="label label-crt" accept="video/*" id="video">
               <br>
               <br>
-              <p id="v-image"></p>
               <button type="submit" class="btn" onclick="uploadVideo(${id})">Add Video</button>
             </form>
           </div>
@@ -148,8 +138,7 @@ function uploadImage(id){
   let fileField = document.querySelector("input[type='file']");
   formData.append('file', fileField.files[0]);
   
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/addImage', {
-  // fetch('http://127.0.0.1:5000/api/v3/red-flags/'+ id +'/addImage', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/incident/'+ id +'/addImage', {
       method: 'PATCH',
       mode: "cors",
       headers:{
@@ -165,10 +154,7 @@ function uploadImage(id){
       }
       if (response.status === 200) {
         response.json().then((data) => {
-          sucessIntervention.innerHTML = data.message
-          window.setTimeout(function () {
-            sucessIntervention.style.display = "none";
-          }, 800);
+          alert(data.message)
      });
     }
   })
@@ -181,7 +167,6 @@ function viewImage(id){
   let sucessRedflag = document.getElementById("sucessRedflag");
 
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/red-flags/' + id, {
-  // fetch('http://127.0.0.1:5000/api/v3/user/red-flags/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -217,7 +202,6 @@ function viewImage(id){
                 <output class="output">${redflags.comment}</output>
                 <br>
                 <br>
-                <p id="v-image"></p>
                 <input type="file" class="label label-crt" accept="image/*" id="image">
                 <br>
                 <br>

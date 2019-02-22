@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request,make_response
 from api.helpers.auth import token_required, admin_required, non_admin_required,get_current_user
 from api.controllers.incident_controller import status_email,get_incidents_by_status_and_user,get_incidents_by_type_id_and_user,get_incidents_by_type_given_user,get_incidents_by_type,get_incidents_by_type_id,create_incident,update_incident_by_user,update_incident_status,delete_incident
 from api.helpers.validators import verify_create_incident_data,verify_update_data
-from api.helpers.fileupload import upload_image,upload_video
+from api.helpers.fileupload import upload_image,upload_video,get_media
 from api.models.database_model import DatabaseConnection
 
 
@@ -116,25 +116,13 @@ def update_redflag_status(redflag_Id):
     return bad_request()
 
 
-@redflag_bp.route('/red-flags/<int:redflag_Id>/addImage', methods=['PATCH'])
+@redflag_bp.route('/incident/<int:incident_Id>/addVideo', methods=['PATCH'])
 @token_required
 @non_admin_required
-def redflag_upload_image(redflag_Id):
-    file = upload_image(redflag_Id)
+def redflag_upload_video(incident_Id):
+    file = upload_video(incident_Id)
     if file:
-        return jsonify({"status":200,"message":"Image successfully uploaded"}), 200
-    return bad_request()
-
-
-@redflag_bp.route('/red-flags/<int:redflag_Id>/addVideo', methods=['PATCH'])
-@token_required
-@non_admin_required
-def redflag_upload_video(redflag_Id):
-    file = upload_video(redflag_Id)
-    if file:
-        return jsonify({"status":200,"message":"Video successfully uploaded"}), 200
-    return bad_request()
-
+        return file
 
 def bad_request():
     return jsonify({"status":400, "message": "Sorry, Bad request"}),400

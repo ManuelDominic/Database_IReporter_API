@@ -15,6 +15,6 @@ function mySearch() {
       } else {
         tr[i].style.display = "none";
       }
-    } 
+    }
   }
 }

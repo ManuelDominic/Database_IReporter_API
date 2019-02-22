@@ -8,7 +8,6 @@ function updateStatus(id){
     status:status
   }
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/' + id +'/status', {
-  // fetch('http://127.0.0.1:5000/api/v3/intervention/' + id +'/status', {
       method: 'PATCH',
       mode: "cors",
       headers:{
@@ -34,10 +33,7 @@ function updateStatus(id){
       }
       if (response.status === 200) {
         response.json().then((data) => {
-          sucessIntervention.innerHTML = data.message;
-          window.setTimeout(function () {
-            sucessIntervention.style.display = "none";
-          }, 800);
+          alert(data.message)
       });
     }
   })
@@ -51,7 +47,6 @@ function editIncident(id){
   let messageError = document.getElementById('messageError');
 
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention/' + id, {
-  // fetch('http://127.0.0.1:5000/api/v3/admin/intervention/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -112,7 +107,6 @@ function viewIncident(id){
   let sucessIntervention = document.getElementById("sucessIntervention");
 
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention/' + id, {
-  // fetch('http://127.0.0.1:5000/api/v3/admin/intervention/' + id, {
       method: 'GET',
         mode: "cors",
       headers:{
@@ -132,6 +126,7 @@ function viewIncident(id){
           record = data.data
           let output =  `
             <span onclick="document.getElementById('myForm').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <script src="../../js/media.js"></script>
             <div class="modal-content">
               <form action="#" class="form-container">
                 <h2><span style="color:darkgreen">Record-Number</span> ${id}</h2>
@@ -145,9 +140,12 @@ function viewIncident(id){
                 <label class="label"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
                 <output class="output">${record.comment}</output>
                 <br>
-                <img class="output" src="../../uploads/${record.imagename}" style="width:20%">
-                <video class="output" src="../../uploads/${record.videoname}" style="width:50%" controls></video>
-                <br>
+                <div class="row-image"> 
+                  <div class="column-image">
+                    <img src="../../uploads/${record.imagename}" style="width:50%; height=50px;">
+                    <video src="../../uploads/${record.videoname}" style="width:50%; height=50px;">
+                  </div>
+                </div><br>
               </form>
             </div>
         `
@@ -165,7 +163,6 @@ window.onload = function loadPage() {
   let sucessIntervention = document.getElementById("sucessIntervention");
 
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/intervention', {
-  // fetch('http://127.0.0.1:5000/api/v3/admin/intervention', {
       method: 'GET',
       mode: "cors",
       headers:{
