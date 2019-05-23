@@ -5,7 +5,9 @@ import unittest
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/..")
 from .test_base import TestBase, token_signature_error, token_Invalid, token_expired, invalid_login_user, \
-    new_user_error_mail, new_user, new_user_response, token_header, login_user, all_users_response, login_user_response
+    new_user_error_mail, new_user, new_user_response, token_header, login_user, all_users_response, \
+    login_user_response,new_user_no_mail,new_user_no_password,new_user_no_firstname,new_user_no_lastname,\
+    new_user_no_username,new_user_no_phonenumber,user_no_mail,user_no_password,new_user_no_fields,user_no_fields
 from api.helpers.auth import encode_token
 
 
@@ -17,13 +19,105 @@ class TestUser(TestBase):
         data = response.data.decode('utf-8')
         self.assertEqual(json.loads(data), new_user_response)
 
-    # def test_sign_up_with_used_mail(self):
-    #     response = self.app.post('/api/v3/auth/signup', content_type="application/json",
-    #                              data=json.dumps(new_user_error_mail))
-    #     self.assertEqual(response.status_code, 406)
-    #     data = response.data.decode()
-    #     Invalid = {"message": "Email already in use"}
-    #     self.assertEqual(json.loads(data), Invalid)
+    def test_signup_no_email_field(self):
+        response = self.app.post('/api/v3/auth/signup', content_type="application/json",
+                                 data=json.dumps(new_user_no_mail))
+        self.assertEqual(response.status_code, 406)
+        data = response.data.decode()
+        errors={}
+        errors["email"] = {'error': {'email': 'Email address feild is required.'}}
+        self.assertEqual(json.loads(data), errors["email"])
+
+    def test_signup_no_password_field(self):
+        response = self.app.post('/api/v3/auth/signup', content_type="application/json",
+                                 data=json.dumps(new_user_no_password))
+        self.assertEqual(response.status_code, 406)
+        data = response.data.decode()
+        errors={}
+        errors["password"] = {'error': {'password': 'Password feild is required.'}}
+        self.assertEqual(json.loads(data), errors["password"])
+
+
+    def test_signup_no_firstname_field(self):
+        response = self.app.post('/api/v3/auth/signup', content_type="application/json",
+                                 data=json.dumps(new_user_no_firstname))
+        self.assertEqual(response.status_code, 406)
+        data = response.data.decode()
+        errors={}
+        errors["firstName"] = {'error': {'firstName': 'firstName feild is required.'}}
+        self.assertEqual(json.loads(data), errors["firstName"])
+
+    def test_signup_no_lastname_field(self):
+        response = self.app.post('/api/v3/auth/signup', content_type="application/json",
+                                 data=json.dumps(new_user_no_lastname))
+        self.assertEqual(response.status_code, 406)
+        data = response.data.decode()
+        errors={}
+        errors["lastName"] = {'error': {'lastName': 'lastName feild is required.'}}
+        self.assertEqual(json.loads(data), errors["lastName"])
+
+
+    def test_signup_no_username_field(self):
+        response = self.app.post('/api/v3/auth/signup', content_type="application/json",
+                                 data=json.dumps(new_user_no_username))
+        self.assertEqual(response.status_code, 406)
+        data = response.data.decode()
+        errors={}
+        errors["userName"] = {'error': {'userName': 'userName feild is required.'}}
+        self.assertEqual(json.loads(data), errors["userName"])
+
+
+    def test_signup_no_phone_field(self):
+        response = self.app.post('/api/v3/auth/signup', content_type="application/json",
+                                 data=json.dumps(new_user_no_phonenumber))
+        self.assertEqual(response.status_code, 406)
+        data = response.data.decode()
+        errors={}
+        errors["phoneNumber"] = {'error': {'phoneNumber': 'phoneNumber feild is required.'}}
+        self.assertEqual(json.loads(data), errors["phoneNumber"])
+
+    def test_signup_no_field(self):
+        response = self.app.post('/api/v3/auth/signup', content_type="application/json",
+                                 data=json.dumps(new_user_no_fields))
+        self.assertEqual(response.status_code, 406)
+        data = response.data.decode()
+        errors={}
+        errors["fields"] = {'error': {'fields': 'All Input fields are Required',
+            'firstName': 'firstName feild is required.','email': 'Email address feild is required.',
+            'lastName': 'lastName feild is required.','userName': 'userName feild is required.',
+            'phoneNumber': 'phoneNumber feild is required.','password': 'Password feild is required.'}}
+        self.assertEqual(json.loads(data), errors["fields"])
+
+
+    def test_login_no_email_field(self):
+        response = self.app.post('/api/v3/auth/login', content_type="application/json",
+                                 data=json.dumps(user_no_mail))
+        self.assertEqual(response.status_code, 406)
+        data = response.data.decode()
+        errors={}
+        errors["email"] = {'error': {'email': 'Email address feild is required.'}}
+        self.assertEqual(json.loads(data), errors["email"])
+
+    def test_login_no_field(self):
+        response = self.app.post('/api/v3/auth/login', content_type="application/json",
+                                 data=json.dumps(user_no_fields))
+        self.assertEqual(response.status_code, 406)
+        data = response.data.decode()
+        errors={}
+        errors["fields"] = {'error': {'fields': 'All Input fields are Required',
+            'email': 'Email address feild is required.','password': 'Password feild is required.'}}
+        self.assertEqual(json.loads(data), errors["fields"])
+
+
+    def test_login_no_password_field(self):
+        response = self.app.post('/api/v3/auth/login', content_type="application/json",
+                                 data=json.dumps(user_no_password))
+        self.assertEqual(response.status_code, 406)
+        data = response.data.decode()
+        errors={}
+        errors["password"] = {'error': {'password': 'Password feild is required.'}}
+        self.assertEqual(json.loads(data), errors["password"])
+
 
     def test_login(self):
         response = self.app.post('/api/v3/auth/login', content_type="application/json", data=json.dumps(login_user))

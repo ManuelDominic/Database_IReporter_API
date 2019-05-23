@@ -12,7 +12,7 @@ function updateIncident(id){
     longtitude:longtitude
   }
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/record', {
-  // fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id +'/record', {
+
       method: 'PATCH',
       mode: "cors",
       headers:{
@@ -38,10 +38,7 @@ function updateIncident(id){
       }
       if (response.status === 200) {
         response.json().then((data) => {
-          sucessIntervention.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("sucessIntervention").style.display = "none";
-          }, 800);
+          alert(data.message)          
      });
     }
   })
@@ -53,7 +50,7 @@ function editIncident(id){
   let messageError = document.getElementById("messageError");
   let sucessIntervention = document.getElementById("sucessIntervention");
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
-  // fetch('http://127.0.0.1:5000/api/v3/user/intervention/' + id, {
+
       method: 'GET',
         mode: "cors",
       headers:{
@@ -116,8 +113,8 @@ function uploadImage(id){
   let fileField = document.getElementById('image');
   formData.append('file', fileField.files[0]);
   
-  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id +'/addImage', {
-  // fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id +'/addImage', {
+  fetch('https://ireporter-api-v3.herokuapp.com/api/v3/incident/'+ id +'/addImage', {
+
       method: 'PATCH',
       mode: "nor-cors",
       headers:{
@@ -141,10 +138,7 @@ function uploadImage(id){
       }
       if (response.status === 200) {
         response.json().then((data) => {
-          sucessIntervention.innerHTML = data.message
-          window.setTimeout(function () {
-            document.getElementById("sucessIntervention").style.display = "none";
-          }, 3000);
+          alert(data.message)
      });
     }
   })
@@ -157,7 +151,7 @@ function viewImage(id){
   let myForm = document.getElementById('myForm');
 
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/user/intervention/' + id, {
-  // fetch('http://127.0.0.1:5000/api/v3/user/intervention/'+ id, {
+
       method: 'GET',
       mode: "cors",
       headers:{
@@ -192,7 +186,6 @@ function viewImage(id){
                       <label class="label"><i class="fa fa-comments" aria-hidden="true"></i> Comment</label>
                       <output class="output">${record.comment}</output>
                       <br>
-                      <p id="v-image"></p>
                       <input type="file" class="label label-crt" accept="image/*" id="image">
                       <br>
                       <br>
@@ -215,7 +208,7 @@ function deleteIncident(id){
   let messageError = document.getElementById('messageError');
 
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/intervention/'+ id, {
-  // fetch('http://127.0.0.1:5000/api/v3/intervention/'+ id, {
+
       method: 'DELETE',
       mode: "cors",
       headers:{
@@ -232,10 +225,10 @@ function deleteIncident(id){
       }
       if (response.status === 200) {
         response.json().then((data) => {
-          sucessIntervention.innerHTML = data.message
+          alert(data.message)
           window.setTimeout(function () {
             document.location.reload()
-          }, 800);
+          }, 1000);
      });
     }
   })

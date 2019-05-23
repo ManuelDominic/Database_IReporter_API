@@ -19,77 +19,81 @@ var mail = /\S+@\S+\.\S+/
 
 
 
-firstNameCtr.onkeyup = function(){
+firstNameCtr.onblur = function(){
   if (firstName.length < 3 && !firstName.match(letters)){
-    document.getElementById('firstNameError').style.display = 'block';
-    document.getElementById('firstNameError').innerHTML = 'firstName field must have only character strings';
+    document.getElementById('firstNameError').innerHTML = 'firstName field must have atleast 3 character strings';
     window.setTimeout(function () {
       document.getElementById("firstNameError").style.display = "none";
-    }, 1000); 
+    }, 2000); 
+  }
+  else{
+    document.getElementById("firstNameError").style.display = "none";
   }
 }
 
-lastNameCtr.onkeyup = function(){
+lastNameCtr.onblur = function(){
   if (lastName.length < 3 && !lastName.match(letters)){
-    document.getElementById('lastNameError').style.display = 'block';
-    document.getElementById('lastNameError').innerHTML = 'lastName field must have only character strings';
+    document.getElementById('lastNameError').innerHTML = 'lastName field must have atleast 3 character strings';
     window.setTimeout(function () {
       document.getElementById("lastNameError").style.display = "none";
-    }, 1000);
+    }, 2000);
+  }
+  else{
+    document.getElementById("lastNameError").style.display = "none";
   }
 }
 
-userNameCtr.onkeyup = function(){
+userNameCtr.onblur = function(){
   if (userName.length < 4 && !userName.match(letters)){
-    document.getElementById('userNameError').style.display = 'block';
-    document.getElementById('userNameError').innerHTML = 'userName field must have only character strings';
+    document.getElementById('userNameError').innerHTML = 'userName field must have atleast 4 character strings';
     window.setTimeout(function () {
       document.getElementById("userNameError").style.display = "none";
-    }, 1000);
+    }, 2000);
+  }
+  else{
+    document.getElementById("userNameError").style.display = "none";
   }
 }
 
-emailCtr.onkeyup = function(){
+emailCtr.onblur = function(){
   if (email.toString().length < 12  && !email.match(mail)){
-    document.getElementById('emailError').style.display = 'block';
     document.getElementById('emailError').innerHTML = 'Email format must be example@example.com';
     window.setTimeout(function () {
       document.getElementById("emailError").style.display = "none";
-    }, 1000);
+    }, 2000);
+  }
+  else{
+    document.getElementById("emailError").style.display = "none";
   }
 }
 
-phoneNumberCtr.onkeyup = function(){
+phoneNumberCtr.onblur = function(){
   if (phoneNumber.toString().length != 10  && !phoneNumber.match(numbers)){
-    document.getElementById('phoneNumberError').style.display = 'block';
     document.getElementById('phoneNumberError').innerHTML = 'phoneNumber feild must contain 10 digits';
     window.setTimeout(function () {
       document.getElementById("phoneNumberError").style.display = "none";
-    }, 1000);
+    }, 2000);
   }
-}
-
-passwordCtr.onkeyup = function(){
-  if (password.length < 6  && !password.match(alphanumeric)){
-    document.getElementById('passwordError').style.display = 'block';
-    document.getElementById('passwordError').innerHTML = 'Password must have atleast six alphanumeric characters';
-    window.setTimeout(function () {
-      document.getElementById("passwordError").style.display = "none";
-    }, 1000);
+  else{
+    document.getElementById("phoneNumberError").style.display = "none";
   }
 }
 
 passwordCtr.onblur = function(){
-  if (password.value !== repeatPassword.value){
-    document.getElementById('passwordError').innerHTML = 'Passwords do not match';
+  if (password.length < 6  && !password.match(alphanumeric)){
+    document.getElementById('passwordError').innerHTML = 'Password must have atleast six alphanumeric characters';
     window.setTimeout(function () {
       document.getElementById("passwordError").style.display = "none";
-    }, 1000);
+    }, 2000);
+  }
+  else{
+    document.getElementById("passwordError").style.display = "none";
   }
 }
+
+
 repeatPasswordCtr.onkeyup = function(){
   if (password.value !== repeatPassword.value){
-    document.getElementById('passwordError').style.display = 'block';
     document.getElementById('passwordError').innerHTML = 'Passwords do not match';
     window.setTimeout(function () {
       document.getElementById("passwordError").style.display = "none";

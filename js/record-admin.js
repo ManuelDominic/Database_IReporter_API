@@ -6,7 +6,7 @@ window.onload = function loadPage() {
   let sucessUser = document.getElementById("users-admin");
 
   fetch('https://ireporter-api-v3.herokuapp.com/api/v3/admin/record/number', {
-  // fetch('http://127.0.0.1:5000/api/v3/admin/record/number', {
+
       method: 'GET',
       mode: 'cors',
       headers:{

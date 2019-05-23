@@ -6,9 +6,10 @@ import unittest
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/..")
 
 from .test_base import TestBase, get_all_intervention, get_intervention, get_redflag, get_all_redflags, \
-    new_intervention, new_record, new_status, \
+    new_intervention, new_record, new_status, new_incident_no_title,new_incident_no_comment,new_incident_no_fields,\
     intervention_status_response, new_intervention_response, redflag_status_response, new_redflag, \
-    new_redflag_response, token_header
+    new_redflag_response, token_header,new_incident_no_latitude,new_incident_no_longtitude,new_incident_invalid_title,\
+    new_incident_invalid_comment,new_incident_invalid_latitude,new_incident_invalid_longtitude
 from api.helpers.auth import encode_token
 
 
@@ -106,17 +107,64 @@ class TestIncindent(TestBase):
         self.assertEqual(json.loads(data), message)
 
 
-    # def test_create_redflag(self):
-    #     response = self.app.post('/api/v3/red-flags', headers=token_header(encode_token(2)),
-    #                              data=json.dumps(new_redflag))
-    #     data = response.data.decode()
-    #     self.assertTrue(json.loads(data), new_redflag_response)
+    def test_create_redflag_no_title(self):
+        response = self.app.post('/api/v3/red-flags', headers=token_header(encode_token(2)),
+                                 data=json.dumps(new_incident_no_title))
+        data = response.data.decode()
+        errors = {}
+        errors['title'] = {'error':'title feild is required'}
+        self.assertTrue(json.loads(data), errors['title'])
 
-    # def test_create_intervention(self):
-    #     response = self.app.post('/api/v3/intervention', headers=token_header(encode_token(2)),
-    #                              data=json.dumps(new_intervention))
-    #     data = response.data.decode()
-    #     self.assertTrue(json.loads(data), new_intervention_response)
+    def test_create_intervention_no_comment(self):
+        response = self.app.post('/api/v3/intervention', headers=token_header(encode_token(2)),
+                                 data=json.dumps(new_incident_no_comment))
+        data = response.data.decode()
+        errors = {}
+        errors['comment'] = {'comment':"comment feild is required"}
+        self.assertTrue(json.loads(data), errors['comment'])
+
+    def test_create_redflag_no_latitude(self):
+        response = self.app.post('/api/v3/red-flags', headers=token_header(encode_token(2)),
+                                 data=json.dumps(new_incident_no_latitude))
+        data = response.data.decode()
+        errors = {}
+        errors['latitude'] = {'latitude':"latitude feild is required"}
+        self.assertTrue(json.loads(data), errors['latitude'])
+
+    def test_create_intervention_no_longtitude(self):
+        response = self.app.post('/api/v3/intervention', headers=token_header(encode_token(2)),
+                                 data=json.dumps(new_incident_no_longtitude))
+        data = response.data.decode()
+        errors = {}
+        errors['longtitude'] = {'longtitude':"longtitude feild is required"}
+        self.assertTrue(json.loads(data), errors['longtitude'])
+
+
+    def test_create_intervention_no_fields(self):
+        response = self.app.post('/api/v3/intervention', headers=token_header(encode_token(2)),
+                                 data=json.dumps(new_incident_no_fields))
+        data = response.data.decode()
+        errors = {}
+        errors['feilds'] = {'feilds':"longtitude feild is required"}
+        self.assertTrue(json.loads(data), errors['feilds'])
+
+
+    def test_create_redflag_invalid_title(self):
+        response = self.app.post('/api/v3/red-flags', headers=token_header(encode_token(2)),
+                                 data=json.dumps(new_incident_invalid_title))
+        data = response.data.decode()
+        errors = {}
+        errors['title'] = {'error':"title feild should have atleast 4 character strings"}
+        self.assertTrue(json.loads(data), errors['title'])
+
+    def test_create_intervention_invalid_comment(self):
+        response = self.app.post('/api/v3/intervention', headers=token_header(encode_token(2)),
+                                 data=json.dumps(new_incident_invalid_comment))
+        data = response.data.decode()
+        errors = {}
+        errors['comment'] = {'comment':"comment field must have atleast 10 character strings"}
+        self.assertTrue(json.loads(data), errors['comment'])
+
 
     def test_delete_intervention(self):
         response = self.app.delete('/api/v3/intervention/7', headers=token_header(encode_token(2)))
@@ -134,19 +182,19 @@ class TestIncindent(TestBase):
                         "message": "Redflag successfully Deleted", "status": 200}
         self.assertEqual(json.loads(data), message)
 
-    # def test_update_intervention_status(self):
-    #     response = self.app.patch('/api/v3/intervention/5/status', headers=token_header(encode_token(1)),
-    #                               data=json.dumps(new_status))
-    #     self.assertEqual(response.status_code, 200)
-    #     data = response.data.decode()
-    #     self.assertEqual(json.loads(data), intervention_status_response)
+    def test_update_intervention_status(self):
+        response = self.app.patch('/api/v3/intervention/5/status', headers=token_header(encode_token(1)),
+                                  data=json.dumps(new_status))
+        self.assertEqual(response.status_code, 200)
+        data = response.data.decode()
+        self.assertEqual(json.loads(data), intervention_status_response)
 
-    # def test_update_redflag_status(self):
-    #     response = self.app.patch('/api/v3/red-flags/1/status', headers=token_header(encode_token(1)), \
-    #                               data=json.dumps(new_status))
-    #     self.assertEqual(response.status_code, 200)
-    #     data = response.data.decode()
-    #     self.assertEqual(json.loads(data), redflag_status_response)
+    def test_update_redflag_status(self):
+        response = self.app.patch('/api/v3/red-flags/1/status', headers=token_header(encode_token(1)), \
+                                  data=json.dumps(new_status))
+        self.assertEqual(response.status_code, 200)
+        data = response.data.decode()
+        self.assertEqual(json.loads(data), redflag_status_response)
 
 
 if __name__ == '__main__':
